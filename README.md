@@ -2,7 +2,8 @@
 
 ## Database Schema Design
 
-[Airbnb DB schema.pdf](https://github.com/yashayang/Airbnb-Project/files/9420001/Airbnb.DB.schema.pdf)
+![Airbnb DB schema](https://user-images.githubusercontent.com/1794317/186540950-15d808c7-fed6-4271-b052-b91b5d12ef17.png)
+
 
 ## API Documentation
 
