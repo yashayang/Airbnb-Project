@@ -48,7 +48,10 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     static associate(models) {
-      // define association here
+      User.hasMany(
+        models.Booking,
+        { foreighKey: 'userId', onDelete: 'cascade' }
+      );
     }
   }
   User.init({
