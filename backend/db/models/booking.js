@@ -14,14 +14,37 @@ module.exports = (sequelize, DataTypes) => {
         models.User,
         { foreighKey: 'userId' }
       );
+      Booking.belongsTo(
+        models.Spot,
+        { foreighKey: 'spotId' }
+      );
     }
   }
   Booking.init({
-    id: DataTypes.INTEGER,
-    spotId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER,
-    startDate: DataTypes.DATE,
-    endDate: DataTypes.DATE
+    spotId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: { model: 'Spots' }
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: { model: 'Users' }
+    }
+    startDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        isDate: true
+      }
+    },
+    endDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        isDate: true
+      }
+    }
   }, {
     sequelize,
     modelName: 'Booking',

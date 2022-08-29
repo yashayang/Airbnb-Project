@@ -51,6 +51,14 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(
         models.Booking,
         { foreighKey: 'userId', onDelete: 'cascade' }
+        );
+      User.hasMany(
+        models.Spot,
+        { foreighKey: 'ownerId', onDelete: 'cascade' }
+      );
+      User.hasMany(
+        models.Review,
+        { foreighKey: 'userId', onDelete: 'cascade' }
       );
     }
   }
