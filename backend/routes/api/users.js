@@ -38,14 +38,74 @@ const validateSignup = [
 ];
 
 router.post('/', validateSignup, async (req, res) => {
+
   const { firstName, lastName, email, password, username } = req.body;
+
+  //Error response: User already exists with the specified email
+  const existedEmail = await User.findOne({ where: {email} });
+  if (existedEmail) {
+    res.status(403)
+    res.json({
+      "message": "User already exists",
+      "statusCode": 403,
+      "errors": {
+        "email": "User with that email already exists"
+      }
+    })
+  }
+
+
+  //Error response: User already exists with the specified username
+  const existedUsername = await User.findOne({ where: {username} });
+  if (existedUsername) {
+    res.status(403)
+       .json({
+      "message": "User already exists",
+      "statusCode": 403,
+      "errors": {
+        "username": "User with that username already exists"
+      }
+    })
+  }
+
+  //Error response: Body validation errors
+  // console.log(email)
+  // if (!{email} && !{username} && !{firstName} && !{lastName}) {
+  //   res.json({
+  //     "message": "Validation error",
+  //     "statusCode": 400,
+  //     "errors": {
+  //       "email": "Invalid email",
+  //       "username": "Username is required",
+  //       "firstName": "First Name is required",
+  //       "lastName": "Last Name is required"
+  //     }
+  //   })
+  // }
+try{
   const user = await User.signup({ firstName, lastName, email, password, username });
 
-  await setTokenCookie(res, user);
+  const token = await setTokenCookie(res, user);
+
+  const userJson = user.toJSON();
+  userJson.token = token;
 
   return res.json({
-    user
+    userJson
   });
+}catch(err){
+  res.status(400)
+  .json({
+    "message": "Validation error",
+    "statusCode": 400,
+    "errors": {
+      "email": "Invalid email",
+      "username": "Username is required",
+      "firstName": "First Name is required",
+      "lastName": "Last Name is required"
+ }
+})
+}
 });
 
 
