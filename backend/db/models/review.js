@@ -28,17 +28,20 @@ module.exports = (sequelize, DataTypes) => {
   Review.init({
     spotId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: { model: 'Spots' }
+      allowNull: false
     },
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: { model: 'Users' }
+      allowNull: false
     },
     review: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        atLeastOneChar(review) {
+            if (review.length < 1) throw new Error("Review field cannot be empty!");
+        }
+    }
     },
     stars: {
       type: DataTypes.INTEGER,
