@@ -46,15 +46,15 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.hasMany(
         models.Booking,
-        { foreighKey: 'userId', onDelete: 'cascade' }
+        { foreignKey: 'userId', onDelete: 'cascade' }
         );
       User.hasMany(
         models.Spot,
-        { foreighKey: 'ownerId', onDelete: 'cascade' }
+        { foreignKey: 'ownerId', onDelete: 'cascade' }
       );
       User.hasMany(
         models.Review,
-        { foreighKey: 'userId', onDelete: 'cascade' }
+        { foreignKey: 'userId', onDelete: 'cascade' }
       );
     }
   }
