@@ -31,7 +31,6 @@ module.exports = (sequelize, DataTypes) => {
   Spot.init({
     ownerId: {
       type: DataTypes.INTEGER,
-      unique: true,
       allowNull: false,
       references: { model: 'Users' }
     },
@@ -42,21 +41,19 @@ module.exports = (sequelize, DataTypes) => {
     },
     city: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false
     },
     state: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false
     },
     country: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false
     },
     lat: {
       type: DataTypes.DECIMAL,
+      unique: true,
       validate: {
         min: -90,
         max: 90
@@ -64,6 +61,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     lng: {
       type: DataTypes.DECIMAL,
+      unique: true,
       validate: {
         min: -180,
         max: 180

@@ -10,7 +10,6 @@ module.exports = {
       },
       ownerId: {
         type: Sequelize.INTEGER,
-        unique: true,
         allowNull: false,
         onDelete: 'cascade',
         references: { model: 'Users', key: 'id' }
@@ -22,17 +21,14 @@ module.exports = {
       },
       city: {
         type: Sequelize.STRING,
-        unique: true,
         allowNull: false
       },
       state: {
         type: Sequelize.STRING,
-        unique: true,
         allowNull: false
       },
       country: {
         type: Sequelize.STRING,
-        unique: true,
         allowNull: false
       },
       lat: {
