@@ -2,7 +2,6 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    async up (queryInterface, Sequelize) {
 
       await queryInterface.bulkInsert('ReviewImages', [
         {

@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: { model: 'Users' }
-    }
+    },
     startDate: {
       type: DataTypes.DATE,
       allowNull: false,
