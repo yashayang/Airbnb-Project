@@ -86,7 +86,8 @@ router.get('/current', async (req, res, next) => {
 router.get('/:spotId', async (req, res, next) => {
   const currSpotId = parseInt(req.params.spotId);
 
-  if (!currSpotId) {
+  const currSpot = await Spot.findByPk(currSpotId);
+  if (!currSpot) {
     res.status(404)
     .json({
       "message": "Spot couldn't be found",
