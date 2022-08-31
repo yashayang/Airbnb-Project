@@ -70,4 +70,38 @@ router.post('/:reviewId/images', async (req, res, next) => {
 })
 
 
+//Edit a Review
+router.put('/:reviewId', async(req, res, next) => {
+  const reviewId = parseInt(req.params.reviewId);
+  const { review, stars } = req.body;
+  const { user } = req;
+  const currUserId = user.toJSON().id;
+  const currReview = await Review.findByPk(reviewId);
+  if (!currReview) {
+    res.status(404)
+    .json({
+      "message": "Review couldn't be found",
+      "statusCode": 404
+    })
+  }
+
+  if (!review || isNaN(stars)) {
+    res.status(400)
+    .json({
+     "message": "Validation error",
+     "statusCode": 400,
+     "errors": {
+       "review": "Review text is required",
+       "stars": "Stars must be an integer from 1 to 5",
+     }
+   })
+  }
+
+  currReview.update({ review, stars });
+  res.json(currReview)
+})
+
+
+
+
 module.exports = router;
