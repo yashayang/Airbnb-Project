@@ -276,6 +276,51 @@ let reviewsArr = [];
 
 })
 
+//Create a Review for a Spot based on the Spot's id
+router.post('/:spotId/reviews', async (req, res, next) => {
+  const currSpotId = parseInt(req.params.spotId);
+  const { user } = req;
+  const currUserId = user.toJSON().id;
+  const currSpot = await Spot.findByPk(currSpotId);
+
+  if (!currSpot) {
+    res.status(404)
+       .json({
+        "message": "Spot couldn't be found",
+        "statusCode": 404
+      })
+  }
+
+
+  const { review, stars } = req.body;
+  if (!review || isNaN(stars)) {
+    res.status(400)
+       .json({
+        "message": "Validation error",
+        "statusCode": 400,
+        "errors": {
+          "review": "Review text is required",
+          "stars": "Stars must be an integer from 1 to 5",
+        }
+      })
+  }
+
+  const existReview = await Review.findOne({ where: { userId: currUserId, spotId: currSpotId } })
+  if (existReview) {
+    res.status(403)
+       .json({
+        "message": "User already has a review for this spot",
+        "statusCode": 403
+      })
+  }
+
+  const newReview = await Review.create({ userId: currUserId, spotId: currSpotId, review, stars });
+  const findNewReview = await Review.findOne({ where: { spotId: currSpotId } })
+
+  res.json(findNewReview)
+
+})
+
 
 
 
