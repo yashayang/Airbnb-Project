@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { User, Spot, SpotImage, Review, sequelize, ReviewImage } = require('../../db/models');
+const { Booking, User, Spot, SpotImage, Review, sequelize, ReviewImage } = require('../../db/models');
 // HELPER FUNCTION??
 // async function avgRating() {
 //   let allSpots = await Spot.findAll();
@@ -321,6 +321,43 @@ router.post('/:spotId/reviews', async (req, res, next) => {
 
 })
 
+//Get all Bookings for a Spot based on the Spot's id
+router.get('/:spotId/bookings', async (req, res, next) => {
+  const spotId = parseInt(req.params.spotId);
+  const { user } = req;
+  const userId = user.toJSON().id;
+  const spot = await Spot.findByPk(spotId);
+
+  if (!spot) {
+    res.status(404)
+    .json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
+  }
+
+  const ownerId = spot.toJSON().ownerId;
+  if (userId !== ownerId) {
+    const allBookings = await Booking.findAll({
+      where: { spotId: spotId },
+      attributes: ['spotId', 'startDate', 'endDate']
+    })
+    res.json({Bookings: allBookings})
+  }
+
+  let bookingsArr = [];
+  if (userId === ownerId) {
+    const allBookings = await Booking.findAll({ where: { spotId: spotId } })
+    for (let i = 0; i < allBookings.length; i++) {
+      let currBooking = allBookings[i].toJSON();
+      let ownerInfo = await User.findByPk(userId, { attributes: ['id', 'firstName', 'lastName']});
+      currBooking.User = ownerInfo;
+      bookingsArr.push(currBooking);
+    }
+    res.json({Bookings: bookingsArr})
+  }
+
+})
 
 
 
