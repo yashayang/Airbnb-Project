@@ -3,6 +3,7 @@ const router = express.Router();
 
 const { Spot, SpotImage, Review, sequelize } = require('../../db/models');
 
+//Get all Spots
 router.get('/', async (req, res, next) => {
   /* EAGER LOADING */
   // const allSpots = await Spot.findAll();
@@ -35,45 +36,65 @@ router.get('/', async (req, res, next) => {
   //   }
   //   res.json({'Spots': spotArray})
 
-  let spots = await Spot.findAll({
-    attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt']
-  });
+  let allSpots = await Spot.findAll();
 
-  let newArray = []
-  let SpotsObj
-  let avgRating
-  for(let i = 0; i< spots.length; i++){
-    SpotsObj = spots[i].toJSON()
-    avgRating = await Review.findAll({
-        where: {
-            spotId: spots[i].id
-        },
+  let spotsArr = []
+
+  for(let i = 0; i< allSpots.length; i++){
+    let spotObj = allSpots[i].toJSON();
+    let currentId = allSpots[i].id;
+
+    let avgRating = await Review.findByPk(currentId, {
         attributes: [[sequelize.fn('AVG', sequelize.col("stars")), 'avgRating']]
     })
-    SpotsObj.avgRating = avgRating[0].dataValues.avgRating
-    const previewImageUrl = await SpotImage.findByPk(spots[i].id, {
+    spotObj.avgRating = avgRating.dataValues.avgRating
+
+    const previewImageUrl = await SpotImage.findByPk(currentId, {
         where: { preview: true },
         attributes: ['url']
     })
+    spotObj.prevewImage = previewImageUrl.url
 
-    SpotsObj["prevewImage"] = previewImageUrl.url
-    newArray.push(SpotsObj)
+    spotsArr.push(spotObj)
   }
 
   return res.json({
-    Spots: newArray
+    Spots: spotsArr
   })
 
 })
 
-
+//Get all Spots owned by the Current User
 router.get('/current', async (req, res, next) => {
   const { user } = req;
-  // console.log(user.toJSON().id)
-  const allSpotsforOwner = await Spot.findByPk(user.toJSON().id, {
+  const currentId = user.toJSON().id;
 
-  });
-  res.json(allSpotsforOwner)
+  const allSpotsforCurrOwner = await Spot.findAll({where: {ownerId: currentId}});
+
+  let spotsArr = [];
+
+  for(let i = 0; i< allSpotsforCurrOwner.length; i++){
+    let SpotsObj = allSpotsforCurrOwner[i].toJSON()
+    let currSpotId = allSpotsforCurrOwner[i].id;
+
+    let avgRating = await Review.findByPk(currSpotId, {
+        attributes: [[sequelize.fn('AVG', sequelize.col("stars")), 'avgRating']]
+    })
+    SpotsObj.avgRating = avgRating.dataValues.avgRating
+
+    let previewImageUrl = await SpotImage.findByPk(currSpotId, {
+        where: { preview: true },
+        attributes: ['url']
+    })
+    SpotsObj.prevewImage = previewImageUrl.url
+
+    spotsArr.push(SpotsObj)
+  }
+
+  return res.json({
+    Spots: spotsArr
+  })
+
 })
 
 module.exports = router;
