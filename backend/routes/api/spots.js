@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { User, Spot, SpotImage, Review, sequelize } = require('../../db/models');
+const { User, Spot, SpotImage, Review, sequelize, ReviewImage } = require('../../db/models');
 // HELPER FUNCTION??
 // async function avgRating() {
 //   let allSpots = await Spot.findAll();
@@ -236,6 +236,48 @@ router.delete('/:spotId', async (req, res, next) => {
   });
 
 })
+
+
+//Get all Reviews by a Spot's id
+router.get('/:spotId/reviews', async (req, res, next) => {
+  const currSpotId = parseInt(req.params.spotId);
+
+  const currSpot = await Spot.findByPk(currSpotId);
+  if (!currSpot) {
+    res.status(404)
+       .json({
+        "message": "Spot couldn't be found",
+        "statusCode": 404
+      })
+  }
+
+  const allReviews = await Review.findAll({
+    where: { spotId: currSpotId }
+  })
+
+let reviewsArr = [];
+  for (let i = 0; i < allReviews.length; i++) {
+    let currReview = allReviews[i].toJSON();
+    let currUserId = currReview.userId;
+
+    const currUser = await User.findByPk(currUserId, {attributes: ['id', 'firstName', 'lastName']});
+    currReview.User = currUser;
+
+    const currReviewImgs = await ReviewImage.findAll({
+      where: { reviewId: currReview.id },
+      attributes: ['id', 'url']
+    })
+    currReview.ReviewImages = currReviewImgs;
+
+    reviewsArr.push(currReview)
+  }
+
+  res.json({ Reviews: reviewsArr })
+
+})
+
+
+
 
 module.exports = router;
 
