@@ -22,8 +22,12 @@ router.get('/:userId', async (req, res, next) => {
     });
     currReview.Spot = currSpot;
 
+    const currSpotImage = await SpotImage.findAll({
+      where: { spotId: currSpotId },
+      attributes: ['id', 'url']
+    })
+    currReview.SpotImage = currSpotImage;
 
-    console.log(currSpot)
     res.json(currReview)
   }
 
