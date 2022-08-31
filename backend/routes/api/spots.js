@@ -67,11 +67,16 @@ router.get('/current', async (req, res, next) => {
     })
     SpotsObj.avgRating = avgRating.dataValues.avgRating
 
-    let previewImageUrl = await SpotImage.findByPk(currSpotId, {
+    let previewImageUrl = await SpotImage.findByPk(currentId, {
         where: { preview: true },
         attributes: ['url']
     })
-    SpotsObj.prevewImage = previewImageUrl.url
+
+    if (previewImageUrl) {
+      SpotsObj.prevewImage = previewImageUrl.url
+    } else {
+      SpotsObj.prevewImage = null;
+    }
 
     spotsArr.push(SpotsObj)
   }
