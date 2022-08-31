@@ -84,15 +84,16 @@ router.get('/current', async (req, res, next) => {
 
 //Get details of a Spot from an id
 router.get('/:spotId', async (req, res, next) => {
-  const currSpotId = req.body.spotId;
+  const currSpotId = parseInt(req.params.spotId);
 
   if (!currSpotId) {
     res.status(404)
-       .json({
-        "message": "Spot couldn't be found",
-        "statusCode": 404
-      })
+    .json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
   }
+
   const theSpot = await Spot.findByPk(currSpotId);
   const theSpotObj = theSpot.toJSON();
 
@@ -117,7 +118,34 @@ router.get('/:spotId', async (req, res, next) => {
 
 })
 
+//Create a Spot
+router.post('/', async (req, res, next) => {
+  try {
+   const { address, city, state, country, lat, lng, name, description, price } = req.body;
+   const { user } = req;
+   const currUserId = user.toJSON().id;
 
+   const newSpot = await Spot.create({ ownerId: currUserId, address, city, state, country, lat, lng, name, description, price })
+
+   res.json(newSpot);
+  } catch(err) {
+    res.json({
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "address": "Street address is required",
+        "city": "City is required",
+        "state": "State is required",
+        "country": "Country is required",
+        "lat": "Latitude is not valid",
+        "lng": "Longitude is not valid",
+        "name": "Name must be less than 50 characters",
+        "description": "Description is required",
+        "price": "Price per day is required"
+      }
+    })
+  }
+})
 
 
 module.exports = router;
