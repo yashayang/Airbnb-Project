@@ -6,22 +6,6 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const { Booking, User, Spot, SpotImage, Review, sequelize, ReviewImage } = require('../../db/models');
-// HELPER FUNCTION??
-// async function avgRating() {
-//   let allSpots = await Spot.findAll();
-
-//   let spotsArr = []
-
-//   for(let i = 0; i< allSpots.length; i++){
-//     let spotObj = allSpots[i].toJSON();
-//     let currentId = allSpots[i].id;
-
-//     let avgRating = await Review.findByPk(currentId, {
-//         attributes: [[sequelize.fn('AVG', sequelize.col("stars")), 'avgRating']]
-//     })
-//     spotObj.avgRating = avgRating.dataValues.avgRating
-//   }
-// }
 
 //Get all Spots
 router.get('/', async (req, res, next) => {
@@ -121,7 +105,7 @@ router.get('/:spotId', async (req, res, next) => {
 
   const currSpot = await Spot.findByPk(currSpotId);
   if (!currSpot) {
-    res.status(404)
+    return res.status(404)
     .json({
       "message": "Spot couldn't be found",
       "statusCode": 404
@@ -148,7 +132,7 @@ router.get('/:spotId', async (req, res, next) => {
   })
   theSpotObj.Owner = owner;
 
-  res.json(theSpotObj)
+  return res.json(theSpotObj)
 
 })
 
@@ -188,7 +172,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 
   const currSpot = await Spot.findByPk(currSpotId);
   if (!currSpot) {
-    res.status(404)
+    return res.status(404)
        .json({
          "message": "Spot couldn't be found",
          "statusCode": 404
@@ -203,7 +187,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     where: {url: url},
     attributes: ['id', 'url']
   })
-  res.json(result)
+  return res.json(result)
 })
 
 //Edit a Spot
@@ -212,7 +196,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
   const currSpotId = parseInt(req.params.spotId);
   const currSpot = await Spot.findByPk(currSpotId);
   if (!currSpot) {
-    res.status(404)
+    return res.status(404)
     .json({
       "message": "Spot couldn't be found",
       "statusCode": 404
@@ -249,7 +233,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
   }
 
   currSpot.update({ address, city, state, country, lat, lng, name, description, price });
-  res.json(currSpot);
+  return res.json(currSpot);
 
 })
 
@@ -258,7 +242,7 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
   const currSpotId = parseInt(req.params.spotId);
   const currSpot = await Spot.findByPk(currSpotId);
   if (!currSpot) {
-    res.status(404)
+    return res.status(404)
     .json({
       "message": "Spot couldn't be found",
       "statusCode": 404
@@ -266,7 +250,7 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
   }
 
   if(currSpot.ownerId !== req.user.id){
-    res.status(403);
+    return res.status(403);
     return res.json({
         "message": "Request denied: You are not the owner of this spot.",
         "statusCode": 403
@@ -274,7 +258,7 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
   }
 
   currSpot.destroy();
-  res.json({
+  return res.json({
     "message": "Successfully deleted",
     "statusCode": 200
   });
@@ -288,7 +272,7 @@ router.get('/:spotId/reviews', async (req, res, next) => {
 
   const currSpot = await Spot.findByPk(currSpotId);
   if (!currSpot) {
-    res.status(404)
+    return res.status(404)
        .json({
         "message": "Spot couldn't be found",
         "statusCode": 404
@@ -314,7 +298,7 @@ router.get('/:spotId/reviews', async (req, res, next) => {
     reviewsArr.push(currReview)
   }
 
-  res.json({ Reviews: reviewsArr })
+  return res.json({ Reviews: reviewsArr })
 
 })
 
@@ -326,7 +310,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
   const currSpot = await Spot.findByPk(currSpotId);
 
   if (!currSpot) {
-    res.status(404)
+    return res.status(404)
        .json({
         "message": "Spot couldn't be found",
         "statusCode": 404
@@ -336,7 +320,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
 
   const { review, stars } = req.body;
   if (!review || isNaN(stars)) {
-    res.status(400)
+    return res.status(400)
        .json({
         "message": "Validation error",
         "statusCode": 400,
@@ -349,7 +333,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
 
   const existReview = await Review.findOne({ where: { userId: currUserId, spotId: currSpotId } })
   if (existReview) {
-    res.status(403)
+    return res.status(403)
        .json({
         "message": "User already has a review for this spot",
         "statusCode": 403
@@ -359,19 +343,19 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
   const newReview = await Review.create({ userId: currUserId, spotId: currSpotId, review, stars });
   const findNewReview = await Review.findOne({ where: { spotId: currSpotId } })
 
-  res.json(findNewReview)
+  return res.json(findNewReview)
 
 })
 
 //Get all Bookings for a Spot based on the Spot's id
-router.get('/:spotId/bookings', async (req, res, next) => {
+router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
   const spotId = parseInt(req.params.spotId);
   const { user } = req;
   const userId = user.toJSON().id;
   const spot = await Spot.findByPk(spotId);
 
   if (!spot) {
-    res.status(404)
+    return res.status(404)
     .json({
       "message": "Spot couldn't be found",
       "statusCode": 404
@@ -384,7 +368,7 @@ router.get('/:spotId/bookings', async (req, res, next) => {
       where: { spotId: spotId },
       attributes: ['spotId', 'startDate', 'endDate']
     })
-    res.json({Bookings: allBookings})
+    return res.json({Bookings: allBookings})
   }
 
   let bookingsArr = [];
@@ -396,25 +380,46 @@ router.get('/:spotId/bookings', async (req, res, next) => {
       currBooking.User = ownerInfo;
       bookingsArr.push(currBooking);
     }
-    res.json({Bookings: bookingsArr})
+    return res.json({Bookings: bookingsArr})
   }
 
 })
 
 //Create a Booking from a Spot based on the Spot's id
-router.post('/:spotId/bookings', async(req, res, next) => {
+//date validation helper function
+function dateValidation(startdate1, enddate1, startdate2, enddate2) {
+
+  if (startdate1 >= startdate2 && startdate1 <= enddate2) return false;
+
+  if (enddate1 >= startdate2 && enddate1 <= enddate2) return false;
+
+  if (startdate1 <= startdate2 && enddate1 >= enddate2) return false;
+
+  return true;
+}
+
+router.post('/:spotId/bookings', requireAuth, async(req, res, next) => {
   const spotId = parseInt(req.params.spotId);
   const spot = await Spot.findByPk(spotId);
   if (!spot) {
-    res.status(404)
+    return res.status(404)
     .json({
       "message": "Spot couldn't be found",
       "statusCode": 404
     })
   }
+
+  if (spot.toJSON().ownerId === req.user.id) {
+    return res.status(403);
+    res.json({
+        "message": "You cannot create booking for your own property!",
+        "statusCode": 403
+    })
+  }
+
   const { startDate, endDate } = req.body;
   if ( endDate < startDate ) {
-    res.status(400)
+    return res.status(400)
        .json({
         "message": "Validation error",
         "statusCode": 400,
@@ -424,11 +429,10 @@ router.post('/:spotId/bookings', async(req, res, next) => {
       })
   }
 
+  const booking = await Booking.findAll({where: {spotId: spotId, startDate: new Date(startDate), endDate: new Date(endDate)}});
 
-  const booking = await Booking.findAll({where: {spotId: spotId, startDate: startDate, endDate: endDate}});
-
-  if (booking) {
-    res.status(403)
+  if (booking[0] || dateValidation(startDate, endDate, booking.startDate, booking.endDate)) {
+    return res.status(403)
     .json({
       "message": "Sorry, this spot is already booked for the specified dates",
       "statusCode": 403,
@@ -444,9 +448,13 @@ router.post('/:spotId/bookings', async(req, res, next) => {
   const newBooking = await Booking.create({ spotId: spotId, userId: userId, startDate, endDate })
   const result = await Booking.findOne({ where: { spotId: spotId }})
 
-  res.json(result)
+  return res.json(result)
 
 })
+
+
+
+
 
 module.exports = router;
 

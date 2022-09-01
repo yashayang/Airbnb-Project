@@ -64,7 +64,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 
   const currReview = await Review.findByPk(reviewId);
   if (!currReview) {
-    res.status(404)
+    return res.status(404)
        .json({
        "message": "Review couldn't be found",
        "statusCode": 404
@@ -72,7 +72,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
   }
 
   if (currReview.toJSON().userId !== req.user.id) {
-    res.status(403);
+    return res.status(403);
     res.json({
         "message": "The review is not belongs to current user!",
         "statusCode": 403
@@ -81,7 +81,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 
   const images = await ReviewImage.findAll({ where: { reviewId: reviewId } })
   if (images.length >= 10) {
-    res.status(403)
+    return res.status(403)
        .json({
        "message": "Maximum number of images for this resource was reached",
        "statusCode": 403
@@ -110,7 +110,7 @@ router.put('/:reviewId', requireAuth, async(req, res, next) => {
   const currUserId = user.toJSON().id;
   const currReview = await Review.findByPk(reviewId);
   if (!currReview) {
-    res.status(404)
+    return res.status(404)
     .json({
       "message": "Review couldn't be found",
       "statusCode": 404
@@ -118,7 +118,7 @@ router.put('/:reviewId', requireAuth, async(req, res, next) => {
   }
 
   if (currReview.toJSON().userId !== req.user.id) {
-    res.status(403);
+    return res.status(403);
     res.json({
         "message": "The review is not belongs to current user!",
         "statusCode": 403
@@ -126,7 +126,7 @@ router.put('/:reviewId', requireAuth, async(req, res, next) => {
   }
 
   if (!review || isNaN(stars)) {
-    res.status(400)
+    return res.status(400)
     .json({
      "message": "Validation error",
      "statusCode": 400,
@@ -146,7 +146,7 @@ router.delete('/:reviewId', requireAuth, async (req, res, next) => {
   const reviewId = parseInt(req.params.reviewId);
   const currReview = await Review.findByPk(reviewId);
   if (!currReview) {
-    res.status(404)
+    return res.status(404)
     .json({
       "message": "Review couldn't be found",
       "statusCode": 404
@@ -154,7 +154,7 @@ router.delete('/:reviewId', requireAuth, async (req, res, next) => {
   }
 
   if (currReview.toJSON().userId !== req.user.id) {
-    res.status(403);
+    return res.status(403);
     res.json({
         "message": "The review is not belongs to current user!",
         "statusCode": 403
@@ -162,7 +162,7 @@ router.delete('/:reviewId', requireAuth, async (req, res, next) => {
   }
 
   currReview.destroy();
-  res.json({
+  return res.json({
     "message": "Successfully deleted",
     "statusCode": 200
   });
