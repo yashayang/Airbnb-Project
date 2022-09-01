@@ -37,28 +37,26 @@ router.get('/current', async (req, res, next) => {
     ]
   });
 
-
-  // res.json()
   res.json({Reviews: Reviews})
 
-  for (let i = 0; i < Reviews.length; i++) {
-    let currReview = Reviews[i].toJSON();
+  // for (let i = 0; i < Reviews.length; i++) {
+  //   let currReview = Reviews[i].toJSON();
 
-    currReview.User = user;
+  //   currReview.User = user;
 
-    let currSpotId = currReview.spotId;
-    const currSpot = await Spot.findByPk(currSpotId, {
-      attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
-    });
-    currReview.Spot = currSpot;
+  //   let currSpotId = currReview.spotId;
+  //   const currSpot = await Spot.findByPk(currSpotId, {
+  //     attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
+  //   });
+  //   currReview.Spot = currSpot;
 
-    const currSpotImage = await SpotImage.findAll({
-      where: { spotId: currSpotId },
-      attributes: ['id', 'url']
-    })
-    currReview.SpotImage = currSpotImage;
+  //   const currSpotImage = await SpotImage.findAll({
+  //     where: { spotId: currSpotId },
+  //     attributes: ['id', 'url']
+  //   })
+  //   currReview.SpotImage = currSpotImage;
 
-  }
+  // }
 
 })
 

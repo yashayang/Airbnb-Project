@@ -31,6 +31,18 @@ router.get('/current', async (req, res, next) => {
 
 
 //Edit a Booking
+//date validation helper function
+function dateValidation(startdate1, enddate1, startdate2, enddate2) {
+
+  if (startdate1 >= startdate2 && startdate1 <= enddate2) return false;
+
+  if (enddate1 >= startdate2 && enddate1 <= enddate2) return false;
+
+  if (startdate1 <= startdate2 && enddate1 >= enddate2) return false;
+
+  return true;
+}
+
 router.put('/:bookingId', async (req, res, next) => {
   const bookingId = parseInt(req.params.bookingId)
   const { user } = req;
@@ -69,7 +81,20 @@ router.put('/:bookingId', async (req, res, next) => {
     })
   }
 
-  const bookingUserId = currBooking.toJSON().userId;
+  const allBookingForCurrSpot = await Booking.findAll({ where: { spotId: currBooking.spotId} })
+
+  for (let i = 0; i < allBookingForCurrSpot.length; i++) {
+    let currBooking = allBookingForCurrSpot[i].toJSON();
+    if (!dateValidation(startDate, endDate, currBooking.startDate, currBooking.endDate)) {
+      res.status(403)
+      .json({
+        "message": "Requested booking date is not available, please check the avaliabilites, and change to a validate date!",
+        "statusCode": 403
+      })
+    }
+  }
+
+  const bookingUserId = currBooking.userId;
   if (currUserId === bookingUserId) {
     currBooking.update({ startDate, endDate })
     res.json(currBooking)
