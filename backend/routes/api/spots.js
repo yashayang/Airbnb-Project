@@ -219,7 +219,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
     })
   }
 
-  if(currSpotId.ownerId !== req.user.id){
+  if(currSpot.ownerId !== req.user.id){
     res.status(403);
     return res.json({
         "message": "Request denied: You are not the owner of this spot.",
@@ -254,7 +254,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
 })
 
 //Delete a Spot
-router.delete('/:spotId', async (req, res, next) => {
+router.delete('/:spotId', requireAuth, async (req, res, next) => {
   const currSpotId = parseInt(req.params.spotId);
   const currSpot = await Spot.findByPk(currSpotId);
   if (!currSpot) {
@@ -263,6 +263,14 @@ router.delete('/:spotId', async (req, res, next) => {
       "message": "Spot couldn't be found",
       "statusCode": 404
     })
+  }
+
+  if(currSpot.ownerId !== req.user.id){
+    res.status(403);
+    return res.json({
+        "message": "Request denied: You are not the owner of this spot.",
+        "statusCode": 403
+    });
   }
 
   currSpot.destroy();
