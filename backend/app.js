@@ -15,7 +15,7 @@ app.use(express.json());
 const { environment } = require('./config');
 const isProduction = environment === 'production';
 
-// Security Middleware
+// Security Middleware.
 if (!isProduction) {
   // enable cors only in development
   app.use(cors());
