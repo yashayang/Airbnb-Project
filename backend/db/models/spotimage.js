@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       SpotImage.belongsTo(
         models.Spot,
-        { foreignKey: 'spotId' }
+        { as: 'previewImage', foreignKey: 'spotId' }
       )
     }
   }
@@ -31,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     preview: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     }
   }, {
     sequelize,

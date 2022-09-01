@@ -30,6 +30,53 @@ router.get('/current', async (req, res, next) => {
 })
 
 
+//Edit a Booking
+router.put('/:bookingId', async (req, res, next) => {
+  const bookingId = parseInt(req.params.bookingId)
+  const { user } = req;
+  const currUserId = user.toJSON().id;
+  const currBooking = await Booking.findByPk(bookingId);
+  if (!currBooking) {
+    res.status(404)
+    .json({
+      "message": "Booking couldn't be found",
+      "statusCode": 404
+    })
+  }
+
+  const { startDate, endDate } = req.body;
+  if (endDate < startDate) {
+    res.status(400)
+    .json({
+      "message": "Validation error",
+      "statusCode": 400,
+      "errors": {
+        "endDate": "endDate cannot be on or before startDate"
+      }
+    })
+  }
+  let q = new Date();
+  let m = q.getMonth()+1;
+  let d = q.getUTCDate();
+  let y = q.getFullYear();
+  const today = `${y}-${m}-${d}`;
+
+  if (startDate <= today) {
+    res.status(403)
+    .json({
+      "message": "Past bookings can't be modified",
+      "statusCode": 403
+    })
+  }
+
+  const bookingUserId = currBooking.toJSON().userId;
+  if (currUserId === bookingUserId) {
+    currBooking.update({ startDate, endDate })
+    res.json(currBooking)
+  }
+
+})
+
 
 
 

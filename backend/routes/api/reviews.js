@@ -4,12 +4,42 @@ const router = express.Router();
 const { User, Spot, SpotImage, Review, sequelize, ReviewImage } = require('../../db/models');
 
 //Get all Reviews of the Current User
-router.get('/:userId', async (req, res, next) => {
-  const currentId = parseInt(req.params.userId);
-  const user = await User.findByPk(currentId);
+router.get('/current', async (req, res, next) => {
+  const { user } = req;
+  const currUserId = user.toJSON().id;
+
+  const currUser = await User.findByPk(currUserId);
   const Reviews = await Review.findAll({
-    where: { userId: currentId }
+    where: { userId: currUserId },
+    include: [
+      {
+        model: User,
+        attributes: ['id', 'firstName', 'lastName']
+      },
+      {
+        model: Spot,
+        attributes: {
+          exclude: ['description', 'createdAt', 'updatedAt']
+        },
+        include: {
+          model: SpotImage, //as: 'SpotImages', //as: 'previewImage',
+          where: {
+            preview: true
+          },
+          limit: 1,
+          attributes: ['url']
+        }
+      },
+      {
+        model: ReviewImage,
+        attributes: ['id', 'url']
+      }
+    ]
   });
+
+
+  // res.json()
+  res.json({Reviews: Reviews})
 
   for (let i = 0; i < Reviews.length; i++) {
     let currReview = Reviews[i].toJSON();
@@ -28,7 +58,6 @@ router.get('/:userId', async (req, res, next) => {
     })
     currReview.SpotImage = currSpotImage;
 
-    res.json(currReview)
   }
 
 })
