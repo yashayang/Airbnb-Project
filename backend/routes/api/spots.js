@@ -207,7 +207,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 })
 
 //Edit a Spot
-router.put('/:spotId', async (req, res, next) => {
+router.put('/:spotId', requireAuth, async (req, res, next) => {
 
   const currSpotId = parseInt(req.params.spotId);
   const currSpot = await Spot.findByPk(currSpotId);
@@ -219,14 +219,19 @@ router.put('/:spotId', async (req, res, next) => {
     })
   }
 
-  try {
+  if(currSpotId.ownerId !== req.user.id){
+    res.status(403);
+    return res.json({
+        "message": "Request denied: You are not the owner of this spot.",
+        "statusCode": 403
+    });
+}
 
   const { address, city, state, country, lat, lng, name, description, price } = req.body;
-  currSpot.update({ address, city, state, country, lat, lng, name, description, price });
-  res.json(currSpot);
 
-  } catch (err) {
-    res.json({
+  if  (!address || !city || !state || !country || !lat || !lng || !name || !description || !price){
+    res.status(400);
+    return res.json({
       "message": "Validation Error",
       "statusCode": 400,
       "errors": {
@@ -239,9 +244,12 @@ router.put('/:spotId', async (req, res, next) => {
         "name": "Name must be less than 50 characters",
         "description": "Description is required",
         "price": "Price per day is required"
-      }
-    })
+        }
+    });
   }
+
+  currSpot.update({ address, city, state, country, lat, lng, name, description, price });
+  res.json(currSpot);
 
 })
 
