@@ -2,10 +2,7 @@
 
 ## Database Schema Design
 
-<img width="742" alt="airbnb_dbdiagram" src="https://user-images.githubusercontent.com/1794317/186998970-aafdaf71-b613-44cc-a766-d608b2929300.png">
-
-
-[airbnb-dbdiagram]: ../assets/airbnb_dbdiagram.png
+<img width="742" alt="airbnb_dbdiagram" src="https://user-images.githubusercontent.com/1794317/187817304-b57545f4-6ab3-4702-bdc5-61f52544481d.png">
 
 ## API Documentation
 
@@ -1414,8 +1411,8 @@ Return spots filtered by query parameters.
   * Method: GET
   * URL: /api/spots
   * Query Parameters
-    * page: integer, minimum: 0, maximum: 10, default: 0
-    * size: integer, minimum: 0, maximum: 20, default: 20
+    * page: integer, minimum: 1, maximum: 10, default: 1
+    * size: integer, minimum: 1, maximum: 20, default: 20
     * minLat: decimal, optional
     * maxLat: decimal, optional
     * minLng: decimal, optional
