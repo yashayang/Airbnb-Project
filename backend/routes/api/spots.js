@@ -21,7 +21,18 @@ const { Booking, User, Spot, SpotImage, Review, sequelize, ReviewImage } = requi
 
 //Get all Spots
 router.get('/', async (req, res, next) => {
-  let allSpots = await Spot.findAll();
+  let { page, size } = req.query;
+  if (!size) { size = 20 };
+  if (!page) { page = 1 };
+
+  let pagination = {};
+  if (page >= 1 && size >= 1) {
+      pagination.limit = size;
+      pagination.offset = size * (page - 1)
+  }
+  let allSpots = await Spot.findAll({
+     ...pagination
+  });
 
   let spotsArr = []
 
@@ -43,8 +54,11 @@ router.get('/', async (req, res, next) => {
     spotsArr.push(spotObj)
   }
 
+
   return res.json({
-    Spots: spotsArr
+    Spots: spotsArr,
+    page,
+    size
   })
 
 })
