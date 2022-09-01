@@ -22,7 +22,7 @@ router.get('/current', async (req, res, next) => {
           exclude: ['description', 'createdAt', 'updatedAt']
         },
         include: {
-          model: SpotImage, //as: 'SpotImages', //as: 'previewImage',
+          model: SpotImage, //as: 'previewImage', //as: 'SpotImages',
           where: {
             preview: true
           },
