@@ -1,10 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { requireAuth } = require('../../utils/auth');
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 
 const { User, Spot, SpotImage, Review, sequelize, ReviewImage } = require('../../db/models');
 
 //Get all Reviews of the Current User
-router.get('/current', async (req, res, next) => {
+router.get('/current', requireAuth, async (req, res, next) => {
   const { user } = req;
   const currUserId = user.toJSON().id;
 
@@ -61,7 +65,7 @@ router.get('/current', async (req, res, next) => {
 })
 
 //Add an Image to a Review based on the Review's id
-router.post('/:reviewId/images', async (req, res, next) => {
+router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
   const reviewId = parseInt(req.params.reviewId);
   const { url } = req.body;
 
@@ -72,6 +76,14 @@ router.post('/:reviewId/images', async (req, res, next) => {
        "message": "Review couldn't be found",
        "statusCode": 404
        })
+  }
+
+  if (currReview.toJSON().userId !== req.user.id) {
+    res.status(403);
+    res.json({
+        "message": "The review is not belongs to current user!",
+        "statusCode": 403
+    })
   }
 
   const images = await ReviewImage.findAll({ where: { reviewId: reviewId } })
@@ -98,7 +110,7 @@ router.post('/:reviewId/images', async (req, res, next) => {
 
 
 //Edit a Review
-router.put('/:reviewId', async(req, res, next) => {
+router.put('/:reviewId', requireAuth, async(req, res, next) => {
   const reviewId = parseInt(req.params.reviewId);
   const { review, stars } = req.body;
   const { user } = req;
@@ -109,6 +121,14 @@ router.put('/:reviewId', async(req, res, next) => {
     .json({
       "message": "Review couldn't be found",
       "statusCode": 404
+    })
+  }
+
+  if (currReview.toJSON().userId !== req.user.id) {
+    res.status(403);
+    res.json({
+        "message": "The review is not belongs to current user!",
+        "statusCode": 403
     })
   }
 
@@ -129,7 +149,7 @@ router.put('/:reviewId', async(req, res, next) => {
 })
 
 //Delete a Review
-router.delete('/:reviewId', async (req, res, next) => {
+router.delete('/:reviewId', requireAuth, async (req, res, next) => {
   const reviewId = parseInt(req.params.reviewId);
   const currReview = await Review.findByPk(reviewId);
   if (!currReview) {
@@ -137,6 +157,14 @@ router.delete('/:reviewId', async (req, res, next) => {
     .json({
       "message": "Review couldn't be found",
       "statusCode": 404
+    })
+  }
+
+  if (currReview.toJSON().userId !== req.user.id) {
+    res.status(403);
+    res.json({
+        "message": "The review is not belongs to current user!",
+        "statusCode": 403
     })
   }
 
