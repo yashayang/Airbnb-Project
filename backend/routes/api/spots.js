@@ -295,11 +295,9 @@ router.get('/:spotId/reviews', async (req, res, next) => {
       })
   }
 
-  const allReviews = await Review.findAll({
-    where: { spotId: currSpotId }
-  })
+  const allReviews = await Review.findAll({ where: { spotId: currSpotId } })
 
-let reviewsArr = [];
+  let reviewsArr = [];
   for (let i = 0; i < allReviews.length; i++) {
     let currReview = allReviews[i].toJSON();
     let currUserId = currReview.userId;

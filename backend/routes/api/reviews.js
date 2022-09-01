@@ -22,9 +22,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
       },
       {
         model: Spot,
-        attributes: {
-          exclude: ['description', 'createdAt', 'updatedAt']
-        },
+        attributes: { exclude: ['description', 'createdAt', 'updatedAt'] },
         include: {
           model: SpotImage, //as: 'previewImage', //as: 'SpotImages',
           where: {
@@ -41,27 +39,22 @@ router.get('/current', requireAuth, async (req, res, next) => {
     ]
   });
 
+  for (let i = 0; i < Reviews.length; i++) {
+    let currentReview = Reviews[i].toJSON();
+    let currPreviewImg = currentReview.Spot.SpotImages[0];
+
+    if (currPreviewImg){
+      currentReview.Spot.previewImage = currPreviewImg.url;
+    } else {
+      currentReview.Spot.previewImage = null;
+    }
+
+    delete currentReview.Spot.SpotImages;
+
+    Reviews[i] = currentReview
+}
+
   res.json({Reviews: Reviews})
-
-  // for (let i = 0; i < Reviews.length; i++) {
-  //   let currReview = Reviews[i].toJSON();
-
-  //   currReview.User = user;
-
-  //   let currSpotId = currReview.spotId;
-  //   const currSpot = await Spot.findByPk(currSpotId, {
-  //     attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
-  //   });
-  //   currReview.Spot = currSpot;
-
-  //   const currSpotImage = await SpotImage.findAll({
-  //     where: { spotId: currSpotId },
-  //     attributes: ['id', 'url']
-  //   })
-  //   currReview.SpotImage = currSpotImage;
-
-  // }
-
 })
 
 //Add an Image to a Review based on the Review's id
@@ -178,3 +171,24 @@ router.delete('/:reviewId', requireAuth, async (req, res, next) => {
 
 
 module.exports = router;
+
+
+//Get all Reviews of the Current User: LAZY LOADING
+  // for (let i = 0; i < Reviews.length; i++) {
+  //   let currReview = Reviews[i].toJSON();
+
+  //   currReview.User = user;
+
+  //   let currSpotId = currReview.spotId;
+  //   const currSpot = await Spot.findByPk(currSpotId, {
+  //     attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
+  //   });
+  //   currReview.Spot = currSpot;
+
+  //   const currSpotImage = await SpotImage.findAll({
+  //     where: { spotId: currSpotId },
+  //     attributes: ['id', 'url']
+  //   })
+  //   currReview.SpotImage = currSpotImage;
+
+  // }
