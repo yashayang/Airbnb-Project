@@ -1,5 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { requireAuth } = require('../../utils/auth');
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 
 const { Booking, User, Spot, SpotImage, Review, sequelize, ReviewImage } = require('../../db/models');
 // HELPER FUNCTION??
@@ -48,11 +52,17 @@ router.get('/', async (req, res, next) => {
     })
     spotObj.avgRating = avgRating.dataValues.avgRating
 
-    const previewImageUrl = await SpotImage.findByPk(currentId, {
-        where: { preview: true },
-        attributes: ['url']
+    const previewImageUrl = await SpotImage.findAll({
+        where: { spotId: currentId, preview: true },
+        attributes: ['url'],
+        limit: 1
     })
-    spotObj.prevewImage = previewImageUrl.url
+
+    if (previewImageUrl[0]) {
+      spotObj.prevewImage = previewImageUrl[0].url
+    } else {
+      spotObj.prevewImage = null;
+    }
 
     spotsArr.push(spotObj)
   }
@@ -67,7 +77,7 @@ router.get('/', async (req, res, next) => {
 })
 
 //Get all Spots owned by the Current User
-router.get('/current', async (req, res, next) => {
+router.get('/current', requireAuth, async (req, res, next) => {
   const { user } = req;
   const currentId = user.toJSON().id;
 
@@ -80,17 +90,18 @@ router.get('/current', async (req, res, next) => {
     let currSpotId = allSpotsforCurrOwner[i].id;
 
     let avgRating = await Review.findByPk(currSpotId, {
-        attributes: [[sequelize.fn('AVG', sequelize.col("stars")), 'avgRating']]
+      attributes: [[sequelize.fn('AVG', sequelize.col("stars")), 'avgRating']]
     })
     SpotsObj.avgRating = avgRating.dataValues.avgRating
 
-    let previewImageUrl = await SpotImage.findByPk(currentId, {
-        where: { preview: true },
-        attributes: ['url']
+    let previewImageUrl = await SpotImage.findAll({
+      where: { spotId: currSpotId, preview: true },
+      attributes: ['url'],
+      limit: 1
     })
 
-    if (previewImageUrl) {
-      SpotsObj.prevewImage = previewImageUrl.url
+    if (previewImageUrl[0]) {
+      SpotsObj.prevewImage = previewImageUrl[0].url
     } else {
       SpotsObj.prevewImage = null;
     }
@@ -142,7 +153,7 @@ router.get('/:spotId', async (req, res, next) => {
 })
 
 //Create a Spot
-router.post('/', async (req, res, next) => {
+router.post('/', requireAuth, async (req, res, next) => {
   try {
    const { address, city, state, country, lat, lng, name, description, price } = req.body;
    const { user } = req;
@@ -171,7 +182,7 @@ router.post('/', async (req, res, next) => {
 })
 
 //Add an Image to a Spot based on the Spot's id
-router.post('/:spotId/images', async (req, res, next) => {
+router.post('/:spotId/images', requireAuth, async (req, res, next) => {
   const { url } = req.body;
   const currSpotId = parseInt(req.params.spotId);
 
