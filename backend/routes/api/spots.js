@@ -219,6 +219,7 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res, next) => {
 router.delete('/:spotId', requireAuth, async (req, res, next) => {
   const currSpotId = parseInt(req.params.spotId);
   const currSpot = await Spot.findByPk(currSpotId);
+
   if (!currSpot) {
     return res.status(404)
     .json({
@@ -228,8 +229,8 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
   }
 
   if(currSpot.ownerId !== req.user.id){
-    return res.status(403);
-    return res.json({
+    return res.status(403)
+        .json({
         "message": "Request denied: You are not the owner of this spot.",
         "statusCode": 403
     });
@@ -386,10 +387,9 @@ router.post('/:spotId/bookings', requireAuth, async(req, res, next) => {
       "statusCode": 404
     })
   }
-
   if (spot.toJSON().ownerId === req.user.id) {
-    return res.status(403);
-    res.json({
+    return res.status(403)
+        .json({
         "message": "You cannot create booking for your own property!",
         "statusCode": 403
     })
@@ -409,7 +409,7 @@ router.post('/:spotId/bookings', requireAuth, async(req, res, next) => {
 
   const booking = await Booking.findAll({where: {spotId: spotId, startDate: new Date(startDate), endDate: new Date(endDate)}});
 
-  if (booking[0] || dateValidation(startDate, endDate, booking.startDate, booking.endDate)) {
+  if (booking[0] || !dateValidation(startDate, endDate, booking.startDate, booking.endDate)) {
     return res.status(403)
     .json({
       "message": "Sorry, this spot is already booked for the specified dates",
