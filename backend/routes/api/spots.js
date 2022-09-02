@@ -101,7 +101,7 @@ router.get('/', async (req, res, next) => {
         attributes: [[sequelize.fn('AVG', sequelize.col("stars")), 'avgRating']]
     })
     const rawAvgRating = avgRating.dataValues.avgRating;
-    spotObj.avgRating = Number.parseInt(rawAvgRating).toFixed();
+    spotObj.avgRating = Number.parseInt(rawAvgRating).toFixed(1);
 
     const previewImageUrl = await SpotImage.findAll({
         where: { spotId: currentId, preview: true },
