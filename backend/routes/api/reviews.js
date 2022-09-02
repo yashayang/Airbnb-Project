@@ -154,8 +154,8 @@ router.delete('/:reviewId', requireAuth, async (req, res, next) => {
   }
 
   if (currReview.toJSON().userId !== req.user.id) {
-    return res.status(403);
-    res.json({
+    return res.status(403)
+        .json({
         "message": "The review is not belongs to current user!",
         "statusCode": 403
     })
