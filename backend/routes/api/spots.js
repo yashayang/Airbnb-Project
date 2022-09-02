@@ -424,7 +424,7 @@ router.post('/:spotId/bookings', requireAuth, async(req, res, next) => {
   const { user } = req;
   const userId = user.toJSON().id;
   const newBooking = await Booking.create({ spotId: spotId, userId: userId, startDate, endDate })
-  const result = await Booking.findOne({ where: { spotId: spotId }})
+  const result = await Booking.findOne({ where: { spotId: spotId, userId: userId}})
 
   return res.json(result)
 
