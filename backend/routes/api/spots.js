@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { requireAuth } = require('../../utils/auth');
-const { check } = require('express-validator');
+const { check, param } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const { Booking, User, Spot, SpotImage, Review, sequelize, ReviewImage } = require('../../db/models');
@@ -17,14 +17,14 @@ const validateSpot = [
   check('name').notEmpty().withMessage('Name must be less than 50 characters'),
   check('description').notEmpty().withMessage('Description is required'),
   check('price').isDecimal().withMessage('Price per day is required'),
-  check('page').isInt().withMessage('Page must be greater than or equal to 0'),
-  check('size').isInt().withMessage('Size must be greater than or equal to 0'),
-  check('maxLat').isDecimal().isLength({max: 10}).withMessage('Maximum latitude is invalid'),
-  check('minLat').isDecimal().isLength({min: 2}).withMessage('Minimum latitude is invalid'),
-  check('maxLng').isDecimal().isLength({max: 11}).withMessage('Maximum longitude is invalid'),
-  check('minLng').isDecimal().isLength({min: 3}).withMessage('Minimum longitude is invalid'),
-  check('maxPrice').isDecimal().withMessage('Maximum price must be greater than or equal to 0'),
-  check('minPrice').isDecimal().withMessage('Minimum price must be greater than or equal to 0'),
+  // check('page').isEmpty({ checkFalsy: false }).isInt().withMessage('Page must be greater than or equal to 0'),
+  // check('size').isInt().withMessage('Size must be greater than or equal to 0'),
+  // check('maxLat').isDecimal().isLength({max: 10}).withMessage('Maximum latitude is invalid'),
+  // check('minLat').isDecimal().isLength({min: 2}).withMessage('Minimum latitude is invalid'),
+  // check('maxLng').isDecimal().isLength({max: 11}).withMessage('Maximum longitude is invalid'),
+  // check('minLng').isDecimal().isLength({min: 3}).withMessage('Minimum longitude is invalid'),
+  // check('maxPrice').isDecimal().withMessage('Maximum price must be greater than or equal to 0'),
+  // check('minPrice').isDecimal().withMessage('Minimum price must be greater than or equal to 0'),
   handleValidationErrors
 ];
 
