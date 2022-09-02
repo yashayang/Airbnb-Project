@@ -183,16 +183,23 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
          "statusCode": 404
        })
   }
-
-  const newImage = await SpotImage.create({
-    spotId: currSpotId,
-    url: url
-  })
-  const result = await SpotImage.findOne({
-    where: {url: url},
-    attributes: ['id', 'url']
-  })
-  return res.json(result)
+  if (req.user.id === currSpot.toJSON().ownerId) {
+    const newImage = await SpotImage.create({
+      spotId: currSpotId,
+      url: url
+    })
+    const result = await SpotImage.findAll({
+      where: {spotId: currSpotId, url: url},
+      attributes: ['id', 'url']
+    })
+    return res.json(result[result.length - 1])
+  } else {
+    return res.status(403)
+    .json({
+      "message": "You can only add images to the spot as a owner.",
+      "statusCode": 403
+    })
+  }
 })
 
 //Edit a Spot
