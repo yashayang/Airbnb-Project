@@ -141,7 +141,7 @@ router.get('/:spotId', async (req, res, next) => {
   })
   theSpotObj.SpotImages = spotImages;
 
-  const owner = await User.findByPk(currSpotId, {
+  const owner = await User.findByPk(theSpotObj.ownerId, {
     attributes: ['id', 'firstName', 'lastName']
   })
   theSpotObj.Owner = owner;
@@ -201,8 +201,8 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res, next) => {
   }
 
   if(currSpot.ownerId !== req.user.id){
-    res.status(403);
-    return res.json({
+    return res.status(403)
+        .json({
         "message": "Request denied: You are not the owner of this spot.",
         "statusCode": 403
     });
