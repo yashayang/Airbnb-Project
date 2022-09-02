@@ -7,6 +7,17 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const { User, Spot, SpotImage, Review, sequelize, ReviewImage } = require('../../db/models');
 
+const validateReview = [
+  check("review")
+    .exists({ checkFalsy: true })
+    .withMessage("Review text is required"),
+  check("stars")
+    .exists({ checkFalsy: true })
+    .withMessage("Stars must be an integer from 1 to 5"),
+  handleValidationErrors,
+];
+
+
 //Get all Reviews of the Current User
 router.get('/current', requireAuth, async (req, res, next) => {
   const { user } = req;
@@ -103,7 +114,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 
 
 //Edit a Review
-router.put('/:reviewId', requireAuth, async(req, res, next) => {
+router.put('/:reviewId', requireAuth, validateReview, async(req, res, next) => {
   const reviewId = parseInt(req.params.reviewId);
   const { review, stars } = req.body;
   const { user } = req;
@@ -125,16 +136,12 @@ router.put('/:reviewId', requireAuth, async(req, res, next) => {
     })
   }
 
-  if (!review || isNaN(stars)) {
-    return res.status(400)
-    .json({
-     "message": "Validation error",
-     "statusCode": 400,
-     "errors": {
-       "review": "Review text is required",
-       "stars": "Stars must be an integer from 1 to 5",
-     }
-   })
+  console.log(stars)
+  if (stars > 5 || stars < 1) {
+    const err = new Error("Stars must be an integer from 1 to 5")
+    err.title = 'Validation error';
+    err.status = 400;
+    return next(err)
   }
 
   currReview.update({ review, stars });

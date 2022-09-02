@@ -12,20 +12,22 @@ const validateSpot = [
   check('city').notEmpty().withMessage('City is required'),
   check('state').notEmpty().withMessage('State is required'),
   check('country').notEmpty().withMessage('Country is required'),
-  check('lat').isDecimal().withMessage('Latitude is not valid'),
-  check('lng').isDecimal().withMessage('Longitude is not valid'),
+  check('lat').isDecimal().isLength({min: 2}, {max: 10}).withMessage('Latitude is not valid'),
+  check('lng').isDecimal().isLength({min: 3}, {max: 11}).withMessage('Longitude is not valid'),
   check('name').notEmpty().withMessage('Name must be less than 50 characters'),
   check('description').notEmpty().withMessage('Description is required'),
   check('price').isDecimal().withMessage('Price per day is required'),
-  // check('page').isEmpty({ checkFalsy: false }).isInt().withMessage('Page must be greater than or equal to 0'),
-  // check('size').isInt().withMessage('Size must be greater than or equal to 0'),
-  // check('maxLat').isDecimal().isLength({max: 10}).withMessage('Maximum latitude is invalid'),
-  // check('minLat').isDecimal().isLength({min: 2}).withMessage('Minimum latitude is invalid'),
-  // check('maxLng').isDecimal().isLength({max: 11}).withMessage('Maximum longitude is invalid'),
-  // check('minLng').isDecimal().isLength({min: 3}).withMessage('Minimum longitude is invalid'),
-  // check('maxPrice').isDecimal().withMessage('Maximum price must be greater than or equal to 0'),
-  // check('minPrice').isDecimal().withMessage('Minimum price must be greater than or equal to 0'),
   handleValidationErrors
+];
+
+const validateReview = [
+  check("review")
+    .exists({ checkFalsy: true })
+    .withMessage("Review text is required"),
+  check("stars")
+    .exists({ checkFalsy: true })
+    .withMessage("Stars must be an integer from 1 to 5"),
+  handleValidationErrors,
 ];
 
 
@@ -298,10 +300,11 @@ router.get('/:spotId/reviews', async (req, res, next) => {
 })
 
 //Create a Review for a Spot based on the Spot's id
-router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
+router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res, next) => {
   const currSpotId = parseInt(req.params.spotId);
   const { user } = req;
   const currUserId = user.toJSON().id;
+  console.log(currUserId)
   const currSpot = await Spot.findByPk(currSpotId);
 
   if (!currSpot) {
@@ -314,16 +317,11 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
 
 
   const { review, stars } = req.body;
-  if (!review || isNaN(stars)) {
-    return res.status(400)
-       .json({
-        "message": "Validation error",
-        "statusCode": 400,
-        "errors": {
-          "review": "Review text is required",
-          "stars": "Stars must be an integer from 1 to 5",
-        }
-      })
+  if (stars > 5 || stars < 1) {
+    const err = new Error("Stars must be an integer from 1 to 5")
+    err.title = 'Validation error';
+    err.status = 400;
+    return next(err)
   }
 
   const existReview = await Review.findOne({ where: { userId: currUserId, spotId: currSpotId } })
