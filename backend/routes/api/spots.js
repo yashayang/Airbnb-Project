@@ -4,6 +4,7 @@ const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { requireAuth } = require('../../utils/auth');
 const { check, param } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const { Op } = require("sequelize");
 
 const { Booking, User, Spot, SpotImage, Review, sequelize, ReviewImage } = require('../../db/models');
 
@@ -33,7 +34,7 @@ const validateReview = [
 
 //Get all Spots
 router.get('/', async (req, res, next) => {
-  let { page, size } = req.query;
+  let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
   if (!size) { size = 20 };
   if (!page) { page = 1 };
 
@@ -45,7 +46,48 @@ router.get('/', async (req, res, next) => {
     pagination.limit = 20;
     pagination.offset = 180;
   }
+
+  let queryOptions = [];
+    if (minLat) {
+      queryOptions.push({
+        lat: { [Op.gte]: Number(minLat) },
+      });
+    }
+
+    if (maxLat) {
+      queryOptions.push({
+        lat: { [Op.lte]: Number(maxLat) },
+      });
+    }
+
+    if (minLng) {
+      queryOptions.push({
+        lng: { [Op.gte]: Number(minLng) },
+      });
+    }
+
+    if (maxLng) {
+      queryOptions.push({
+        lat: { [Op.lte]: Number(maxLng) },
+      });
+    }
+
+    if (minPrice) {
+      queryOptions.push({
+        price: { [Op.gte]: Number(minPrice) },
+      });
+    }
+
+    if (maxPrice) {
+      queryOptions.push({
+        price: { [Op.lte]: Number(maxPrice) },
+      });
+    };
+
   let allSpots = await Spot.findAll({
+    where: {
+      [Op.and]: queryOptions,
+    },
      ...pagination
   });
 
