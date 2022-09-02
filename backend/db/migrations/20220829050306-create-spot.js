@@ -47,7 +47,6 @@ module.exports = {
       },
       description: {
         type: Sequelize.TEXT,
-        unique: true,
         allowNull: false
       },
       price: {

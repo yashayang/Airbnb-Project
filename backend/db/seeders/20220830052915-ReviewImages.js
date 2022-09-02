@@ -15,7 +15,10 @@ module.exports = {
         {
           reviewId: 3,
           url: 'https://a0.muscache.com/im/pictures/18848008-1744-4051-a1be-939c2de1ebcc.jpg?im_w=1200'
-
+        },
+        {
+          reviewId: 4,
+          url: 'https://a0.muscache.com/im/pictures/18848008-1744-4051-a1be-939c2de1ebcc.jpg?im_w=1200'
         }
     ], {});
   },

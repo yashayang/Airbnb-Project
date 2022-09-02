@@ -73,7 +73,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     description: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false
     },
     price: {

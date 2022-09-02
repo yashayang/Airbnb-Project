@@ -14,7 +14,7 @@ router.delete('/:imageId', requireAuth,async (req, res, next) => {
   const currUserId = user.id;
   const currImg = await ReviewImage.findByPk(imageId);
   if (!currImg) {
-    res.status(404)
+    return res.status(404)
     .json({
       "message": "Spot Image couldn't be found",
       "statusCode": 404
@@ -25,12 +25,12 @@ router.delete('/:imageId', requireAuth,async (req, res, next) => {
 
   if (currUserId === userId) {
     currImg.destroy();
-    res.json({
+    return res.json({
       "message": "Successfully deleted",
       "statusCode": 200
     })
   } else {
-    res.status(403)
+    return res.status(403)
     .json({
       "message": "Request Denied: You are not the owner of this review.",
       "statusCode": 403
