@@ -36,9 +36,13 @@ const validateSignup = [
     .withMessage('Password must be 6 characters or more.'),
   handleValidationErrors
 ];
+router.use((req, res, next) => {
+  console.log("----------before POST /users", req.body)
+  next();
+})
 
 router.post('/', validateSignup, async (req, res) => {
-
+  console.log("----------from POST /users", req.body)
   const { firstName, lastName, email, password, username } = req.body;
 
   const existedEmail = await User.findOne({ where: {email} });
