@@ -6,9 +6,6 @@
 =======
 ![airbnb-dbdiagram]
 
-[airbnb-dbdiagram]: ../assets/airbnb_dbdiagram.png
->>>>>>> dev
-
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
