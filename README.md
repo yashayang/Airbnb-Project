@@ -1,30 +1,23 @@
 # About AirBnB clone:
 
-## Database Schema Design
-
-<img width="742" alt="airbnb_dbdiagram" src="https://user-images.githubusercontent.com/1794317/187817304-b57545f4-6ab3-4702-bdc5-61f52544481d.png">
-
-## API Documentation
-
-## USER AUTHENTICATION/AUTHORIZATION
-
-### Airbnb is web application inspired by the actual Airbnb, that provides an online marketplace for lodging primirily homestays 
+## Airbnb is web application inspired by the actual Airbnb, that provides an online marketplace for lodging primirily homestays 
 for vacation retals, and tourism activities. Click here to view Airbnb Live Site
 
-All endpoints that require a current user to be logged in.
+### Please see below links to project Wiki:
+*
+*
+*
+*
+*
 
-* Request: endpoints that require authentication
-* Error Response: Require authentication
-  * Status Code: 401
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+### This project is build with:
+* JavaScript
+* PostgreSQL
+* Sequelize
+* Express
+* React
+* Redux
 
-    ```json
-    {
-      "message": "Authentication required",
-      "statusCode": 401
-    }
-    ```
-
-### All endpoints that require proper authorization
+## Feather Directions:
+### Home Page Demo User:
+You will be able to test the features without sign up by click on the "Demo User" button.
