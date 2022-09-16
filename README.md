@@ -1,6 +1,6 @@
 # About AirBnB clone:
 
-Airbnb is web application inspired by the actual Airbnb, that provides an online marketplace for lodging primirily homestays for vacation retals, and tourism activities. Click here to view Airbnb Live Site
+Airbnb clone is a web application inspired by the actual Airbnb, that provides an online marketplace for lodging primirily homestays for vacation retals, and tourism activities. Click here to view Airbnb Live Site
 
 ### Please see below links to project Wiki:
 *
