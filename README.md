@@ -4,7 +4,7 @@ Airbnb clone is a web application inspired by the actual Airbnb, that provides a
 
 ### Please see below links to project Wiki:
 *
-*
+* https://github.com/yashayang/Airbnb-Project.wiki.git
 *
 *
 *
