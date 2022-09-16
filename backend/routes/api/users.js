@@ -11,9 +11,11 @@ const router = express.Router();
 
 const validateSignup = [
   // check('firstName')
+  //   // .exists({ checkFalsy: true })
   //   .isLength({ min: 1 })
   //   .withMessage('Please provide a valid first name.'),
   // check('lastName')
+  //   // .exists({ checkFalsy: true })
   //   .isLength({ min: 1 })
   //   .withMessage('Please provide a valid last name.'),
   check('email')
@@ -34,10 +36,10 @@ const validateSignup = [
     .withMessage('Password must be 6 characters or more.'),
   handleValidationErrors
 ];
-router.use((req, res, next) => {
-  console.log("----------before POST /users", req.body)
-  next();
-})
+// router.use((req, res, next) => {
+//   console.log("----------before POST /users", req.body)
+//   next();
+// })
 
 router.post('/', validateSignup, async (req, res) => {
   console.log("----------from POST /users", req.body)
