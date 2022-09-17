@@ -348,7 +348,7 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res, ne
   const currSpotId = parseInt(req.params.spotId);
   const { user } = req;
   const currUserId = user.toJSON().id;
-  console.log(currUserId)
+  // console.log(currUserId)
   const currSpot = await Spot.findByPk(currSpotId);
 
   if (!currSpot) {

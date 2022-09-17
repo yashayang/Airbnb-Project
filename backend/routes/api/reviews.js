@@ -136,7 +136,7 @@ router.put('/:reviewId', requireAuth, validateReview, async(req, res, next) => {
     })
   }
 
-  console.log(stars)
+  // console.log(stars)
   if (stars > 5 || stars < 1) {
     const err = new Error("Stars must be an integer from 1 to 5")
     err.title = 'Validation error';
