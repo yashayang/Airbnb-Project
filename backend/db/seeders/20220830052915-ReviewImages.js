@@ -19,7 +19,15 @@ module.exports = {
         {
           reviewId: 4,
           url: 'https://a0.muscache.com/im/pictures/18848008-1744-4051-a1be-939c2de1ebcc.jpg?im_w=1200'
-        }
+        },
+        {
+          reviewId: 4,
+          url: 'https://a0.muscache.com/im/pictures/18848008-1744-4051-a1be-939c2de1ebcc.jpg?im_w=1200'
+        },
+        {
+          reviewId: 5,
+          url: 'https://a0.muscache.com/im/pictures/a5ac764d-d9f5-4683-a3ae-cdb73c75bbcc.jpg?im_w=960'
+        },
     ], {});
   },
 
