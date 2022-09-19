@@ -4,6 +4,19 @@ import sessionReducer from './session';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
+  // allSpots: {
+  //   [spotId]: {
+  //     spotData,
+  //   },
+  //   optionalOrderedList: [],
+  // },
+  // singleSpot: {
+  //   spotData,
+  //   SpotImages: [imagesData],
+  //   Owner: {
+  //     ownerData,
+  //   },
+  // },
 });
 
 let enhancer;
