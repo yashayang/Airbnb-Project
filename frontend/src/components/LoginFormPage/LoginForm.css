@@ -34,9 +34,10 @@
 #welcomeDiv {
   font-size: 22px;
   font-weight: 450;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
 
   margin-top: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
 }
 
 .inputContainer {
@@ -44,18 +45,20 @@
   align-items: center;
   height: 56px;
 
-  border: 1px solid #222222;
+  border: 1px solid #c2c0c2;
   border-radius: 8px;
 }
 
 .inputField {
   height: 20px;
   width: 478px;
-  /*margin: 26px 10px 12px;*/
-  margin: 0 12px;
+  /* margin: 26px 10px 12px; */
+  margin: 0px 12px;
 
-  font-size: 16px;
-  color: #222222;
+  font-size: 15px;
+  font-weight: 350;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+  color: black;
 
   border: none;
   outline: none;
