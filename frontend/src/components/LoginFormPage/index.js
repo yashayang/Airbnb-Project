@@ -25,8 +25,19 @@ function LoginFormPage() {
       });
   }
 
+  const handleDemoUser = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(
+        sessionActions.login({credential: 'Demo-lition', password: 'password'})
+    ).catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+    });
+};
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form id="loginContainer" onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
@@ -37,6 +48,7 @@ function LoginFormPage() {
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
+          // className="inputField"
         />
       </label>
       <label>
@@ -48,7 +60,8 @@ function LoginFormPage() {
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button className="styledButton" type="submit">Log In</button>
+      <button className="styledButton" onClick={handleDemoUser}>Demo User</button>
     </form>
   );
 }
