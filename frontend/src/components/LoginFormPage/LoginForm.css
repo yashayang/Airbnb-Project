@@ -21,6 +21,7 @@
 
   font-size: 16px;
   font-weight: 600;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
 
   border-bottom: #EBEBEB solid 1px;
 }
@@ -73,7 +74,6 @@
 
 .styledButton {
   height: 48px;
-  min-width: 200px;
   width: 502px;
 
   margin-top: 16px;
@@ -85,18 +85,9 @@
 
   color: #FFFFFF;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
 
   cursor: pointer;
-
-  /*background-image: radial-gradient(circle at center,*/
-  /*#FF385C 0%,*/
-  /*#E61E4D 27.5%,*/
-  /*#E31C5F 40%,*/
-  /*#D70466 57.5%,*/
-  /*#BD1E59 75%,*/
-  /*#BD1E59 100%*/
-  /*) !important;*/
 
   background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%) !important;
 
@@ -105,9 +96,4 @@
 
 .styledButton:active {
   transform: scale(0.96);
-  background: #FF385C;
-}
-
-#demoButton {
-  margin-top: 6px;
 }
