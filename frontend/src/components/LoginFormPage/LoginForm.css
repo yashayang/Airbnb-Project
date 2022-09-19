@@ -40,6 +40,11 @@
   margin-bottom: 30px;
 }
 
+.inputLabel {
+  padding: 15px 0px 10px 10px;
+  color:#858383;
+}
+
 .inputContainer {
   display: flex;
   align-items: center;
@@ -52,8 +57,7 @@
 .inputField {
   height: 20px;
   width: 478px;
-  /* margin: 26px 10px 12px; */
-  margin: 0px 12px;
+  margin: 0px 0px;
 
   font-size: 15px;
   font-weight: 350;

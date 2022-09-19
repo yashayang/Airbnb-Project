@@ -46,7 +46,7 @@ function LoginFormPage() {
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <div className="inputContainer" id="emailContainer">
-      <label>
+      <label className="inputLabel">
         Username or Email
         <input
           type="text"
@@ -58,7 +58,7 @@ function LoginFormPage() {
       </label>
       </div>
       <div className="inputContainer" id="passwordContainer">
-      <label>
+      <label className="inputLabel">
         Password
         <input
           type="password"
