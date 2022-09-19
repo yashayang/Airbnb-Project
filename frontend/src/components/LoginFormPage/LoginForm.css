@@ -1,7 +1,7 @@
 #loginContainer {
   margin-top: 148px;
   /*z-index: 3;*/
-  width: 566px;
+  width: 568px;
   min-height: 418px;
   max-height: 468px;
 
@@ -28,7 +28,7 @@
 
 #fieldContainer {
   box-sizing: border-box;
-  padding: 32px;
+  padding: 24px;
 }
 
 #welcomeDiv {
@@ -81,10 +81,10 @@
 
 .styledButton {
   height: 48px;
-  width: 502px;
+  width: 520px;
 
   margin-top: 16px;
-  padding: 14px 24px;
+  padding: 12px 24px;
 
   outline: none;
   border: none;
