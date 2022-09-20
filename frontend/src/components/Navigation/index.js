@@ -26,8 +26,8 @@ function Navigation({ isLoaded }){
   return (
     <ul>
       <li className="nav-bar">
-        <NavLink exact to="/" style={{ 'text-decoration': 'none', 'color': '#45454599' }}>Home</NavLink>
-        <NavLink exact to="/" style={{ 'text-decoration': 'none', 'color': '#45454599' }}>Become a Host</NavLink>
+        <NavLink exact to="/" style={{ textDecoration: 'none', 'color': '#45454599' }}>Home</NavLink>
+        <NavLink exact to="/new-spot" style={{ textDecoration: 'none', 'color': '#45454599' }}>Become a Host</NavLink>
         {isLoaded && sessionLinks}
       </li>
     </ul>

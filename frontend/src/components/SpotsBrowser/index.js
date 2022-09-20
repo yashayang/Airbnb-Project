@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, Route, useParams } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 
 import { getAllSpots } from '../../store/spots';
 import SpotDetails from '../SpotDetails/SpotDetails';
@@ -23,7 +23,7 @@ const SpotsBrowser = () => {
       return (
         <div id="spot-card-outer">
 
-          <NavLink to={`/spots/${spot.id}`} style={{ 'text-decoration': 'none'}}>
+          <NavLink to={`/spots/${spot.id}`} style={{ textDecoration: 'none'}}>
 
             <div id="spot-card-container">
               <img src={spot.prevewImage} alt={spot.id} id="spot-img"/>
