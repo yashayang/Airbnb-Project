@@ -60,7 +60,6 @@
 	font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
 		Helvetica Neue, sans-serif;
 	color: #222222;
-  text-decoration: none;
   margin-top: 10px;
   margin-left: 10px;
 }
@@ -87,4 +86,5 @@
 #spot-price-span {
   font-size: 16px;
 	font-weight: 550;
+  text-decoration: none;
 }
