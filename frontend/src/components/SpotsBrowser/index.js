@@ -4,6 +4,7 @@ import { NavLink, Route, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import { getAllSpots } from '../../store/spots';
+import SpotDetails from '../SpotDetails/SpotDetails';
 import "./SpotsBrowser.css";
 
 const SpotsBrowser = () => {
@@ -23,7 +24,7 @@ const SpotsBrowser = () => {
       return (
         <div id="spot-card-outer">
 
-          <Link to={`api/spots/${spot.id}`}>
+          <Link to={`/spots/${spot.id}`}>
 
             <div id="spot-card-container">
               <img src={spot.prevewImage} alt={spot.id} id="spot-img"/>
@@ -54,6 +55,9 @@ const SpotsBrowser = () => {
         </div>
       )
     })}
+    <Route path="/spots/:spotId">
+      <SpotDetails/>
+    </Route>
     </div>
   )
 }

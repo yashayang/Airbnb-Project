@@ -1,0 +1,37 @@
+#spot-details-outter-container {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+	padding-right: 18px;
+	padding-left: 18px;
+
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+}
+
+#spot-subtitle {
+  margin-top: 10px;
+}
+
+#spot-img-container {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  height: 450px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#spot-detal-img {
+  max-width: 500px;
+  height: 450px;
+  border-radius: 15px 0 0 15px;
+  padding-right: 8px;
+}
+
+#spot-lower-title {
+  margin-top: 20px;
+}
+
+#spot-description {
+  margin-top: 20px;
+}
