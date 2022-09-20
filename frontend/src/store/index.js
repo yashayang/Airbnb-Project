@@ -6,19 +6,6 @@ import spotsReducer from './spots';
 const rootReducer = combineReducers({
   session: sessionReducer,
   spots: spotsReducer,
-  // allSpots: {
-  //   [spotId]: {
-  //     spotData,
-  //   },
-  //   optionalOrderedList: [],
-  // },
-  // singleSpot: {
-  //   spotData,
-  //   SpotImages: [imagesData],
-  //   Owner: {
-  //     ownerData,
-  //   },
-  // },
 });
 
 let enhancer;
