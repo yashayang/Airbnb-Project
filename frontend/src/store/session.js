@@ -30,7 +30,7 @@ export const login = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  // console.log("session login", data)
+  console.log("session login", data)
   dispatch(setUser(data.user));
   return response;
 };
@@ -38,7 +38,7 @@ export const login = (user) => async (dispatch) => {
 export const restoreUser = () => async dispatch => {
   const response = await csrfFetch('/api/session');
   const data = await response.json();
-  console.log("seesion restoreUser", data)
+  // console.log("seesion restoreUser", data)
   dispatch(setUser(data.user));
   return response;
 };
