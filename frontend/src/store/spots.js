@@ -17,10 +17,10 @@ const allSpots = (spots) => {
 
 export const getAllSpots = (spots) => async (dispatch) => {
   const response = await fetch(`api/spots`);
-  console.log("store/spots - getAllSpots thunk:", response)
+  // console.log("store/spots - getAllSpots thunk:", response)
   if (response.ok) {
     const spots = await response.json();
-    console.log("store/spots - getAllSpots thunk/spots var:", spots)
+    // console.log("store/spots - getAllSpots thunk/spots var:", spots)
     dispatch(allSpots(spots))
   }
   return null;
@@ -40,7 +40,7 @@ const spotsReducer = (state = initialState, action) => {
       action.payload.Spots.forEach(spot => {
         allSpots[spot.id] = spot;
       })
-      console.log("allSpots from spotsReducer:", allSpots)
+      // console.log("allSpots from spotsReducer:", allSpots)
       return {
         ...allSpots,
         ...state,

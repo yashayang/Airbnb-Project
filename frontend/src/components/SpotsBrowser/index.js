@@ -14,7 +14,7 @@ const SpotsBrowser = () => {
     dispatch(getAllSpots());
   }, [dispatch])
 
-  console.log("!!!!!SpotsBrowser spots var:", spots)
+  // console.log("!!!!!SpotsBrowser spots var:", spots)
   if(!spots) return null;
 
   return (
