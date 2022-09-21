@@ -8,7 +8,7 @@ import "./CreateSpot.css";
 const CreateSpot = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const spot = useSelector(state => state.spots.singleSpot);
+  const spots = useSelector(state => state.spots.allSpots);
 
   const [errors, setErrors] = useState([]);
   const [address, setAddress] = useState('');
@@ -21,14 +21,23 @@ const CreateSpot = () => {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
 
+  const spotIdArr = Object.keys(spots);
+  const spotIdArrSorted = spotIdArr.sort(function (a, b) {
+    return b - a;
+  });
+  const newSpotId = spotIdArrSorted[0];
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = { address, city, state, country, lat, lng, name, description, price };
-    return dispatch(createOneSpot(data))
+
+     dispatch(createOneSpot(data))
      .catch(async (res) => {
       const message = await res.json();
       if (message && message.errors) setErrors(message.errors);
      });
+
+     return history.push(`/spots/${newSpotId}`);
   }
 
   const handleCancelClick = (e) => {
