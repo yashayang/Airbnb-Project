@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import SpotsBrowser from "./components/SpotsBrowser";
 import SpotDetails from "./components/SpotDetails/SpotDetails";
 import CreateSpot from "./components/CreateSpot/CreateSpot";
+import AddSpotImgForm from "./components/CreateSpot/AddSpotImg";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,10 @@ function App() {
 
           <Route path="/new-spot">
             <CreateSpot />
+          </Route>
+
+          <Route exact path="/:spotId/images">
+              <AddSpotImgForm />
           </Route>
 
           <Route>
