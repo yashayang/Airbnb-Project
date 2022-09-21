@@ -86,6 +86,7 @@ export const createOneSpot = (data) => async (dispatch) => {
     }
 
     const newSpot = await response.json();
+    console.log("createOneSpot Thunk - res spot data:", newSpot)
     dispatch(addSpot(newSpot));
     return newSpot;
   } catch(error) {
@@ -136,9 +137,9 @@ const spotsReducer = (state = initialState, action) => {
       return newState;
 
     case ADD_ONESPOT:
-        // console.log("spotreducer:", action.payload)
+        console.log("spotreducer:", action.payload)
         return {
-          ...state,
+          singleSpot: null,
           allSpots: {
             ...state.allSpots,
             [action.payload.id]: action.payload }

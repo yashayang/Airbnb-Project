@@ -231,15 +231,16 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
        })
   }
   if (req.user.id === currSpot.toJSON().ownerId) {
-    const newImage = await SpotImage.create({
+    const newImage = await SpotImage.scope("spotImg").create({
       spotId: currSpotId,
       url: url
     })
-    const result = await SpotImage.findAll({
-      where: {spotId: currSpotId, url: url},
-      attributes: ['id', 'url']
-    })
-    return res.json(result[result.length - 1])
+    console.log("=============", newImage)
+    // const result = await SpotImage.findAll({
+    //   where: {spotId: currSpotId, url: url},
+    //   attributes: ['id', 'url']
+    // })
+    return res.json(newImage.toSafeObject())
   } else {
     return res.status(403)
     .json({

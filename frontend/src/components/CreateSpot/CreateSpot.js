@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { createOneSpot } from '../../store/spots';
+import { getAllSpots } from '../../store/spots';
 import "./CreateSpot.css";
 
 const CreateSpot = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const spots = useSelector(state => state.spots.allSpots);
+  // const spots = useSelector(state => state.spots.allSpots);
 
   const [errors, setErrors] = useState([]);
   const [address, setAddress] = useState('');
@@ -21,23 +22,28 @@ const CreateSpot = () => {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
 
-  const spotIdArr = Object.keys(spots);
-  const spotIdArrSorted = spotIdArr.sort(function (a, b) {
-    return b - a;
-  });
-  const newSpotId = spotIdArrSorted[0];
+
+  // const spotIdArr = Object.keys(spots);
+  // // console.log("From CreateSpot - spotIdArr:", spotIdArr)
+  // const spotIdArrSorted = spotIdArr.sort(function (a, b) {
+  //   return b - a;
+  // });
+  // // console.log("From CreateSpot - spotIdArr:", spotIdArrSorted)
+  // const newSpotId = spotIdArrSorted[0];
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = { address, city, state, country, lat, lng, name, description, price };
 
-     dispatch(createOneSpot(data))
-     .catch(async (res) => {
+   dispatch(createOneSpot(data))
+    .then(newSpot => history.push(`/spots/${newSpot.id}`))
+    .catch(async (res) => {
       const message = await res.json();
+      console.log("From CreateSpot - res.message:", message)
       if (message && message.errors) setErrors(message.errors);
      });
 
-     return history.push(`/spots/${newSpotId}`);
+    //  return history.push(`/spots/${newSpotId}`);
   }
 
   const handleCancelClick = (e) => {
