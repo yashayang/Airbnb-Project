@@ -8,7 +8,8 @@ const SpotDetails = () => {
   const dispatch = useDispatch();
   const { spotId } = useParams();
   const spotIdNum = Number(spotId);
-  const spot = useSelector(state => state.spots.singleSpot)
+  const spot = useSelector(state => state.spots.singleSpot);
+  const currUserId = useSelector(state => state.session.user.id);
   // console.log("spot from component/singleSpot", spot)
 
   useEffect(() => {
@@ -29,10 +30,26 @@ const SpotDetails = () => {
       <span>{spot.country}</span>
      </div>
      <div id="spot-img-container">
-        { spot.SpotImages.length === 0
-         ? <NavLink to={`/${spot.id}/images`}><i className="fa-sharp fa-solid fa-circle-plus" style={{fontSize: 4 + 'em', color:'rgb(207, 99, 117)'}}></i></NavLink>
-         : spot.SpotImages.map(img => <img src={img.url} alt={img.id} id="spot-detal-img" key={img.id}/>)
-        }
+      {spot.ownerId === currUserId
+        ? <NavLink to={`/${spot.id}/images`}>
+            <i className="fa-sharp fa-solid fa-circle-plus" style={{fontSize: 4 + 'em', color:'rgb(207, 99, 117)'}}></i>
+          </NavLink>
+        //   <NavLink to={`/${spot.id}/images`}>
+        //   <i className="fa-light fa-pen-circle"></i>
+        // </NavLink></>
+        : null
+      }
+      {/* </div>
+      <div>
+      {spot.ownerId === currUserId
+        ? <NavLink to={`/${spot.id}/images`}>
+        <i className="fa-sharp fa-solid fa-pen-circle" style={{fontSize: 4 + 'em', color:'rgb(207, 99, 117)'}}></i>
+      </NavLink>
+        : null
+      } */}
+        <div>
+        {spot.SpotImages.map(img => <img src={img.url} alt={img.id} id="spot-detal-img" key={img.id}/>)}
+        </div>
      </div>
      <div id="spot-lower-title">
       <h2>Entire place hosted by {spot.Owner.firstName}</h2>

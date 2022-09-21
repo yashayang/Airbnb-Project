@@ -235,11 +235,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
       spotId: currSpotId,
       url: url
     })
-    console.log("=============", newImage)
-    // const result = await SpotImage.findAll({
-    //   where: {spotId: currSpotId, url: url},
-    //   attributes: ['id', 'url']
-    // })
+
     return res.json(newImage.toSafeObject())
   } else {
     return res.status(403)
