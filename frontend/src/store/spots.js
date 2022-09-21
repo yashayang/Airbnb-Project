@@ -88,7 +88,7 @@ export const createOneSpot = (data) => async (dispatch) => {
 const initialState = {};
 
 const spotsReducer = (state = initialState, action) => {
-  // let newState;
+  let newState;
   switch (action.type) {
     case LOAD_ALLSPOT:
       const allSpots = {};
@@ -98,16 +98,16 @@ const spotsReducer = (state = initialState, action) => {
       // console.log("allSpots from spotsReducer:", allSpots)
       return {
         ...state,
-        ...allSpots,
+        allSpots: {...allSpots},
       };
+
     case LOAD_ONESPOT:
-      // const theSpot = {...action.payload};
-      state.singleSpot = action.payload
+      newState = { ...state };
+      newState.singleSpot = action.payload
       // console.log("singleSpot from spotsReducer:", state)
-      return {
-        ...state
-      };
-      case ADD_ONESPOT:
+      return newState;
+
+    case ADD_ONESPOT:
         // console.log("spotreducer:", action.payload)
         return {
           ...state,
@@ -115,6 +115,7 @@ const spotsReducer = (state = initialState, action) => {
             ...state.allSpots,
             [action.payload.id]: action.payload }
         };
+
     default:
       return state;
   }

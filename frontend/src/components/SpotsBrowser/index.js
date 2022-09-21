@@ -8,7 +8,7 @@ import "./SpotsBrowser.css";
 
 const SpotsBrowser = () => {
   const dispatch = useDispatch();
-  const spots = useSelector(state => state.spots);
+  const spots = useSelector(state => state.spots.allSpots);
 
   useEffect(() => {
     dispatch(getAllSpots());
@@ -21,7 +21,7 @@ const SpotsBrowser = () => {
     <div id="outer-container">
     {Object.values(spots).map(spot => {
       return (
-        <div id="spot-card-outer">
+        <div id="spot-card-outer" key={spot.id}>
 
           <NavLink to={`/spots/${spot.id}`} style={{ textDecoration: 'none'}}>
 

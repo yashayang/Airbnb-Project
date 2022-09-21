@@ -30,7 +30,7 @@ const SpotDetails = () => {
       <span>{spot.country}</span>
      </div>
      <div id="spot-img-container">
-       {spot.SpotImages.map(img => <img src={img.url} alt={img.id} id="spot-detal-img"/>)}
+       {spot.SpotImages.map(img => <img src={img.url} alt={img.id} id="spot-detal-img" key={img.id}/>)}
      </div>
      <div id="spot-lower-title">
       <h2>Entire place hosted by {spot.Owner.firstName}</h2>
