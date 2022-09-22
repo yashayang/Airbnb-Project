@@ -270,7 +270,28 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res, next) => {
   const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
   currSpot.update({ address, city, state, country, lat, lng, name, description, price });
-  return res.json(currSpot);
+  // const updatedSpot = await Spot.findByPk(currSpotId, {
+  //   include: [SpotImage, {
+  //     model: User,
+  //     attributes: ['id', 'firstName', 'lastName']
+  //   }]
+  //   // updatedSpot.SpotImages = updatedSpot.SpotImage
+  // });
+
+  const updatedSpot = await Spot.findByPk(currSpotId, {
+    include: SpotImage
+    // updatedSpot.SpotImages = updatedSpot.SpotImage
+  });
+  const owner = await User.findByPk(updatedSpot.ownerId, {
+    attributes: ['id', 'firstName', 'lastName']
+  })
+  const updatedSpotJSON = updatedSpot.toJSON();
+  // updatedSpot["Owner"] = {...updatedSpot.User};
+  updatedSpotJSON.Owner = owner;
+  // delete updatedSpot.User;
+
+  console.log("========================", updatedSpotJSON)
+  return res.json(updatedSpotJSON);
 
 })
 

@@ -9,12 +9,12 @@ import "./SpotsBrowser.css";
 const SpotsBrowser = () => {
   const dispatch = useDispatch();
   const spots = useSelector(state => state.spots.allSpots);
+  // console.log("!!!!!SpotsBrowser spots var:", spots)
 
   useEffect(() => {
     dispatch(getAllSpots());
   }, [dispatch])
 
-  // console.log("!!!!!SpotsBrowser spots var:", spots)
   if(!spots) return null;
 
   return (

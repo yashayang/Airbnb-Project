@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOneSpot } from '../../store/spots';
+import DeleteSpotForm from '../DeleteSpot/DeleteSpot';
 import "./SpotDetails.css"
 
 const SpotDetails = () => {
@@ -15,8 +16,10 @@ const SpotDetails = () => {
   useEffect(() => {
     dispatch(getOneSpot(spotIdNum));
   }, [dispatch, spotIdNum])
+  // console.log("!!!!!!!!!!!!", spot)
 
   if (!spot) return null;
+  if (!Object.keys(spot).length) return null;
 
   return (
     <div id="spot-details-outter-container">
@@ -31,26 +34,34 @@ const SpotDetails = () => {
      </div>
      <div id="spot-img-container">
       {spot.ownerId === currUserId
-        ? <NavLink to={`/${spot.id}/images`}>
+        ? <span>
+          <NavLink to={`/${spot.id}/images`}>
             <i className="fa-sharp fa-solid fa-circle-plus" style={{fontSize: 4 + 'em', color:'rgb(207, 99, 117)'}}></i>
           </NavLink>
-        //   <NavLink to={`/${spot.id}/images`}>
-        //   <i className="fa-light fa-pen-circle"></i>
-        // </NavLink></>
+          </span>
         : null
       }
-      {/* </div>
+      </div>
       <div>
       {spot.ownerId === currUserId
-        ? <NavLink to={`/${spot.id}/images`}>
-        <i className="fa-sharp fa-solid fa-pen-circle" style={{fontSize: 4 + 'em', color:'rgb(207, 99, 117)'}}></i>
-      </NavLink>
+        ? <NavLink to={`/${spotIdNum}/edit`}>
+        <i className="fa-sharp fa-solid fa-circle-plus" style={{fontSize: 4 + 'em', color:'black'}}></i>
+        </NavLink>
         : null
-      } */}
+        }
+      </div>
+      <div>
+      {spot.ownerId === currUserId
+        ? <DeleteSpotForm />
+        // <NavLink to={`/${spot.id}/delete`}>
+        // <button>Delete the spot</button>
+        // </NavLink>
+        : null
+        }
+      </div>
         <div>
-        {spot.SpotImages.map(img => <img src={img.url} alt={img.id} id="spot-detal-img" key={img.id}/>)}
+        {spot !== undefined && spot.SpotImages.map(img => <img src={img.url} alt={img.id} id="spot-detal-img" key={img.id}/>)}
         </div>
-     </div>
      <div id="spot-lower-title">
       <h2>Entire place hosted by {spot.Owner.firstName}</h2>
      </div>

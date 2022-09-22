@@ -1,7 +1,5 @@
 #loginContainer {
-  margin-top: 148px;
-  /*z-index: 3;*/
-  width: 568px;
+  width: 560px;
   min-height: 418px;
   max-height: 468px;
 
@@ -9,9 +7,8 @@
   border-width: 1px;
   border-radius: 12px;
   border-style: solid;
-
-  top: 24px;
 }
+
 
 #loginTitle {
   display:flex;
