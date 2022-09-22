@@ -35,7 +35,7 @@ module.exports = {
     await queryInterface.bulkDelete('ReviewImages', {
       reviewId: {
           [Op.in]: [
-              1 , 2, 3
+              1 , 2, 3, 4, 5, 6
           ]
       }
     });
