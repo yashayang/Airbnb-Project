@@ -10,8 +10,8 @@ const SpotDetails = () => {
   const { spotId } = useParams();
   const spotIdNum = Number(spotId);
   const spot = useSelector(state => state.spots.singleSpot);
-  const currUserId = useSelector(state => state.session.user.id);
-  // console.log("spot from component/singleSpot", spot)
+  const currUser = useSelector(state => state.session.user);
+  console.log("spot from component/singleSpot", spot)
 
   useEffect(() => {
     dispatch(getOneSpot(spotIdNum));
@@ -33,44 +33,39 @@ const SpotDetails = () => {
       <span>{spot.country}</span>
      </div>
      <div id="spot-img-container">
-      {spot.ownerId === currUserId
-        ? <span>
-          <NavLink to={`/${spot.id}/images`}>
+        {spot !== undefined && spot.SpotImages.map(img => <img src={img.url} alt={img.id} id="spot-detal-img" key={img.id}/>)}
+     </div>
+     <div id="add-img-container">
+      {currUser && spot.ownerId === currUser.id
+        ? <NavLink to={`/${spot.id}/images`} style={{ textDecoration: 'none'}}>
             <i className="fa-sharp fa-solid fa-circle-plus" style={{fontSize: 4 + 'em', color:'rgb(207, 99, 117)'}}></i>
+            <label>Add more images...</label>
           </NavLink>
-          </span>
         : null
       }
       </div>
-      <div>
-      {spot.ownerId === currUserId
-        ? <NavLink to={`/${spotIdNum}/edit`}>
-        <i className="fa-sharp fa-solid fa-circle-plus" style={{fontSize: 4 + 'em', color:'black'}}></i>
+      <div id="edit-spot-container">
+      {currUser && spot.ownerId === currUser.id
+        ? <NavLink to={`/${spotIdNum}/edit`} style={{ textDecoration: 'none'}}>
+          <i className="fa-sharp fa-solid fa-circle-plus" style={{fontSize: 4 + 'em', color:'black'}}></i>
+          <label>Edit the spot...</label>
         </NavLink>
         : null
         }
       </div>
       <div>
-      {spot.ownerId === currUserId
+      {currUser && spot.ownerId === currUser.id
         ? <DeleteSpotForm />
-        // <NavLink to={`/${spot.id}/delete`}>
-        // <button>Delete the spot</button>
-        // </NavLink>
         : null
         }
       </div>
-        <div>
-        {spot !== undefined && spot.SpotImages.map(img => <img src={img.url} alt={img.id} id="spot-detal-img" key={img.id}/>)}
-        </div>
+
      <div id="spot-lower-title">
-      <h2>Entire place hosted by {spot.Owner.firstName}</h2>
+      <h2>Entire place hosted by {currUser && currUser.firstName}</h2>
      </div>
      <div id="spot-description">
       <p>{spot.description}</p>
      </div>
-     {/* <Route path="/:spotId/images">
-      <SpotDetails/>
-    </Route> */}
     </div>
   )
 }

@@ -1,7 +1,7 @@
 #spot-details-outter-container {
   display: flex;
   flex-direction: column;
-  margin: 30px;
+  margin: 80px;
 	padding-right: 18px;
 	padding-left: 18px;
 
@@ -20,6 +20,15 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+#add-img-container{
+  margin: 10px;
+}
+
+#edit-spot-container{
+  margin: 10px;
+}
+
 
 #spot-detal-img {
   max-width: 500px;

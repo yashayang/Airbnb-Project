@@ -19,14 +19,19 @@ const CreateSpot = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
+  const [url, setUrl] = useState('');
+  const [preview, setPreview] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = { address, city, state, country, lat, lng, name, description, price };
+    const imgData = { url, preview };
 
-    dispatch(createOneSpot(data))
+    dispatch(createOneSpot(data, imgData))
     .then(newSpot => history.push(`/spots/${newSpot.id}`))
     .catch(async (res) => {
+      console.log("createOneSpot dispatch from create spot component:", res)
+      if(res === undefined) return null;
       const message = await res.json();
       console.log("From CreateSpot - res.message:", message)
       if (message && message.errors) setErrors(message.errors);
@@ -39,7 +44,7 @@ const CreateSpot = () => {
   }
 
   return (
-    <section className="new-form-holder centered middled">
+    <div className="form-outer-container">
       <ul>
         {errors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
@@ -95,11 +100,23 @@ const CreateSpot = () => {
           placeholder="price"
           value={price}
           onChange={e => setPrice(e.target.value)} />
+        <label>Image url:</label>
+        <input
+          type="text"
+          placeholder="http://..."
+          required
+          value={url}
+          onChange={e => setUrl(e.target.value)} />
+        <label>Set as Preview Image:</label>
+        <select onChange={e => setPreview(e.target.value)} value={preview}>
+            <option key='true'>true</option>
+            <option key='false'>false</option>
+        </select>
 
         <button type="submit">Create new Spot</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
       </form>
-    </section>
+    </div>
   );
 }
 

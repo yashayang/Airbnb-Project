@@ -2,6 +2,7 @@
 import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteOneSpot } from '../../store/spots';
+import './DeleteSpot.css';
 
 
 const DeleteSpotForm = () => {
@@ -19,9 +20,11 @@ const DeleteSpotForm = () => {
   }
 
   return (
-  <>
-    <button onClick={deleteSpotClickEvent}>Delete spot</button>
-  </>
+  <div id="delete-spot-container">
+    <button onClick={deleteSpotClickEvent}>DELETE!!!</button>
+    {/* <label>DELETE THE SPOT...</label>
+    <i className="fa-solid fa-trash-xmark"></i> */}
+  </div>
   )
 }
 

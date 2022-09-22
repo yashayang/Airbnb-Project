@@ -72,7 +72,7 @@ export const getOneSpot = (spotId) => async (dispatch) => {
   return null;
 }
 
-export const createOneSpot = (data) => async (dispatch) => {
+export const createOneSpot = (data, imgData) => async (dispatch) => {
   // let { address, city, state, country, lat, lng, name, description, price } = data
   try {
     const response = await csrfFetch(`/api/spots`, {
@@ -102,12 +102,50 @@ export const createOneSpot = (data) => async (dispatch) => {
     }
 
     const newSpot = await response.json();
-    // console.log("createOneSpot Thunk - res spot data:", newSpot)
+    console.log("createOneSpot Thunk - res spot data:", newSpot)
     dispatch(addSpot(newSpot));
+
+    const { url, preview } = imgData;
+    // console.log("From store/spot/addImg Thunk - url/preview", imgData)
+    const imgRes = await csrfFetch(`/api/spots/${newSpot.id}/images`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({url, preview})
+    });
+
+    if (!imgRes.ok) {
+      let error;
+      if (response.status === 404) {
+        error = await response.json();
+        // throw new ValidationError(error.errors, response.statusText);
+        return error;
+      } else {
+        let errorJSON;
+        error = await response.text();
+        try {
+          errorJSON = JSON.parse(error);
+        } catch {
+          throw new Error(error);
+        }
+        throw new Error(`${errorJSON.title}: ${errorJSON.message}`)
+      }
+    }
+    const img = await imgRes.json()
+    console.log("From store/spot/addImg Thunk - img res", img)
+    dispatch(addImg(img))
+
+    newSpot['SpotImages'] = [img]
+    console.log("From store/spot/addImg Thunk - newSpot after added ing", newSpot)
+
     return newSpot;
   } catch(error) {
     throw error;
   }
+
+
+
 }
 
 export const addImages = (imgData, spotId) => async (dispatch) => {

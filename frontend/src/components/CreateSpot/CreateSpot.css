@@ -1,0 +1,9 @@
+.form-outer-container{
+  display: flex;
+  flex-direction: column;
+  margin: 80px;
+	padding-right: 18px;
+	padding-left: 18px;
+
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+}
