@@ -7,6 +7,7 @@
   border-width: 1px;
   border-radius: 12px;
   border-style: solid;
+  /* background-color: yellow; */
 }
 
 
@@ -21,6 +22,8 @@
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
 
   border-bottom: #EBEBEB solid 1px;
+  border-radius: 12px;
+  /* background-color: #D70466; */
 }
 
 #fieldContainer {

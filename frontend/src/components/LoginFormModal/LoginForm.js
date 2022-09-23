@@ -33,7 +33,7 @@ function LoginForm() {
   return (
     <div id="loginContainer">
     <form onSubmit={handleSubmit}>
-    <div id="loginTitle">Log in or sign up</div>
+    <div id="loginTitle">Log In</div>
       <div id="fieldContainer">
       <div id="welcomeDiv">Welcome to AirBnB</div>
       <ul>
