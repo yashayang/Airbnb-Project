@@ -3,6 +3,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOneSpot } from '../../store/spots';
 import DeleteSpotForm from '../DeleteSpot/DeleteSpot';
+import AllReviewsforSpot from "../../components/Reviews/AllReviewsforSpot";
 import "./SpotDetails.css"
 
 const SpotDetails = () => {
@@ -11,14 +12,19 @@ const SpotDetails = () => {
   const spotIdNum = Number(spotId);
   const spot = useSelector(state => state.spots.singleSpot);
   const currUser = useSelector(state => state.session.user);
-  console.log("spot from component/singleSpot", spot)
+  // console.log("spot from component/singleSpot", spot)
 
   useEffect(() => {
     dispatch(getOneSpot(spotIdNum));
+    // return (
+    //   () => {
+
+    //   }
+    // )
   }, [dispatch, spotIdNum])
   // console.log("!!!!!!!!!!!!", spot)
 
-  if (!spot) return null;
+  if (!spot.Owner) return null;
   if (!Object.keys(spot).length) return null;
 
   return (
@@ -27,7 +33,15 @@ const SpotDetails = () => {
      <div id="spot-subtitle">
       <i className="fa-sharp fa-solid fa-star"></i>
       <span>{spot.avgStarRating === "NaN" ? `No Rating` : spot.avgStarRating}{` · `}</span>
-      <span>reviews{` · `}</span>
+      <span>
+        {spot.avgStarRating === "NaN" ? `No Reviews`
+         : <NavLink to={`/${spot.id}/reviews`}>
+             {/* <AllReviewsforSpot/> */}
+             <label>reviews</label>
+           </NavLink>
+         }
+        <label>{` · `}</label>
+        </span>
       <span>{spot.city}{`, `}</span>
       <span>{spot.state}{`, `}</span>
       <span>{spot.country}</span>
@@ -61,7 +75,8 @@ const SpotDetails = () => {
       </div>
 
      <div id="spot-lower-title">
-      <h2>Entire place hosted by {currUser && currUser.firstName}</h2>
+      <h2>Entire place hosted by {spot.Owner.firstName}</h2>
+      {/* currUser && currUser.firstName */}
      </div>
      <div id="spot-description">
       <p>{spot.description}</p>
