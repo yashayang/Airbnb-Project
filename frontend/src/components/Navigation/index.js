@@ -6,7 +6,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import './Navigation.css';
-import Logo from '../Logo/Airdnd Logo.svg';
+import Logo from '../Logo/airdnd 2.svg';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
