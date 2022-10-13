@@ -66,8 +66,8 @@ function Navigation({ isLoaded }){
   return (
     <ul>
       <li className="nav-bar">
-        <div className="nav-bar-left">
-          <NavLink exact to="/"><img src={Logo} alt="logo" width="100px"/></NavLink>
+        <div className="logo">
+          <NavLink exact to="/"><img src={Logo} alt="logo"/></NavLink>
         </div>
         <div className="nav-bar-middle">
           <NavLink exact to="/new-spot" className="create-spot-page">Become a Host</NavLink>

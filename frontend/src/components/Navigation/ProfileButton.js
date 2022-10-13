@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom'
+
 import * as sessionActions from '../../store/session';
 
 import './Navigation.css';
 
 function ProfileButton({ user }) {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -36,17 +39,24 @@ function ProfileButton({ user }) {
         <i className="fa-solid fa-bars"></i>
         <i className="fa-solid fa-circle-user"></i>
       </button>
+
       <div>
-      {showMenu && (
-        <ul className="profile-dropdown">
-          <li className="curr-user">{user.username}</li>
-          <li className="curr-user">{user.email}</li>
-          <li>
-            <button onClick={logout} className="log-out-button">Log Out</button>
-          </li>
-        </ul>
-      )}
+        {showMenu && (
+          <div className="profile-dropdown">
+            <div className="curr-user">{user.username}</div>
+            <div className="curr-user">{user.email}</div>
+
+            <div className='break'></div>
+
+            <div className="profile-btm-wrap">
+              <div onClick={() => history.push('/my-spots')} className="profile-btm-div">My Spots</div>
+              <div onClick={() => history.push('/my-reviews')} className="profile-btm-div">My Reviews</div>
+              <div onClick={logout} className="profile-btm-div">Log Out</div>
+            </div>
+          </div>
+        )}
       </div>
+
     </div>
   );
 }
