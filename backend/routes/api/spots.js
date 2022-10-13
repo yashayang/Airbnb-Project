@@ -88,7 +88,7 @@ router.get('/', async (req, res, next) => {
     where: {
       [Op.and]: queryOptions,
     },
-    //  ...pagination
+     ...pagination
   });
 
   let spotsArr = []
