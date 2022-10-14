@@ -1,7 +1,7 @@
 #outer-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin: 60px 120px 120px 80px;
+  margin: 60px 150px 60px 150px;
   flex-wrap: wrap;
   column-gap: 30px;
 }

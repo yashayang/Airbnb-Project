@@ -1,24 +1,58 @@
 #spot-details-outter-container {
   display: flex;
   flex-direction: column;
-  margin: 80px;
-	padding-right: 18px;
-	padding-left: 18px;
+  margin: 30px 150px 30px 150px;
 
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+}
+
+.spot-name {
+  font-size: 26px;
+  font-weight: inherit !important;
+  font-family: Noto Sans,sans-serif;
 }
 
 #spot-subtitle {
   margin-top: 10px;
 }
 
+.fa-sharp {
+  color: rgb(207, 99, 117);
+}
+
 #spot-img-container {
-  display:grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  height: 450px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 2.5fr 2.5fr;
+  gap: 8px;
+  overflow: hidden;
+  border-radius: 10px;
+  height: 400px;
+  margin: 20px 0px 20px 0px;
+}
+
+#preview-img {
+  max-height: 380px;
+  object-fit: cover;
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  min-height: 400px;
+}
+
+.other-img-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 400px;
+  gap: 8px;
+}
+
+.other-image {
+  min-height: 100%;
+  max-height: 100%;
+  width: 100%;
+  object-fit: cover;
+  /* border-radius: 10px; */
 }
 
 #add-img-container{
@@ -42,5 +76,15 @@
 }
 
 #spot-description {
-  margin-top: 20px;
+  margin-top: 0px;
+}
+
+
+.breaker {
+  display: flex;
+  background-color: rgb(228, 228, 228);
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 98%;
+  height: 1px;
 }
