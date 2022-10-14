@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, Route } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { getAllSpots } from '../../store/spots';
-import SpotDetails from '../SpotDetails/SpotDetails';
 import "./SpotsBrowser.css";
 
 const SpotsBrowser = () => {
@@ -51,9 +50,6 @@ const SpotsBrowser = () => {
         </div>
       )
     })}
-    {/* <Route path="/spots/:spotId">
-      <SpotDetails/>
-    </Route> */}
     </div>
   )
 }
