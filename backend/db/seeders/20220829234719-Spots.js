@@ -31,7 +31,7 @@ module.exports = {
       ownerId: 2,
       address: '77 S 2rd Ave',
       city:'Stege',
-      state: 'Stege',
+      state: 'Denmark',
       country: 'Denmark',
       lat: 37.7733612,
       lng: -122.507919,
