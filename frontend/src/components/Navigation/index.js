@@ -30,7 +30,7 @@ function Navigation({ isLoaded }){
   }, [showMenu]);
 
   let menuVisibility
-  showMenu === true ? menuVisibility = 'menu-visible' : menuVisibility = 'menu-not-visible'
+  showMenu === true ? menuVisibility = 'visible' : menuVisibility = 'not-visible'
 
   let sessionLinks;
   if (sessionUser) {
@@ -40,43 +40,50 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-        {/* <LoginFormModal/>
-        <SignupFormModal/> */}
-        <div className='dropdown-wrapper'>
-                <div className='profile-button-wrapper'>
-                    <button onClick={openMenu} className='profile-button'>
-                      <i className="fa-solid fa-bars"></i>
-                      <i className="fa-solid fa-circle-user"></i>
-                    </button>
+        <div className='dropdown-outer-container'>
+          <button onClick={openMenu} className='profile-button'>
+            <i className="fa-solid fa-bars"></i>
+            <i className="fa-solid fa-circle-user"></i>
+          </button>
+
+          <div>
+            <div id='profile-dropdown' className={menuVisibility}>
+              <div className='profile-btm-wrap'>
+                <div className="profile-btm-div">
+                  <LoginFormModal />
                 </div>
-
-                    <div id='profile-dropdown' className={menuVisibility}>
-                        <div className='sessionlinks'>
-                        <LoginFormModal />
-                        <SignupFormModal />
-                        </div>
-
-                    </div>
-
+                <div className="profile-btm-div">
+                  <SignupFormModal />
+                </div>
+              </div>
             </div>
+          </div>
+
+        </div>
+
       </>
     );
   }
 
   return (
-    <ul>
+    <>
+    <ul className="nav-ul">
       <li className="nav-bar">
         <div className="logo">
           <NavLink exact to="/"><img src={Logo} alt="logo"/></NavLink>
         </div>
+        <div className="nav-bar-right-group">
         <div className="nav-bar-middle">
-          <NavLink exact to="/new-spot" className="create-spot-page">Become a Host</NavLink>
+          {sessionUser && <NavLink exact to="/new-spot" className="create-spot">Become a Host</NavLink>}
         </div>
         <div className="nav-bar-right">
           {isLoaded && sessionLinks}
         </div>
+        </div>
       </li>
     </ul>
+    <div className='break'></div>
+    </>
   );
 }
 

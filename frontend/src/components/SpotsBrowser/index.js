@@ -25,11 +25,9 @@ const SpotsBrowser = () => {
 
           <NavLink to={`/spots/${spot.id}`} style={{ textDecoration: 'none'}}>
 
-            <div id="spot-card-container">
-              <img src={spot.prevewImage} alt={spot.id} id="spot-img"/>
+              <div className='spot-img-div'><img src={spot.prevewImage} alt={spot.id} id="spot-img"/></div>
 
               <div id="spot-info-container">
-
                 <div id="spot-info-top">
                   <span id="spot-location">{spot.city}{`, `}{spot.state}</span>
                   <div id="spot-review">
@@ -47,16 +45,15 @@ const SpotsBrowser = () => {
 
               </div>
 
-            </div>
 
           </NavLink>
 
         </div>
       )
     })}
-    <Route path="/spots/:spotId">
+    {/* <Route path="/spots/:spotId">
       <SpotDetails/>
-    </Route>
+    </Route> */}
     </div>
   )
 }

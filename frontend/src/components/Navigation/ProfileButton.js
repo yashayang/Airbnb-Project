@@ -51,6 +51,7 @@ function ProfileButton({ user }) {
             <div className="profile-btm-wrap">
               <div onClick={() => history.push('/my-spots')} className="profile-btm-div">My Spots</div>
               <div onClick={() => history.push('/my-reviews')} className="profile-btm-div">My Reviews</div>
+              <div className='break'></div>
               <div onClick={logout} className="profile-btm-div">Log Out</div>
             </div>
           </div>

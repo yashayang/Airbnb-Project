@@ -36,7 +36,7 @@ function LoginForm() {
     <div id="loginTitle">Log In</div>
       <div id="fieldContainer">
       <div id="welcomeDiv">Welcome to AirBnB</div>
-      <ul>
+      <ul className="errors-ul">
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <div className="inputContainer" id="emailContainer">

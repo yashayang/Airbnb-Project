@@ -1,3 +1,7 @@
+.nav-ul {
+  height: 4em;
+}
+
 .nav-bar {
   display: flex;
   justify-content: space-between;
@@ -8,7 +12,6 @@
 }
 
 .logo {
-  position: fixed;
   left: 62px;
   height: 50px;
   width: 10px;
@@ -16,20 +19,23 @@
   margin-left: 0.5em;
 }
 
+.nav-bar-right-group{
+  display: flex;
+  justify-content: space-between;
+}
+
 .nav-bar-middle{
-  position: fixed;
-  right: 200px;
+  margin-right: 20px;
   margin-top: 18px;
 }
 
-.create-spot-page {
+.create-spot {
   text-decoration: none;
   color: rgb(84, 83, 83);
   font-size: 15px;
 }
 
 .nav-bar-right {
-  position: fixed;
   right: 5em;
 }
 
@@ -37,9 +43,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  height: 275px;
+  /* height: 275px; */
   width: 156px;
   /* background-color: hotpink; */
+  z-index: 9999;
 }
 
 .fa-circle-user {
@@ -72,14 +79,33 @@
   cursor: pointer;
 }
 
+.visible{
+  visibility: visible;
+  width: 130px;
+  margin-top: 10px;
+  padding-top: 2px;
+  padding-bottom: 10px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0px 3px 3px 2px rgba(157, 158, 156, 0.2), 0px 3px 5px 5px rgba(122, 120, 120, 0.19);
+  z-index: 9999;
+  position: relative;
+}
+
+.not-visible {
+  visibility: hidden;
+}
+
 .profile-dropdown {
   width: 150px;
   margin-top: 10px;
   padding-top: 2px;
   padding-bottom: 5px;
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: white;
   box-shadow: 0px 3px 3px 2px rgba(157, 158, 156, 0.2), 0px 3px 5px 5px rgba(122, 120, 120, 0.19);
+  z-index: 9999;
+  position: relative;
 }
 
 .curr-user{
