@@ -24,25 +24,27 @@ const AllReviewsforSpot = () => {
   }, [dispatch, spotId])
 
   return (
-    <>
-      <div>
-        <div className="review-title">
+    <div>
+      <div className="review-title">
         <i className="fa-sharp fa-solid fa-star"></i>
         <span>{' '}{spot.avgStarRating === "NaN" ? `No Rating` : spot.avgStarRating}{` · `}</span>
-        <label>reviews</label>
-        </div>
-        {Object.values(currSpotReviews).map(review => {
+        <label>{currSpotReviews.length}{' '}reviews</label>
+      </div>
+      <div className="review-details-container">
+        {currSpotReviews.map(review => {
         return (
-           <h4>{review.review}</h4>
+          <div className="each-review-detail">
+          <div>
+            <div className="each-review-user">{review.User.firstName}{" "}{review.User.lastName}</div>
+            <div className="each-review-date">{review.updatedAt}</div>
+          </div>
+            <div>{review.review}</div>
+            <div>{review.ReviewImages.map(image => <img className="each-review-img" src={image.url} alt={image.url} key={image.url}></img>)}</div>
+          </div>
         )
         })}
       </div>
-
-      <div>
-
-      </div>
-
-    </>
+    </div>
   )
 }
 
