@@ -97,7 +97,7 @@
 }
 
 .profile-dropdown {
-  width: 150px;
+  width: auto;
   margin-top: 10px;
   padding-top: 2px;
   padding-bottom: 5px;
