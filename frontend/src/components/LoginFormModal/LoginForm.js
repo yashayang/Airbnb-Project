@@ -39,7 +39,7 @@ function LoginForm() {
       <ul className="errors-ul">
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <div className="inputContainer" id="emailContainer">
+      <div className="inputContainer" id="loginEmailContainer">
       <label className="inputLabel">
         Username or Email
         <input
@@ -51,7 +51,7 @@ function LoginForm() {
         />
       </label>
       </div>
-      <div className="inputContainer" id="passwordContainer">
+      <div className="inputContainer" id="LoginPasswordContainer">
       <label className="inputLabel">
         Password
         <input

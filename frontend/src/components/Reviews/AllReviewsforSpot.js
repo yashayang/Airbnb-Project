@@ -26,7 +26,7 @@ const AllReviewsforSpot = () => {
   return (
     <>
       <div>
-        <div>
+        <div className="review-title">
         <i className="fa-sharp fa-solid fa-star"></i>
         <span>{' '}{spot.avgStarRating === "NaN" ? `No Rating` : spot.avgStarRating}{` · `}</span>
         <label>reviews</label>

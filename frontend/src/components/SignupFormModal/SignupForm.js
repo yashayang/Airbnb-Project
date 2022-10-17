@@ -31,66 +31,92 @@ function SignupForm() {
   };
 
   return (
+    <div id="signupContainer">
     <form onSubmit={handleSubmit}>
-      <ul>
-        {errors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
-      <label>
-        First Name
-        <input
-          type="text"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Last Name
-        <input
-          type="text"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Email
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Username
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Confirm Password
-        <input
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Sign Up</button>
+      <div id='signupTitle'>Sign up</div>
+      <div id='fieldContainer'>
+        <div id='welcomeDiv'>Welcome to Airbnb</div>
+        <ul>
+          {errors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+        <div className="inputContainer" id="fNameContainer">
+          <label className="signuplabel">First Name
+            <input
+              // placeholder="First Name"
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+              className="inputField"
+            />
+          </label>
+        </div>
+        <div className="inputContainer" id="lNameContainer">
+          <label className="signuplabel">
+            Last Name
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+              className="inputField"
+            />
+          </label>
+        </div>
+        <div className="inputContainer" id="userNameContainer">
+          <label className="signuplabel">
+            Username
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              className="inputField"
+            />
+          </label>
+        </div>
+        <div className="inputContainer" id="emailContainer">
+          <label className="signuplabel">
+            Email
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="inputField"
+            />
+          </label>
+        </div>
+        <div className="inputContainer" id="passwordField">
+          <label className="signuplabel">
+            Password
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="inputField"
+            />
+          </label>
+        </div>
+        <div className="inputContainer" id="cPasswordField">
+          <label className="signuplabel">
+            Confirm Password
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              className="inputField"
+            />
+          </label>
+        </div>
+        <div>
+          <button type="submit" className="styledButton">Sign Up</button>
+        </div>
+      </div>
     </form>
+    </div>
   );
 }
 
