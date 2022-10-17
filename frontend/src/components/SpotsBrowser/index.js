@@ -30,7 +30,7 @@ const SpotsBrowser = () => {
                 <div id="spot-info-top">
                   <span id="spot-location">{spot.city}{`, `}{spot.state}</span>
                   <div id="spot-review">
-                    <i className="fa-sharp fa-solid fa-star"></i>
+                    <i className="fa-sharp fa-solid fa-star" style={{ color: 'black'}}></i>
                     <span>{spot.avgRating}</span>
                   </div>
                 </div>

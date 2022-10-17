@@ -37,7 +37,7 @@ function SignupForm() {
       <div id='fieldContainer'>
         <div id='welcomeDiv'>Welcome to Airbnb</div>
         <ul>
-          {errors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          {errors && errors.map((error, idx) => <li key={idx} className="errors-li">{error}</li>)}
         </ul>
         <div className="inputContainer" id="fNameContainer">
           <label className="signuplabel">First Name

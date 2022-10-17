@@ -46,7 +46,7 @@ const CreateSpot = () => {
   return (
     <div className="form-outer-container">
       <ul>
-        {errors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        {errors && errors.map((error, idx) => <li key={idx} className="errors-li">{error}</li>)}
       </ul>
       <form className="create-pokemon-form" onSubmit={handleSubmit}>
         <input

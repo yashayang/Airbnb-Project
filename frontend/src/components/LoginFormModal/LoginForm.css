@@ -1,3 +1,8 @@
+.errors-li {
+  margin-bottom: 10px;
+  color:#E31C5F;
+}
+
 #loginContainer {
   width: 560px;
   min-height: 418px;
@@ -9,7 +14,6 @@
   border-style: solid;
   /* background-color: yellow; */
 }
-
 
 #loginTitle {
   display:flex;

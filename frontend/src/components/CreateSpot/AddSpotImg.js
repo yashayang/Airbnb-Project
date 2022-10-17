@@ -59,7 +59,7 @@ const AddSpotImgForm = () => {
   return (
     <div className="img-outter-container" onSubmit={handleSubmit}>
       <ul>
-        {errors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        {errors && errors.map((error, idx) => <li key={idx} className="errors-li">{error}</li>)}
       </ul>
       <form className="img-form">
 
