@@ -19,7 +19,7 @@ module.exports = {
         references: { model: 'Users' }
       },
       review: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       stars: {
