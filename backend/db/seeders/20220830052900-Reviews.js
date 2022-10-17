@@ -37,7 +37,7 @@ module.exports = {
       {
         spotId: 1,
         userId: 2,
-        review: 'It would be difficult to find a more beautiful view anywhere in the area. The house is so fun in the way it was designed and decorated. Absolutely world class architecture and a time capsule of mid-century modern style. Without A/C the heat can be a bit much at first, but it doesnt take long to figure out which windows to open and which to close at the right times to make it more comfortable. We will likely stay here again next year.',
+        review: 'It would be difficult to find a more beautiful view anywhere in the area. The house is so fun in the way it was designed and decorated.',
         stars: 4.5
       },
       {

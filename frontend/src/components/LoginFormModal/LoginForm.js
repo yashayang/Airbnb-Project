@@ -23,7 +23,7 @@ function LoginForm() {
     e.preventDefault();
     setErrors([]);
     return dispatch(
-        sessionActions.login({credential: 'Demo-lition', password: 'password'})
+        sessionActions.login({credential: 'Yasha-Yang', password: 'password'})
     ).catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
