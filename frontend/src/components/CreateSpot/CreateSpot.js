@@ -24,7 +24,7 @@ const CreateSpot = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = { address, city, state, country, lat, lng, name, description, price };
+    const data = { address, city, state, country, lat, lng, name, description, price, url };
     const imgData = { url, preview };
 
     dispatch(createOneSpot(data, imgData))
@@ -35,6 +35,7 @@ const CreateSpot = () => {
       const message = await res.json();
       console.log("From CreateSpot - res.message:", message)
       if (message && message.errors) setErrors(message.errors);
+      console.log("From CreateSpot - setErrors:", errors)
      });
   }
 

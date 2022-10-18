@@ -30,7 +30,9 @@ const CreateReview = () => {
       console.log("CreateReview-dispatch-res:", res)
       if (res === undefined) return null;
       const message = await res.json();
-      if (message && message.errors) setErrors(message.errors);
+      if (message && message.errors) setErrors(message.error);
+      // if (message.status === 200) history.push(`/spots/${spotId}`);
+      console.log("!!!!!!!!!", message)
     });
     await dispatch(getAllReviews(spotId));
      history.push(`/spots/${spotId}`);
@@ -53,6 +55,7 @@ const CreateReview = () => {
             id='review'
             placeholder='Providing your review here..'
             value={review}
+            required
             onChange={e => setReview(e.target.value)}>
         </textarea>
       </div>
@@ -64,6 +67,7 @@ const CreateReview = () => {
             max='5'
             placeholder='5'
             value={rating}
+            required
             onChange={e => setRating(e.target.value)}>
         </input>
       </div>
@@ -73,11 +77,12 @@ const CreateReview = () => {
           type='text'
           placeholder='https://...'
           value={url}
+          required
           onChange={e => setUrl(e.target.value)}>
         </input>
       </div>
       <div>
-        <button type="submit">Create Review</button>
+        <button>Create Review</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
       </div>
       </form>

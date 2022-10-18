@@ -18,6 +18,7 @@ const validateSpot = [
   check('name').notEmpty().withMessage('Name must be less than 50 characters'),
   check('description').notEmpty().withMessage('Description is required'),
   check('price').isDecimal().withMessage('Price per day is required'),
+  check('url').notEmpty().withMessage('Url cannot be empty').isURL().withMessage('Url is not valid'),
   handleValidationErrors
 ];
 
@@ -28,6 +29,11 @@ const validateReview = [
   check("stars")
     .exists({ checkFalsy: true })
     .withMessage("Stars must be an integer from 1 to 5"),
+  // check('url')
+    // .notEmpty()
+    // .withMessage('Url cannot be empty')
+    // .isURL()
+    // .withMessage('Url is not valid'),
   handleValidationErrors,
 ];
 

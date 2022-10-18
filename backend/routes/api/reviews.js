@@ -14,6 +14,11 @@ const validateReview = [
   check("stars")
     .exists({ checkFalsy: true })
     .withMessage("Stars must be an integer from 1 to 5"),
+  check('url')
+    .notEmpty()
+    .withMessage('Url cannot be empty')
+    .isURL()
+    .withMessage('Url is not valid'),
   handleValidationErrors,
 ];
 

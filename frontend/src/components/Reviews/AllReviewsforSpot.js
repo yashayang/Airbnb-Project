@@ -11,14 +11,14 @@ const AllReviewsforSpot = () => {
   const reviews = useSelector(state => state.reviews)
   const spot = useSelector(state => state.spots.singleSpot);
   const userId = useSelector(state => state.session.user.id)
-  console.log("reviews state from All Reviews for Spot:", reviews)
+  // console.log("reviews state from All Reviews for Spot:", reviews)
 
   const currSpotReviews = Object.values(reviews).filter(review => {
     // console.log("review.spotId:", review.spotId)
     return review.spotId === +spotId;
   })
 
-  console.log("currSpotReviews from All Reviews for Spot:", currSpotReviews)
+  // console.log("currSpotReviews from All Reviews for Spot:", currSpotReviews)
 
 
   useEffect(() => {
