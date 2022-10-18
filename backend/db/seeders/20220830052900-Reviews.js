@@ -36,7 +36,7 @@ module.exports = {
       },
       {
         spotId: 1,
-        userId: 2,
+        userId: 5,
         review: 'It would be difficult to find a more beautiful view anywhere in the area. The house is so fun in the way it was designed and decorated.',
         stars: 4.5
       },
@@ -63,43 +63,43 @@ module.exports = {
         userId: 4,
         review: 'Meets all expectations. Undoubtedly a surreal experience. Excellent service, very polite and helpful people.',
         stars: 5
-      },
-      {
-        spotId: 5,
-        userId: 5,
-        review: 'We would rent again! The place was so beautiful inside and out! Exactly what we were looking for.',
-        stars: 5
-      },
-      {
-        spotId: 6,
-        userId: 5,
-        review: 'Great place and location. Robbie is also great- drove my fiancé to and from a wedding we had close by. Arrived late in the evening but had perfectly written instructions on how to properly access the house. Would love to come back.',
-        stars: 5
-      },
-      {
-        spotId: 7,
-        userId: 5,
-        review: 'My wife and I stayed here with our toddler son. The location is amazing. The house was well-maintained, and check-in was seamless. There were a couple of minor problems, since we were traveling with a toddler: for instance, the master bedroom is not connected to the rest of the house. Its on the other side a small deck. The deck has walls that enclose it, so its still quite private. But for having a toddler, it wasnt ideal (we ended up staying in the other bedroom with our son in the small TV room).',
-        stars: 4
-      },
-      {
-        spotId: 8,
-        userId: 5,
-        review: 'Great location and just as pictured. I will definitely stay here again.',
-        stars: 5
-      },
-      {
-        spotId: 9,
-        userId: 4,
-        review: 'Love this place! Stunning views.',
-        stars: 5
-      },
-      {
-        spotId: 10,
-        userId: 4,
-        review: 'We had an amazing stay here! The house is even more beautiful than the pictures, and everything is so well thought out. The fireplace was so cozy during the rainy days and waking up to the forest view was stunning! Highly recommend!',
-        stars: 5
       }
+      // {
+      //   spotId: 5,
+      //   userId: 5,
+      //   review: 'We would rent again! The place was so beautiful inside and out! Exactly what we were looking for.',
+      //   stars: 5
+      // },
+      // {
+      //   spotId: 6,
+      //   userId: 5,
+      //   review: 'Great place and location. Robbie is also great- drove my fiancé to and from a wedding we had close by. Arrived late in the evening but had perfectly written instructions on how to properly access the house. Would love to come back.',
+      //   stars: 5
+      // },
+      // {
+      //   spotId: 7,
+      //   userId: 5,
+      //   review: 'My wife and I stayed here with our toddler son. The location is amazing. The house was well-maintained, and check-in was seamless. There were a couple of minor problems, since we were traveling with a toddler: for instance, the master bedroom is not connected to the rest of the house. Its on the other side a small deck. The deck has walls that enclose it, so its still quite private. But for having a toddler, it wasnt ideal (we ended up staying in the other bedroom with our son in the small TV room).',
+      //   stars: 4
+      // },
+      // {
+      //   spotId: 8,
+      //   userId: 5,
+      //   review: 'Great location and just as pictured. I will definitely stay here again.',
+      //   stars: 5
+      // },
+      // {
+      //   spotId: 9,
+      //   userId: 4,
+      //   review: 'Love this place! Stunning views.',
+      //   stars: 5
+      // },
+      // {
+      //   spotId: 10,
+      //   userId: 4,
+      //   review: 'We had an amazing stay here! The house is even more beautiful than the pictures, and everything is so well thought out. The fireplace was so cozy during the rainy days and waking up to the forest view was stunning! Highly recommend!',
+      //   stars: 5
+      // }
     ], {});
   },
 

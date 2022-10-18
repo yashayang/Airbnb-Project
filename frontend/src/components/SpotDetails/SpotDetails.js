@@ -90,7 +90,7 @@ const SpotDetails = () => {
       <div>{currUser && spot.ownerId === currUser.id ? <DeleteSpotForm /> : null}</div>
 
       <div id="spot-lower-title">
-        <h2 className="spot-name">Entire place hosted by {spot.Owner.firstName}</h2>
+        <h2 className="spot-name">Entire place hosted by {spot.Owner.firstName}{" "}{spot.Owner.lastName}</h2>
       </div>
 
       <div className='breaker'></div>

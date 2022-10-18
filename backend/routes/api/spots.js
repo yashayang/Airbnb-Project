@@ -379,6 +379,7 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res, ne
 
 
   const { review, stars } = req.body;
+  console.log("!!!!!!!BACKEND-Req.body:", req.body)
   if (stars > 5 || stars < 1) {
     const err = new Error("Stars must be an integer from 1 to 5")
     err.title = 'Validation error';

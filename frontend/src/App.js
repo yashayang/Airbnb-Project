@@ -11,6 +11,7 @@ import AddSpotImgForm from "./components/CreateSpot/AddSpotImg";
 import UpdateSpotForm from "./components/UpdateSpot/UpdateSpot";
 import DeleteSpotForm from "./components/DeleteSpot/DeleteSpot";
 import AllReviewsforSpot from "./components/Reviews/AllReviewsforSpot";
+import CreateReview from "./components/Reviews/CreateReview";
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +52,10 @@ function App() {
 
           <Route exact path="/:spotId/reviews">
               <AllReviewsforSpot />
+          </Route>
+
+          <Route exact path="/:spotId/create-reviews">
+            <CreateReview />
           </Route>
 
           <Route>

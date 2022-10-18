@@ -102,7 +102,7 @@ export const createOneSpot = (data, imgData) => async (dispatch) => {
     }
 
     const newSpot = await response.json();
-    console.log("createOneSpot Thunk - res spot data:", newSpot)
+    // console.log("createOneSpot Thunk - res spot data:", newSpot)
     dispatch(addSpot(newSpot));
 
     const { url, preview } = imgData;
@@ -133,11 +133,11 @@ export const createOneSpot = (data, imgData) => async (dispatch) => {
       }
     }
     const img = await imgRes.json()
-    console.log("From store/spot/addImg Thunk - img res", img)
+    // console.log("From store/spot/addImg Thunk - img res", img)
     dispatch(addImg(img))
 
     newSpot['SpotImages'] = [img]
-    console.log("From store/spot/addImg Thunk - newSpot after added ing", newSpot)
+    // console.log("From store/spot/addImg Thunk - newSpot after added ing", newSpot)
 
     return newSpot;
   } catch(error) {

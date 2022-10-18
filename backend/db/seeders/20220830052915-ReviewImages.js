@@ -6,15 +6,15 @@ module.exports = {
       await queryInterface.bulkInsert('ReviewImages', [
         {
           reviewId: 1,
-          url: 'https://a0.muscache.com/im/pictures/a5ac764d-d9f5-4683-a3ae-cdb73c75bbcc.jpg?im_w=960'
+          url: 'https://a0.muscache.com/im/pictures/f0d62152-d945-40a2-8ac4-565c874164e1.jpg?im_w=720'
         },
         {
           reviewId: 2,
-          url: 'https://a0.muscache.com/im/pictures/16e8884c-7ff7-4868-a627-aafe0bfbb963.jpg?im_w=720'
+          url: 'https://a0.muscache.com/im/pictures/miso/Hosting-633943734689444626/original/143fc985-9bf8-4c39-bcee-d81374c3a026.jpeg?im_w=720'
         },
         {
           reviewId: 3,
-          url: 'https://a0.muscache.com/im/pictures/c23a4aed-ab6d-4b1c-834e-38064ba775be.jpg?im_w=720'
+          url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-18327626/original/d455a140-c94d-4647-96f5-0387e32b9d18.jpeg?im_w=720'
         },
         {
           reviewId: 3,
@@ -22,15 +22,15 @@ module.exports = {
         },
         {
           reviewId: 4,
-          url: 'https://a0.muscache.com/im/pictures/miso/Hosting-633943734689444626/original/f3bd06c8-7a67-4187-bb7b-01f4fc265d0a.jpeg?im_w=720'
+          url: 'https://a0.muscache.com/im/pictures/9570f02f-b865-49b5-91d8-ebf5ee5465c2.jpg?im_w=720'
         },
         {
           reviewId: 4,
-          url: 'https://a0.muscache.com/im/pictures/miso/Hosting-633943734689444626/original/115b293f-2e5c-438c-b085-1b92839cf3e9.jpeg?im_w=720'
+          url: 'https://a0.muscache.com/im/pictures/d953d715-89ca-4c10-93c5-1f8e2625a5cb.jpg?im_w=720'
         },
         {
           reviewId: 5,
-          url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-689901292929045479/original/801f28e5-be6f-4278-be0f-1b3cae582b7f.jpeg?im_w=1200'
+          url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-18327626/original/a9c45c99-4588-4745-9366-1d5cd889ceed.jpeg?im_w=1440'
         },
     ], {});
   },
