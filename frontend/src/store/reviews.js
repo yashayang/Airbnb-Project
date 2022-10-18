@@ -92,7 +92,7 @@ export const createOneReview = (review, spotId, url) => async (dispatch) => {
     },
     body: JSON.stringify({url})
   })
-
+  console.log("createOneReview Thunk - imgRes:", imgRes)
   if (!imgRes.ok) {
     let imgError;
     if (imgRes.status === 404) {
@@ -113,9 +113,9 @@ export const createOneReview = (review, spotId, url) => async (dispatch) => {
 
   const newImg = await imgRes.json()
   dispatch(addReviewImg(newReview.id, url))
-
+  console.log("createOneReview Thunk - newImg:", newImg)
   newReview['ReviewImages'] = newImg;
-
+  console.log("createOneReview Thunk - newReview:", newReview)
   return newReview;
 }
 
@@ -126,20 +126,20 @@ const reviewReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case LOAD_ALL_REVIEWS:
-      newState = { ...state};
+      newState = { ...state };
       action.reviews.Reviews.forEach(review => {
         newState[review.id] = review;
       })
     return newState;
 
     case CREATE_REVIEW:
-      newState = { ...state };
+      newState = { ...state, ...state[action.review.id].User, ...state[action.review.id].ReviewImages };
       newState[action.review.id] = action.review;
       console.log("reviewReducer-CREATE_REVIEW newState:", newState)
     return newState;
 
     case ADD_REVIEW_IMG:
-      newState = { ...state };
+      newState = { ...state, ...state[action.reviewId].User, ...state[action.reviewId].ReviewImages  };
       newState[action.reviewId].ReviewImages = [action.url]
     return newState;
 
