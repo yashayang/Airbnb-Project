@@ -128,12 +128,17 @@ const reviewReducer = (state = initialState, action) => {
     case LOAD_ALL_REVIEWS:
       newState = { ...state };
       action.reviews.Reviews.forEach(review => {
+        const newImgArr = []
         newState[review.id] = review;
+        review.ReviewImages.map(imgObj => {
+          newImgArr.push(imgObj.url)
+        })
+        newState[review.id].ReviewImages = newImgArr
       })
     return newState;
 
     case CREATE_REVIEW:
-      newState = { ...state, ...state[action.review.id].User, ...state[action.review.id].ReviewImages };
+      newState = { ...state };
       newState[action.review.id] = action.review;
       console.log("reviewReducer-CREATE_REVIEW newState:", newState)
     return newState;

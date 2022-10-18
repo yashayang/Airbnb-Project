@@ -47,11 +47,11 @@ const AllReviewsforSpot = () => {
         return (
           <div className="each-review-detail" key={review.id}>
           <div>
-            <div className="each-review-user">{review.User.firstName}{" "}{review.User.lastName}</div>
-            <div className="each-review-date">{new Date(review.createdAt).toString().slice(3, -42)}</div>
+            <div className="each-review-user">{review?.User?.firstName}{" "}{review?.User?.lastName}</div>
+            <div className="each-review-date">{new Date(review?.createdAt).toString().slice(3, -42)}</div>
           </div>
             <div>{review.review}</div>
-            <div>{review.ReviewImages.map(image => <img className="each-review-img" src={image.url} alt={image.url} key={image.url}></img>)}</div>
+            <div>{review?.ReviewImages?.map(imageUrl => <img className="each-review-img" src={imageUrl} alt={imageUrl} key={imageUrl}></img>)}</div>
           </div>
         )
         })}

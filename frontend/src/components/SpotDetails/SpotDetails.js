@@ -24,7 +24,7 @@ const SpotDetails = () => {
       }, [dispatch, spotIdNum])
       // console.log("!!!!!!!!!!!!", spot)
 
-  const spotImgArr = spot.SpotImages;
+  const spotImgArr = spot?.SpotImages;
   // console.log("spot from component/singleSpot", spotImgArr)
 
   let prevImgUrl;
@@ -42,7 +42,7 @@ const SpotDetails = () => {
 
   // console.log("prevImgUrl", otherImgUrlArr)
 
-  if (!spot.Owner) return null;
+  if (!spot?.Owner) return null;
   if (!Object.keys(spot).length) return null;
 
   return (

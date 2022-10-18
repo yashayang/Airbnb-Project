@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 import {createOneReview} from '../../store/reviews';
+import {getAllReviews} from '../../store/reviews';
 import "./CreateReview.css";
 
 const CreateReview = () => {
@@ -15,7 +16,7 @@ const CreateReview = () => {
   const [rating, setRating] = useState(5);
   const [url, setUrl] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const ratingNum = parseInt(rating)
     const newReview = {
@@ -31,7 +32,8 @@ const CreateReview = () => {
       const message = await res.json();
       if (message && message.errors) setErrors(message.errors);
     });
-    history.push(`/spots/${spotId}`);
+    await dispatch(getAllReviews(spotId));
+     history.push(`/spots/${spotId}`);
   }
 
   const handleCancelClick = (e) => {

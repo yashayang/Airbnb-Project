@@ -1,5 +1,5 @@
 import { csrfFetch } from './csrf';
-const LOAD_ALLSPOT = "spots/setLoadAllSpot";
+const LOAD_ALLSPOT = "spots/setLoadAllSpots";
 const LOAD_ONESPOT = "spots/setLoadOneSpot";
 const ADD_ONESPOT = "spots/setADDONESPOT";
 const ADD_IMG = "spots/setADDIMG";
@@ -13,6 +13,7 @@ const allSpots = (spots) => {
     payload: spots
   }
 }
+
 
 const oneSpot = (spot) => {
   return {
@@ -58,6 +59,16 @@ export const getAllSpots = (spots) => async (dispatch) => {
     dispatch(allSpots(spots))
   }
   return null;
+}
+
+export const getAllUserSpots = (spots) => async (dispatch) => {
+  const response = await csrfFetch('/api/spots/current');
+
+  if(response.ok) {
+    const spots = await response.json();
+    dispatch(allSpots(spots));
+    return spots;
+  }
 }
 
 export const getOneSpot = (spotId) => async (dispatch) => {
@@ -210,6 +221,7 @@ const spotsReducer = (state = initialState, action) => {
       action.payload.Spots.forEach(spot => {
         newState.allSpots[spot.id] = spot;
       })
+      newState.singleSpot= {}
       // console.log("allSpots from spotsReducer:", allSpots)
       return newState;
 
