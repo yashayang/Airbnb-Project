@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { createOneSpot } from '../../store/spots';
 import "./CreateSpotForm.css";
 
-const CreateSpotForm = () => {
+const CreateSpotForm = ({setModal}) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -29,6 +29,7 @@ const CreateSpotForm = () => {
 
     dispatch(createOneSpot(data, imgData))
     .then(newSpot => history.push(`/spots/${newSpot.id}`))
+    .then(newSpot => setModal(false))
     .catch(async (res) => {
       console.log("createOneSpot dispatch from create spot component:", res)
       if(res === undefined) return null;
@@ -37,7 +38,10 @@ const CreateSpotForm = () => {
       if (message && message.errors) setErrors(message.errors);
       console.log("From CreateSpot - setErrors:", errors)
      });
+
+
   }
+
 
   // const handleCancelClick = (e) => {
   //   e.preventDefault();

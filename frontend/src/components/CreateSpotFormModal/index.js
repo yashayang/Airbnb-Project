@@ -7,6 +7,12 @@ function CreateSpotFormModal() {
   const sessionUser = useSelector(state => state.session.user);
   const [showModal, setShowModal] = useState(false);
 
+  // function onCreation() {
+  //   setShowModal(false);
+  //   if (afterSubmission) {
+  //     afterSubmission();
+  //   }
+  // }
 
   return (
     <>
@@ -15,7 +21,8 @@ function CreateSpotFormModal() {
         <span onClick={() => setShowModal(true)} className="create-spot">Become a Host</span>
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
-            <CreateSpotForm />
+            <CreateSpotForm setModal={setShowModal}/>
+            {/* onCreation={onCreation} */}
           </Modal>
           )}
         </>

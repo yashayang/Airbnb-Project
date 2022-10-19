@@ -14,7 +14,7 @@ const validateSpot = [
   check('state').notEmpty().withMessage('State is required'),
   check('country').notEmpty().withMessage('Country is required'),
   check('lat').isDecimal().isLength({min: 2}, {max: 10}).withMessage('Latitude is not valid'),
-  check('lng').isDecimal().isLength({min: 3}, {max: 11}).withMessage('Longitude is not valid'),
+  check('lng').isDecimal().isLength({min: 2}, {max: 11}).withMessage('Longitude is not valid'),
   check('name').notEmpty().withMessage('Name must be less than 50 characters'),
   check('description').notEmpty().withMessage('Description is required'),
   check('price').isDecimal().withMessage('Price per day is required'),
