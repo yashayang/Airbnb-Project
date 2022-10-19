@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import CreateSpotFormModal from '../CreateSpotFormModal';
 import './Navigation.css';
 import Logo from '../Logo/airdnd 2.svg';
 
@@ -74,7 +75,8 @@ function Navigation({ isLoaded }){
         </div>
         <div className="nav-bar-right-group">
         <div className="nav-bar-middle">
-          {sessionUser && <NavLink exact to="/new-spot" className="create-spot">Become a Host</NavLink>}
+          {/* {sessionUser && <NavLink exact to="/new-spot" className="create-spot">Become a Host</NavLink>} */}
+          <CreateSpotFormModal />
         </div>
         <div className="nav-bar-right">
           {isLoaded && sessionLinks}
