@@ -9,9 +9,10 @@ import SpotDetails from "./components/SpotDetails/SpotDetails";
 import CreateSpot from "./components/CreateSpot/CreateSpot";
 import AddSpotImgForm from "./components/CreateSpot/AddSpotImg";
 import UpdateSpotForm from "./components/UpdateSpot/UpdateSpot";
-import DeleteSpotForm from "./components/DeleteSpot/DeleteSpot";
 import AllReviewsforSpot from "./components/Reviews/AllReviewsforSpot";
 import CreateReview from "./components/Reviews/CreateReview";
+import MySpots from "./components/MySpots/MySpots";
+import MyReviews from "./components/MyReviews/MyReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,16 +47,20 @@ function App() {
               <UpdateSpotForm />
           </Route>
 
-          <Route exact path="/:spotId/delete">
-              <DeleteSpotForm />
-          </Route>
-
           <Route exact path="/:spotId/reviews">
               <AllReviewsforSpot />
           </Route>
 
           <Route exact path="/:spotId/create-reviews">
             <CreateReview />
+          </Route>
+
+          <Route exact path="/my-spots">
+            <MySpots />
+          </Route>
+
+          <Route exact path="/my-reviews">
+            <MyReviews />
           </Route>
 
           <Route>

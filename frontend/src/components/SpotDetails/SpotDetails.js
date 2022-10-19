@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOneSpot } from '../../store/spots';
-import DeleteSpotForm from '../DeleteSpot/DeleteSpot';
 import AllReviewsforSpot from "../../components/Reviews/AllReviewsforSpot";
 import "./SpotDetails.css"
 
@@ -11,8 +10,6 @@ const SpotDetails = () => {
   const { spotId } = useParams();
   const spotIdNum = Number(spotId);
   const spot = useSelector(state => state.spots.singleSpot);
-  const currUser = useSelector(state => state.session.user);
-
 
   useEffect(() => {
     dispatch(getOneSpot(spotIdNum));
@@ -78,7 +75,7 @@ const SpotDetails = () => {
           : null
         }
       </div> */}
-      <div id="edit-spot-container">
+      {/* <div id="edit-spot-container">
         {currUser && spot.ownerId === currUser.id
           ? <NavLink to={`/${spotIdNum}/edit`} style={{ textDecoration: 'none', color: 'rgb(207, 99, 117)'}}>
             <i className="fa-sharp fa-solid fa-circle-plus" style={{fontSize: 4 + 'em', color:'rgb(207, 99, 117)'}}></i>
@@ -86,8 +83,8 @@ const SpotDetails = () => {
           </NavLink>
           : null
         }
-      </div>
-      <div>{currUser && spot.ownerId === currUser.id ? <DeleteSpotForm /> : null}</div>
+      </div> */}
+      {/* <div>{currUser && spot.ownerId === currUser.id ? <DeleteSpotForm /> : null}</div> */}
 
       <div id="spot-lower-title">
         <h2 className="spot-name">Entire place hosted by {spot.Owner.firstName}{" "}{spot.Owner.lastName}</h2>
