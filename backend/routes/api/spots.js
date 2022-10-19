@@ -22,6 +22,19 @@ const validateSpot = [
   handleValidationErrors
 ];
 
+const validateSpotEdit = [
+  check('address').exists({ checkFalsy: true }).notEmpty().withMessage('Street address is required'),
+  check('city').notEmpty().withMessage('City is required'),
+  check('state').notEmpty().withMessage('State is required'),
+  check('country').notEmpty().withMessage('Country is required'),
+  check('lat').isDecimal().isLength({min: 2}, {max: 10}).withMessage('Latitude is not valid'),
+  check('lng').isDecimal().isLength({min: 2}, {max: 11}).withMessage('Longitude is not valid'),
+  check('name').notEmpty().withMessage('Name must be less than 50 characters'),
+  check('description').notEmpty().withMessage('Description is required'),
+  check('price').isDecimal().withMessage('Price per day is required'),
+  handleValidationErrors
+];
+
 const validateReview = [
   check("review")
     .exists({ checkFalsy: true })
@@ -253,7 +266,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 })
 
 //Edit a Spot
-router.put('/:spotId', requireAuth, validateSpot, async (req, res, next) => {
+router.put('/:spotId', requireAuth, validateSpotEdit, async (req, res, next) => {
 
   const currSpotId = parseInt(req.params.spotId);
   const currSpot = await Spot.findByPk(currSpotId);

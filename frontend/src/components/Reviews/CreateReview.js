@@ -24,7 +24,7 @@ const CreateReview = () => {
       stars: ratingNum,
       url
     };
-    console.log("CreateReview-newReview:", newReview)
+    // console.log("CreateReview-newReview:", newReview)
 
     dispatch(createOneReview(newReview, spotId, url))
     .then(res => history.push(`/spots/${spotId}`))
