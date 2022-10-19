@@ -26,47 +26,52 @@ const MySpots = () => {
   if(!spots) return null;
 
   return (
-    <div id="outer-container">
-        {spotsArr.length > 0 ? spotsArr.map(spot => {
-      return (
-        <div id="spot-card-outer" key={spot.id}>
+    <>
+      <div id="mySpot-title">
+        <h1>My Spots</h1>
+      </div>
+      <div id="outer-container">
+          {spotsArr.length > 0 ? spotsArr.map(spot => {
+        return (
+          <div id="spot-card-outer" key={spot.id}>
 
-          <NavLink to={`/spots/${spot.id}`} style={{ textDecoration: 'none'}}>
+            <NavLink to={`/spots/${spot.id}`} style={{ textDecoration: 'none'}}>
 
-              <div className='spot-img-div'><img src={spot.prevewImage} alt={spot.id} id="spot-img"/></div>
+                <div className='spot-img-div'><img src={spot.prevewImage} alt={spot.id} id="spot-img"/></div>
 
-              <div id="spot-info-container">
-                <div id="spot-info-top">
-                  <span id="spot-location">{spot.city}{`, `}{spot.state}</span>
-                  <div id="spot-review">
-                    <i className="fa-sharp fa-solid fa-star" style={{ color: 'black'}}></i>
-                    <span>{spot.avgRating}</span>
+                <div id="spot-info-container">
+                  <div id="spot-info-top">
+                    <span id="spot-location">{spot.city}{`, `}{spot.state}</span>
+                    <div id="spot-review">
+                      <i className="fa-sharp fa-solid fa-star" style={{ color: 'black'}}></i>
+                      <span>{spot.avgRating}</span>
+                    </div>
                   </div>
+
+                  <div id="spot-price-container">
+                    <div>
+                      <span id="spot-price-span">{`$${spot.price}`}</span>{' '}
+                      night
+                    </div>
+                  </div>
+
                 </div>
 
-                <div id="spot-price-container">
-                  <div>
-                    <span id="spot-price-span">{`$${spot.price}`}</span>{' '}
-                    night
-                  </div>
-                </div>
 
-              </div>
+            </NavLink>
 
+            <div className="edit-buttons-container">
+                <NavLink to={`/${spot.id}/edit`}><button className="user-button">Edit</button></NavLink>
+                <button className="user-button" onClick={() => deleteSpotClickEvent(spot.id)}>Delete</button>
+            </div>
 
-          </NavLink>
-
-          <div className="edit-buttons-container">
-              <NavLink to={`/${spot.id}/edit`}><button className="user-button">Edit</button></NavLink>
-              <button className="user-button" onClick={() => deleteSpotClickEvent(spot.id)}>Delete</button>
           </div>
-
-        </div>
-      )
-    })
-    : <div className="no-spots">You're not currently hosting any spots...</div>
-  }
-    </div>
+        )
+      })
+      : <div className="no-spots">You're not currently hosting any spots...</div>
+    }
+      </div>
+  </>
   )
 }
 

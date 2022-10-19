@@ -1,3 +1,12 @@
+#mySpot-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+  color:grey;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+}
+
 .edit-buttons-container {
   display: flex;
   flex-direction: row;
