@@ -1,9 +1,0 @@
-.create-review-outer-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  margin: 50px;
-
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
-}

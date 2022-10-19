@@ -30,12 +30,12 @@ const CreateSpot = () => {
     dispatch(createOneSpot(data, imgData))
     .then(newSpot => history.push(`/spots/${newSpot.id}`))
     .catch(async (res) => {
-      console.log("createOneSpot dispatch from create spot component:", res)
+      // console.log("createOneSpot dispatch from create spot component:", res)
       if(res === undefined) return null;
       const message = await res.json();
-      console.log("From CreateSpot - res.message:", message)
+      // console.log("From CreateSpot - res.message:", message)
       if (message && message.errors) setErrors(message.errors);
-      console.log("From CreateSpot - setErrors:", errors)
+      // console.log("From CreateSpot - setErrors:", errors)
      });
   }
 

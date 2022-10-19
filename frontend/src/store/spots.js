@@ -180,7 +180,7 @@ export const addImages = (imgData, spotId) => async (dispatch) => {
 }
 
 export const updateOneSpot = (spotInfo, spotId) => async (dispatch) => {
-  // console.log("updateOneSpot Thunk-SpotId", spotId)
+  console.log("updateOneSpot Thunk-SpotId", spotId)
   const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: 'put',
     headers: {
@@ -191,7 +191,7 @@ export const updateOneSpot = (spotInfo, spotId) => async (dispatch) => {
 
   if (response.ok) {
     const spot = await response.json();
-    // console.log("updateOneSpot Thunk-resSpot", spot)
+    console.log("updateOneSpot Thunk-resSpot", spot)
     dispatch(updateSpot(spot));
     return spot;
   }
@@ -247,9 +247,9 @@ const spotsReducer = (state = initialState, action) => {
       }
     case UPDATE_SPOT:
       newState = { ...state };
-      // newState.singleSpot[action.payload.id] = { ...action.payload };
+      newState.singleSpot[action.payload.id] = { ...action.payload };
       newState.singleSpot = action.payload
-      // console.log("spotReducer-UPDATE-SPOT", newState)
+      console.log("spotReducer-UPDATE-SPOT", newState)
       return newState;
 
     case DELETE_SPOT:

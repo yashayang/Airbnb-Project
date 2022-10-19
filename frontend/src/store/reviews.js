@@ -163,8 +163,19 @@ const reviewReducer = (state = initialState, action) => {
     return newState;
 
     case ADD_REVIEW_IMG:
-      newState = { ...state, ...state[action.reviewId].User, ...state[action.reviewId].ReviewImages  };
+      newState = {
+        ...state,
+        // ...state[action.reviewId].User,
+        // ...state[action.reviewId].ReviewImages,
+        [action.reviewId]: {
+          ...state[action.reviewId]
+        }
+      };
+      console.log("This is action in the case:", action)
+      console.log("This is review images:", newState[action.reviewId].ReviewImages)
       newState[action.reviewId].ReviewImages = [action.url]
+      console.log("This is review images after added:", newState[action.reviewId].ReviewImages)
+      console.log("This is action.url in the case:", action.url)
     return newState;
 
     case UPDATE_REVIEW:

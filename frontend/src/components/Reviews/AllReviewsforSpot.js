@@ -27,33 +27,35 @@ const AllReviewsforSpot = () => {
 
   if (!currSpotReviews) return null;
 
-  if (!currUser) {
-    return (
-      <div>
-        <div className="review-title">
-        <i className="fa-sharp fa-solid fa-star"></i>
-        <span>{' '}{spot.avgStarRating === "NaN" ? `No Rating` : spot.avgStarRating}{` · `}</span>
-        <label>{currSpotReviews.length}{' '}reviews{' '}</label>
-        </div>
-        <div className="review-details-container">
-        {currSpotReviews.length !== 0 && currSpotReviews.map(review => {
-        return (
-          <div className="each-review-detail" key={review.id}>
-          <div>
-            <div className="each-review-user">{review?.User?.firstName}{" "}{review?.User?.lastName}</div>
-            <div className="each-review-date">{new Date(review?.createdAt).toString().slice(3, -42)}</div>
-          </div>
-            <div>{review.review}</div>
-            <div>{review?.ReviewImages?.map(imageUrl => <img className="each-review-img" src={imageUrl} alt={imageUrl} key={imageUrl}></img>)}</div>
-          </div>
-        )
-        })}
-        </div>
-      </div>
-    )
-  };
+  // if (!currUser) {
+  //   return (
+  //     <div>
+  //       <div className="review-title">
+  //       <i className="fa-sharp fa-solid fa-star"></i>
+  //       <span>{' '}{spot.avgStarRating === "NaN" ? `No Rating` : spot.avgStarRating}{` · `}</span>
+  //       <label>{currSpotReviews.length}{' '}reviews{' '}</label>
+  //       </div>
+  //       <div className="review-details-container">
+  //       {currSpotReviews.length !== 0 && currSpotReviews.map(review => {
+  //        return review.ReviewImages && (
+  //         <div className="each-review-detail" key={review.id}>
+  //         <div>
+  //           <div className="each-review-user">{review?.User?.firstName}{" "}{review?.User?.lastName}</div>
+  //           <div className="each-review-date">{new Date(review?.createdAt).toString().slice(3, -42)}</div>
+  //         </div>
+  //           <div>{review.review}</div>
+  //           <div>{review?.ReviewImages?.map(imageUrl => <img className="each-review-img" src={imageUrl} alt={imageUrl} key={imageUrl}></img>)}</div>
+  //         </div>
+  //       )
+  //       })}
+  //       </div>
+  //     </div>
+  //   )
+  // };
 
-  const userId = currUser.id;
+  // const userId = currUser.id;
+  let userId
+  if(currUser) userId = currUser.id;
 
   return (
     <div>
@@ -64,6 +66,7 @@ const AllReviewsforSpot = () => {
       </div>
       <div className="create-review">{
         currSpotReviews.length === 0
+        && currUser
         && spot.ownerId !== userId
         && <NavLink to={`/${spot.id}/create-reviews`} style={{ textDecoration: 'none', color: 'rgb(207, 99, 117)'}}>
           Review this Spot...
@@ -72,14 +75,16 @@ const AllReviewsforSpot = () => {
       </div>
       <div className="review-details-container">
         {currSpotReviews.length !== 0 && currSpotReviews.map(review => {
-        return (
+          return review.ReviewImages &&  (
           <div className="each-review-detail" key={review.id}>
           <div>
             <div className="each-review-user">{review?.User?.firstName}{" "}{review?.User?.lastName}</div>
-            <div className="each-review-date">{new Date(review?.createdAt).toString().slice(3, -42)}</div>
+            <div className="each-review-date">{new Date(review.createdAt).toString().slice(3, -42)}</div>
           </div>
             <div>{review.review}</div>
-            <div>{review?.ReviewImages?.map(imageUrl => <img className="each-review-img" src={imageUrl} alt={imageUrl} key={imageUrl}></img>)}</div>
+            <div>{review.ReviewImages.map(imageUrl => <img className="each-review-img" src={imageUrl} alt={imageUrl} key={imageUrl}></img>)}</div>
+            {/* {console.log("===========", review.ReviewImages)} */}
+            {/* <div><img className="each-review-img" src={review.ReviewImages} alt={review.ReviewImages.url} key={review.ReviewImages.url}></img></div> */}
           </div>
         )
         })}

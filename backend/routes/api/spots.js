@@ -29,11 +29,11 @@ const validateReview = [
   check("stars")
     .exists({ checkFalsy: true })
     .withMessage("Stars must be an integer from 1 to 5"),
-  // check('url')
-    // .notEmpty()
-    // .withMessage('Url cannot be empty')
-    // .isURL()
-    // .withMessage('Url is not valid'),
+  check('url')
+    .notEmpty()
+    .withMessage('Url cannot be empty')
+    .isURL()
+    .withMessage('Url is not valid'),
   handleValidationErrors,
 ];
 
@@ -385,7 +385,7 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res, ne
 
 
   const { review, stars } = req.body;
-  console.log("!!!!!!!BACKEND-Req.body:", req.body)
+  // console.log("!!!!!!!BACKEND-Req.body:", req.body)
   if (stars > 5 || stars < 1) {
     const err = new Error("Stars must be an integer from 1 to 5")
     err.title = 'Validation error';

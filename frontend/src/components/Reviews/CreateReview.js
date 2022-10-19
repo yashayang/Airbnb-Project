@@ -21,21 +21,23 @@ const CreateReview = () => {
     const ratingNum = parseInt(rating)
     const newReview = {
       review,
-      stars: ratingNum
+      stars: ratingNum,
+      url
     };
     console.log("CreateReview-newReview:", newReview)
 
     dispatch(createOneReview(newReview, spotId, url))
+    .then(res => history.push(`/spots/${spotId}`))
     .catch(async (res) => {
       console.log("CreateReview-dispatch-res:", res)
       if (res === undefined) return null;
       const message = await res.json();
-      if (message && message.errors) setErrors(message.error);
+      if (message && message.errors) setErrors(message.errors);
       // if (message.status === 200) history.push(`/spots/${spotId}`);
       console.log("!!!!!!!!!", message)
     });
     await dispatch(getAllReviews(spotId));
-     history.push(`/spots/${spotId}`);
+
   }
 
   const handleCancelClick = (e) => {
