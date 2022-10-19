@@ -45,9 +45,12 @@ const MyReviews = () => {
         return (
           <div className="each-review-detail" key={review.id}>
             <div>
-              <NavLink style={{ textDecoration: 'none', color: 'rgb(207, 99, 117)'}} to={`/spots/${review?.Spot?.id}`}>
-                <span>Review for {review?.Spot?.name}</span>
+              <NavLink style={{ textDecoration: 'none', color: 'black'}} to={`/spots/${review?.Spot?.id}`}>
+                {/* <span>Spot name:{' '}</span> */}
+                <span className="myReview-spot-name">{review?.Spot?.name}</span>
               </NavLink>
+                <span className="myReview-star">{` · `}<i className="fa-sharp fa-solid fa-star"></i></span>
+                  {review?.stars}
             </div>
           <div>
             {/* <div className="each-review-user">{review?.User?.firstName}{" "}{review?.User?.lastName}</div> */}

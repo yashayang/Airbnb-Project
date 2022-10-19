@@ -77,7 +77,7 @@ const CreateReview = () => {
           type='text'
           placeholder='https://...'
           value={url}
-          required
+          // required
           onChange={e => setUrl(e.target.value)}>
         </input>
       </div>
