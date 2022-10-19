@@ -10,7 +10,7 @@ const UpdateSpotForm = () => {
   const history = useHistory();
   const {spotId} = useParams();
 
-  const user = useSelector(state => state.session.user);
+  // const user = useSelector(state => state.session.user);
   const spot = useSelector(state => state.spots.singleSpot);
 
   const [errors, setErrors] = useState([]);
@@ -23,7 +23,7 @@ const UpdateSpotForm = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [url, setUrl] = useState('');
+  // const [url, setUrl] = useState('');
 
   useEffect(() => {
     dispatch(getOneSpot(+spotId));
@@ -40,7 +40,7 @@ useEffect(() => {
         setName(spot.name);
         setDescription(spot.description);
         setPrice(spot.price);
-        setUrl(spot.url);
+        // setUrl(spot.url);
     }
 }, [spot]);
 
@@ -52,6 +52,7 @@ useEffect(() => {
     await dispatch(updateOneSpot(spotInfo, +spotId));
     history.push(`/my-spots`);
   };
+
 
   return (
     <div className="createSpot-outer-container">
@@ -70,8 +71,8 @@ useEffect(() => {
                 required
                 value={address}
                 onChange={e => setAddress(e.target.value)}
-                className="createSpot-inputField"
-                 />
+                className="updateSpot-inputField"
+                />
             </label>
           </div>
 

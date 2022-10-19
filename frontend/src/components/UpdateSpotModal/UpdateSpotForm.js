@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
-import { useDispatch} from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateOneSpot, getOneSpot } from '../../store/spots';
+import { useHistory, useParams } from "react-router-dom";
 
-import { createOneSpot } from '../../store/spots';
-import "./CreateSpotForm.css";
+import "./UpdateSpotForm.css";
 
-const CreateSpotForm = ({setModal}) => {
+const UpdateSpotForm = ({setModal, spotId}) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  // const {spotId} = useParams();
+
+  // const user = useSelector(state => state.session.user);
+  const spot = useSelector(state => state.spots.singleSpot);
+  console.log("UpdateSpotForm-spot:", spot)
 
   const [errors, setErrors] = useState([]);
   const [address, setAddress] = useState('');
@@ -19,41 +24,58 @@ const CreateSpotForm = ({setModal}) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [url, setUrl] = useState('');
-  const [preview, setPreview] = useState(true);
+  // const [url, setUrl] = useState('');
+  // console.log("UpdateSpotForm-spotId:", spotId)
+  useEffect(() => {
+    dispatch(getOneSpot(+spotId));
+}, [dispatch, spotId]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const data = { address, city, state, country, lat, lng, name, description, price, url };
-    const imgData = { url, preview };
+useEffect(() => {
+    if (spot) {
+        setAddress(spot.address);
+        setCity(spot.city);
+        setState(spot.state);
+        setCountry(spot.country);
+        setLat(spot.lat);
+        setLng(spot.lng);
+        setName(spot.name);
+        setDescription(spot.description);
+        setPrice(spot.price);
+        // setUrl(spot.url);
+    }
+}, [spot]);
 
-    dispatch(createOneSpot(data, imgData))
-    .then(newSpot => history.push(`/spots/${newSpot.id}`))
-    .then(newSpot => setModal(false))
-    .catch(async (res) => {
-      // console.log("createOneSpot dispatch from create spot component:", res)
-      if(res === undefined) return null;
-      const message = await res.json();
-      // console.log("From CreateSpot - res.message:", message)
-      if (message && message.errors) setErrors(message.errors);
-      // console.log("From CreateSpot - setErrors:", errors)
-     });
+const handleSubmit = (e) => {
+  e.preventDefault();
 
+  const spotInfo = { name, description, address, city, state, country, lat, lng, price }
 
-  }
+  dispatch(updateOneSpot(spotInfo, +spotId))
+  .then(res => setModal(false))
+  .then(res => history.push(`/spots/${spotId}`))
+  .catch(async (res) => {
+    console.log("createOneSpot dispatch from create spot component:", res)
+    if(res === undefined) return null;
+    const message = await res.json();
+    console.log("From CreateSpot - res.message:", message)
+    if (message && message.errors) setErrors(message.errors);
+    console.log("From CreateSpot - setErrors:", errors)
+   });
+  //  history.push(`/spots/${spotId}`)
+};
 
-
-  // const handleCancelClick = (e) => {
-  //   e.preventDefault();
-  //   history.push(`/`);
-  // }
+const handleCancelClick = (e) => {
+  e.preventDefault();
+  setModal(false)
+  history.push(`/my-spots`);
+}
 
   return (
     <div className="createSpot-outer-container">
       <form onSubmit={handleSubmit}>
-        <div id='createSpotTitle'>Become a Host</div>
+        <div id='createSpotTitle'>Spot Edit</div>
         <div id='fieldContainer'>
-          <div id='welcomeDiv'>Create your spot</div>
+          <div id='welcomeDiv'>Update your spot</div>
           <ul>
             {errors && errors.map((error, idx) => <li key={idx} className="errors-li">{error}</li>)}
           </ul>
@@ -112,7 +134,6 @@ const CreateSpotForm = ({setModal}) => {
               type="number"
               min="-90"
               max="90"
-              placeholder='37.788523'
               value={lat}
               onChange={e => setLat(e.target.value)}
               className="createSpot-inputField"
@@ -126,7 +147,6 @@ const CreateSpotForm = ({setModal}) => {
               type="number"
               min='-180'
               max='180'
-              placeholder='154.377514'
               value={lng}
               onChange={e => setLng(e.target.value)}
               className="createSpot-inputField"
@@ -167,32 +187,22 @@ const CreateSpotForm = ({setModal}) => {
           </label>
           </div>
 
-          <div className="inputContainer" id="middle-label">
+          {/* <div className="inputContainer" id="middle-label">
           <label className="create-spot-label">Img url
             <input
               type="text"
-              placeholder="http://..."
               required
               value={url}
               onChange={e => setUrl(e.target.value)}
               className="createSpot-inputField"
               />
           </label>
-          </div>
+          </div> */}
 
-
-          <div className="inputContainer" id="bottom-label">
-          <label className="create-spot-label">Set as Preview Image
-            <select onChange={e => setPreview(e.target.value)} value={preview} className="createSpot-inputField">
-                <option key='true'>true</option>
-                <option key='false'>false</option>
-            </select>
-          </label>
-          </div>
           <div>
-            <button type="submit" className="styledButton">Create new Spot</button>
+            <button type="submit" className="styledButton">Update spot</button>
+            <button type="button" onClick={handleCancelClick} className="styledButton">Cancel</button>
           </div>
-          {/* <button type="button" onClick={handleCancelClick}>Cancel</button> */}
 
         </div>
       </form>
@@ -200,5 +210,4 @@ const CreateSpotForm = ({setModal}) => {
   );
 }
 
-
-export default CreateSpotForm;
+export default UpdateSpotForm;

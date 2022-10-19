@@ -270,6 +270,7 @@ router.put('/:spotId', requireAuth, validateSpotEdit, async (req, res, next) => 
 
   const currSpotId = parseInt(req.params.spotId);
   const currSpot = await Spot.findByPk(currSpotId);
+  // console.log("========================", currSpot)
   if (!currSpot) {
     return res.status(404)
     .json({
@@ -309,7 +310,7 @@ router.put('/:spotId', requireAuth, validateSpotEdit, async (req, res, next) => 
   updatedSpotJSON.Owner = owner;
   // delete updatedSpot.User;
 
-  console.log("========================", updatedSpotJSON)
+  // console.log("========================", updatedSpotJSON)
   return res.json(updatedSpotJSON);
 
 })

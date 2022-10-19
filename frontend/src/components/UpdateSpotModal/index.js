@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import { useSelector } from 'react-redux';
-import CreateSpotForm from './CreateSpotForm';
+import UpdateSpotForm from './UpdateSpotForm';
 
-function CreateSpotFormModal() {
+function UpdateSpotFormModal({spotId}) {
   const sessionUser = useSelector(state => state.session.user);
   const [showModal, setShowModal] = useState(false);
-
 
   return (
     <>
       {sessionUser &&
         <>
-        <span onClick={() => setShowModal(true)} className="create-spot">Become a Host</span>
+        <button onClick={() => setShowModal(true)} className="user-button">Edit</button>
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
-            <CreateSpotForm setModal={setShowModal}/>
+            <UpdateSpotForm setModal={setShowModal} spotId={spotId}/>
           </Modal>
           )}
         </>
@@ -24,4 +23,4 @@ function CreateSpotFormModal() {
   );
 }
 
-export default CreateSpotFormModal;
+export default UpdateSpotFormModal;

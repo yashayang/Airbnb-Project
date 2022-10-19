@@ -1,0 +1,13 @@
+.updateSpot-inputField{
+  height: 20px;
+  width: 478px;
+  margin: 5px;
+
+  font-size: 15px;
+  font-weight: 350;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+  color: #222222;
+
+  border: none;
+  outline: none;
+}

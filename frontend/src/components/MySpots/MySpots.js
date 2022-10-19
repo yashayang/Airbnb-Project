@@ -3,6 +3,7 @@ import { NavLink, useHistory} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { getAllSpots, deleteOneSpot } from '../../store/spots'
+import UpdateSpotFormModal from '../UpdateSpotModal'
 
 
 import './MySpots.css'
@@ -61,7 +62,8 @@ const MySpots = () => {
             </NavLink>
 
             <div className="edit-buttons-container">
-                <NavLink to={`/${spot.id}/edit`}><button className="user-button">Edit</button></NavLink>
+                {/* <NavLink to={`/${spot.id}/edit`}><button className="user-button">Edit</button></NavLink> */}
+                <UpdateSpotFormModal spotId={spot.id}/>
                 <button className="user-button" onClick={() => deleteSpotClickEvent(spot.id)}>Delete</button>
             </div>
 

@@ -7,8 +7,8 @@ import Navigation from "./components/Navigation";
 import SpotsBrowser from "./components/SpotsBrowser";
 import SpotDetails from "./components/SpotDetails/SpotDetails";
 import CreateSpot from "./components/CreateSpot/CreateSpot";
-import AddSpotImgForm from "./components/CreateSpot/AddSpotImg";
-import UpdateSpotForm from "./components/UpdateSpot/UpdateSpot";
+// import AddSpotImgForm from "./components/CreateSpot/AddSpotImg";
+// import UpdateSpotForm from "./components/UpdateSpot/UpdateSpot";
 import AllReviewsforSpot from "./components/Reviews/AllReviewsforSpot";
 import CreateReview from "./components/Reviews/CreateReview";
 import MySpots from "./components/MySpots/MySpots";
@@ -39,13 +39,13 @@ function App() {
             <CreateSpot />
           </Route>
 
-          <Route exact path="/:spotId/images">
+          {/* <Route exact path="/:spotId/images">
               <AddSpotImgForm />
           </Route>
 
           <Route exact path="/:spotId/edit">
               <UpdateSpotForm />
-          </Route>
+          </Route> */}
 
           <Route exact path="/:spotId/reviews">
               <AllReviewsforSpot />
