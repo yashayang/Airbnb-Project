@@ -31,12 +31,6 @@
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
 }
 
-.create-spot {
-  text-decoration: none;
-  color: rgb(84, 83, 83);
-  font-size: 15px;
-}
-
 .nav-bar-right {
   right: 5em;
 }

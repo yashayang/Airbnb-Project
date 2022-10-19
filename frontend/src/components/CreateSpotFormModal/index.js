@@ -12,7 +12,7 @@ function CreateSpotFormModal() {
     <>
       {sessionUser &&
         <>
-        <span onClick={() => setShowModal(true)}>Become a Host</span>
+        <span onClick={() => setShowModal(true)} className="create-spot">Become a Host</span>
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
             <CreateSpotForm />

@@ -39,83 +39,158 @@ const CreateSpotForm = () => {
      });
   }
 
-  const handleCancelClick = (e) => {
-    e.preventDefault();
-    history.push(`/`);
-  }
+  // const handleCancelClick = (e) => {
+  //   e.preventDefault();
+  //   history.push(`/`);
+  // }
 
   return (
-    <div className="form-outer-container">
-      <ul>
-        {errors && errors.map((error, idx) => <li key={idx} className="errors-li">{error}</li>)}
-      </ul>
-      <form className="create-pokemon-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Address"
-          required
-          value={address}
-          onChange={e => setAddress(e.target.value)} />
-        <input
-          type="text"
-          placeholder="City"
-          max="100"
-          required
-          value={city}
-          onChange={e => setCity(e.target.value)} />
-        <input
-          type="text"
-          placeholder="state"
-          min="0"
-          max="100"
-          required
-          value={state}
-          onChange={e => setState(e.target.value)} />
-        <input
-          type="text"
-          placeholder="country"
-          value={country}
-          onChange={e => setCountry(e.target.value)} />
-        <input
-          type="number"
-          placeholder="lat"
-          value={lat}
-          onChange={e => setLat(e.target.value)} />
-        <input
-          type="number"
-          placeholder="lng"
-          value={lng}
-          onChange={e => setLng(e.target.value)} />
-        <input
-          type="text"
-          placeholder="name"
-          value={name}
-          onChange={e => setName(e.target.value)} />
-        <input
-          type="text"
-          placeholder="description"
-          value={description}
-          onChange={e => setDescription(e.target.value)} />
-        <input
-          type="number"
-          placeholder="price"
-          value={price}
-          onChange={e => setPrice(e.target.value)} />
-        <label>Image url:</label>
-        <input
-          type="text"
-          placeholder="http://..."
-          required
-          value={url}
-          onChange={e => setUrl(e.target.value)} />
-        <label>Set as Preview Image:</label>
-        <select onChange={e => setPreview(e.target.value)} value={preview}>
-            <option key='true'>true</option>
-            <option key='false'>false</option>
-        </select>
+    <div className="createSpot-outer-container">
+      <form onSubmit={handleSubmit}>
+        <div id='createSpotTitle'>Become a Host</div>
+        <div id='fieldContainer'>
+          <div id='welcomeDiv'>Create your spot</div>
+          <ul>
+            {errors && errors.map((error, idx) => <li key={idx} className="errors-li">{error}</li>)}
+          </ul>
 
-        <button type="submit">Create new Spot</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
+          <div className="inputContainer" id="top-label">
+            <label className="create-spot-label">Address
+              <input
+                type="text"
+                required
+                value={address}
+                onChange={e => setAddress(e.target.value)}
+                className="createSpot-inputField"
+                 />
+            </label>
+          </div>
+
+          <div className="inputContainer" id="middle-label">
+            <label className="create-spot-label">City
+              <input
+                type="text"
+                required
+                value={city}
+                onChange={e => setCity(e.target.value)}
+                className="createSpot-inputField"
+              />
+            </label>
+          </div>
+
+          <div className="inputContainer" id="middle-label">
+          <label className="create-spot-label">State
+            <input
+              type="text"
+              required
+              value={state}
+              onChange={e => setState(e.target.value)}
+              className="createSpot-inputField"
+              />
+          </label>
+          </div>
+
+          <div className="inputContainer" id="middle-label">
+          <label className="create-spot-label">Country
+            <input
+              type="text"
+              required
+              value={country}
+              onChange={e => setCountry(e.target.value)}
+              className="createSpot-inputField"
+              />
+          </label>
+          </div>
+
+          <div className="inputContainer" id="middle-label">
+          <label className="create-spot-label">lat
+            <input
+              type="number"
+              min="-90"
+              max="90"
+              placeholder='37.788523'
+              value={lat}
+              onChange={e => setLat(e.target.value)}
+              className="createSpot-inputField"
+              />
+          </label>
+          </div>
+
+          <div className="inputContainer" id="middle-label">
+          <label className="create-spot-label">lng
+            <input
+              type="number"
+              min='-180'
+              max='180'
+              placeholder='154.377514'
+              value={lng}
+              onChange={e => setLng(e.target.value)}
+              className="createSpot-inputField"
+              />
+          </label>
+          </div>
+
+          <div className="inputContainer" id="middle-label">
+          <label className="create-spot-label">Spot name
+            <input
+              type="text"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              className="createSpot-inputField"
+              />
+          </label>
+          </div>
+
+          <div className="inputContainer" id="middle-label">
+          <label className="create-spot-label">Description
+            <input
+              type="text"
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+              className="createSpot-inputField"
+              />
+          </label>
+          </div>
+
+          <div className="inputContainer" id="middle-label">
+          <label className="create-spot-label">Price per night
+            <input
+              type="number"
+              value={price}
+              onChange={e => setPrice(e.target.value)}
+              className="createSpot-inputField"
+              />
+          </label>
+          </div>
+
+          <div className="inputContainer" id="middle-label">
+          <label className="create-spot-label">Img url
+            <input
+              type="text"
+              placeholder="http://..."
+              required
+              value={url}
+              onChange={e => setUrl(e.target.value)}
+              className="createSpot-inputField"
+              />
+          </label>
+          </div>
+
+
+          <div className="inputContainer" id="bottom-label">
+          <label className="create-spot-label">Set as Preview Image
+            <select onChange={e => setPreview(e.target.value)} value={preview} className="createSpot-inputField">
+                <option key='true'>true</option>
+                <option key='false'>false</option>
+            </select>
+          </label>
+          </div>
+          <div>
+            <button type="submit" className="styledButton">Create new Spot</button>
+          </div>
+          {/* <button type="button" onClick={handleCancelClick}>Cancel</button> */}
+
+        </div>
       </form>
     </div>
   );
