@@ -29,12 +29,12 @@ const addReviewImg = (reviewId, url) => {
 }
 
 
-const updateReview = (review) => {
-  return {
-    type: UPDATE_REVIEW,
-    review
-  }
-}
+// const updateReview = (review) => {
+//   return {
+//     type: UPDATE_REVIEW,
+//     review
+//   }
+// }
 
 const deleteReview = (reviewId) => {
   return {
@@ -149,9 +149,7 @@ const reviewReducer = (state = initialState, action) => {
       action.reviews.Reviews.forEach(review => {
         const newImgArr = []
         newState[review.id] = review;
-        review.ReviewImages.map(imgObj => {
-          newImgArr.push(imgObj.url)
-        })
+        review.ReviewImages.map(imgObj => newImgArr.push(imgObj.url))
         newState[review.id].ReviewImages = newImgArr
       })
     return newState;
