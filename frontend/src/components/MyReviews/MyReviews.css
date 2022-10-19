@@ -1,0 +1,10 @@
+.myReviews-outer-contrainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 50px 150px 50px 150px;
+  padding-right: 50px;
+
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+}

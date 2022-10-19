@@ -53,6 +53,16 @@ export const getAllReviews = (spotId) => async (dispatch) => {
   return null;
 }
 
+export const getMyReviews = () => async (dispatch) => {
+  const response = await csrfFetch(`api/reviews/current`);
+  if (response.ok) {
+    const reviews = await response.json();
+    dispatch(allReviews(reviews));
+    return reviews;
+  }
+  return null;
+}
+
 export const createOneReview = (review, spotId, url) => async (dispatch) => {
   // console.log("review store - data received:", typeof review.ratingNum, spotId, url)
   // review.stars = review.ratingNum;
@@ -119,6 +129,15 @@ export const createOneReview = (review, spotId, url) => async (dispatch) => {
   return newReview;
 }
 
+export const deleteOneReview = (reviewId) => async (dispatch) => {
+  const response = await csrfFetch(`api/reviews/${reviewId}`, {
+    method: 'DELETE'
+  })
+  if (response.ok) {
+    dispatch(deleteReview(reviewId))
+  }
+}
+
 
 const initialState = {}
 
@@ -152,6 +171,8 @@ const reviewReducer = (state = initialState, action) => {
     return newState;
 
     case DELETE_REVIEW:
+      newState = { ...state };
+      delete newState[action.reviewId]
     return newState;
 
     default:

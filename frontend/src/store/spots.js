@@ -202,7 +202,7 @@ export const deleteOneSpot = (spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: "delete"
   });
-  console.log("delevtOneSpot thunk - res:", spotId)
+  // console.log("delevtOneSpot thunk - res:", spotId)
   if (response.ok) {
     dispatch(deleteSpot(spotId));
   }
@@ -253,7 +253,7 @@ const spotsReducer = (state = initialState, action) => {
       return newState;
 
     case DELETE_SPOT:
-      console.log("delevtOneSpot reducer - newState:", state)
+      // console.log("delevtOneSpot reducer - newState:", state)
       newState = { ...state, allSpots: {...state.allSpots}, singleSpot: {...state.singleSpot} };
       delete newState.singleSpot;
       delete newState.allSpots[action.payload];
