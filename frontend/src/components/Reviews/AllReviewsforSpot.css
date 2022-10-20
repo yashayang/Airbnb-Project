@@ -4,8 +4,8 @@
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
 }
 
-.fa-sharp {
-  color: rgb(207, 99, 117);
+.fa-sharp.fa-solid.fa-star {
+  color:#D70466
 }
 
 .create-review {

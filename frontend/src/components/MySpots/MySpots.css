@@ -40,8 +40,10 @@
 
 
 .no-spots {
+  display: flex;
+  flex-direction: row;
   margin-top: 30px;
-  margin-left: 15px;
+  margin-left: 300px;
   width: 500px;
   color:  grey;
   font-size: 22px;
