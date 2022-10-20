@@ -398,9 +398,9 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res, ne
   const currSpotId = parseInt(req.params.spotId);
   const { user } = req;
   const currUserId = user.toJSON().id;
-  console.log("=================This is currUserId in create Review Route:", currUserId)
+  // console.log("=================This is currUserId in create Review Route:", currUserId)
   const currSpot = await Spot.findByPk(currSpotId);
-  console.log("=================BACKEND-currSpot:", currSpot)
+  // console.log("=================BACKEND-currSpot:", currSpot)
 
   if (!currSpot) {
     return res.status(404)
@@ -412,7 +412,7 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res, ne
 
 
   const { review, stars } = req.body;
-  console.log("=================BACKEND-Req.body:", req.body)
+  // console.log("=================BACKEND-Req.body:", req.body)
   if (stars > 5 || stars < 1) {
     const err = new Error("Stars must be an integer from 1 to 5")
     err.title = 'Validation error';
@@ -435,7 +435,7 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res, ne
     include: User
     })
 
-  console.log("=================BACKEND-Req.body:", findNewReview)
+  // console.log("=================BACKEND-Req.body:", findNewReview)
 
   return res.json(findNewReview)
 

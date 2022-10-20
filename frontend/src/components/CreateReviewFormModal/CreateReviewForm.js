@@ -24,19 +24,19 @@ const CreateReviewForm = ({setModal}) => {
       stars: ratingNum,
       url
     };
-    console.log("This is create review form-newReview:", newReview)
+    // console.log("This is create review form-newReview:", newReview)
 
     dispatch(createOneReview(newReview, spotId, url))
     .then(res => {
-      console.log("This is create review form history push:", res)
+      // console.log("This is create review form history push:", res)
       history.push(`/spots/${spotId}`)
     })
     .then(res => {
-      console.log("This is create review form close modal:", res)
+      // console.log("This is create review form close modal:", res)
       setModal(false)
     })
     .catch(async (res) => {
-      console.log("This is create review form catch block:", res)
+      // console.log("This is create review form catch block:", res)
       if (res === undefined) return null;
       const message = await res.json();
       if (message && message.errors) {
@@ -45,7 +45,7 @@ const CreateReviewForm = ({setModal}) => {
         setErrors([message.message])
       };
 
-      console.log("!!!!!!!!!", message)
+      // console.log("!!!!!!!!!", message)
     });
     await dispatch(getAllReviews(spotId));
 

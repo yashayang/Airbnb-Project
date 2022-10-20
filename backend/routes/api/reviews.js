@@ -75,13 +75,13 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
 //Add an Image to a Review based on the Review's id
 router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
-  console.log("=============This is the beginning of the adding img route")
+  // console.log("=============This is the beginning of the adding img route")
   const reviewId = parseInt(req.params.reviewId);
   const { url } = req.body;
 
   const currReview = await Review.findByPk(reviewId);
   if (!currReview) {
-    console.log("==============if not currReview")
+    // console.log("==============if not currReview")
     return res.status(404)
        .json({
        "message": "Review couldn't be found",
@@ -90,8 +90,8 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
   }
 
   if (currReview.userId !== req.user.id) {
-    console.log("==============if currReview user ID NOT equal- this is currReview", currReview)
-    console.log("==============if currReview user ID NOT equal- this is req.user.id", req.user.id)
+    // console.log("==============if currReview user ID NOT equal- this is currReview", currReview)
+    // console.log("==============if currReview user ID NOT equal- this is req.user.id", req.user.id)
     return res.status(403);
     res.json({
         "message": "The review is not belongs to current user!",
@@ -101,7 +101,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 
   const images = await ReviewImage.findAll({ where: { reviewId: reviewId } })
   if (images.length >= 10) {
-    console.log("==============if not currReview TOO MANY IMGS")
+    // console.log("==============if not currReview TOO MANY IMGS")
     return res.status(403)
        .json({
        "message": "Maximum number of images for this resource was reached",
@@ -113,12 +113,12 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
     reviewId: reviewId,
     url: url
   })
-  console.log("==============This is after create img", newImage)
+  // console.log("==============This is after create img", newImage)
   const result = await ReviewImage.findOne({
     where: {url: url},
     attributes: ['id', 'url']
   })
-  console.log("=============This is the adding img result form BE:", result)
+  // console.log("=============This is the adding img result form BE:", result)
   res.json(result)
 })
 
