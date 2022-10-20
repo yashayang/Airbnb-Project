@@ -64,7 +64,7 @@ export const getMyReviews = () => async (dispatch) => {
 }
 
 export const createOneReview = (review, spotId, url) => async (dispatch) => {
-  console.log("review store - data received:", review, spotId, url)
+  console.log("This is createOneReview THUNK - data received from FE:", review, spotId, url)
   // review.stars = review.ratingNum;
   const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
     method: 'post',
@@ -92,7 +92,7 @@ export const createOneReview = (review, spotId, url) => async (dispatch) => {
   }
 
   const newReview = await response.json();
-  console.log("createOneReview Thunk - newReview:", newReview)
+  console.log("This is createOneReview THUNK - newReview response from db:", newReview)
   dispatch(createReview(newReview));
 
   const imgRes = await csrfFetch(`/api/reviews/${newReview.id}/images`, {
@@ -102,7 +102,7 @@ export const createOneReview = (review, spotId, url) => async (dispatch) => {
     },
     body: JSON.stringify({url})
   })
-  console.log("createOneReview Thunk - imgRes:", imgRes)
+
   if (!imgRes.ok) {
     let imgError;
     if (imgRes.status === 404) {
@@ -123,9 +123,9 @@ export const createOneReview = (review, spotId, url) => async (dispatch) => {
 
   const newImg = await imgRes.json()
   dispatch(addReviewImg(newReview.id, url))
-  console.log("createOneReview Thunk - newImg:", newImg)
+  console.log("This is createOneReview Thunk - newImg response from db:", newImg)
   newReview['ReviewImages'] = newImg;
-  console.log("createOneReview Thunk - newReview:", newReview)
+  console.log("This is createOneReview Thunk - newReview return from the thunk:", newReview)
   return newReview;
 }
 
@@ -157,7 +157,7 @@ const reviewReducer = (state = initialState, action) => {
     case CREATE_REVIEW:
       newState = { ...state };
       newState[action.review.id] = action.review;
-      console.log("reviewReducer-CREATE_REVIEW newState:", newState)
+      console.log("This is CREATE_REVIEW newState:", newState)
     return newState;
 
     case ADD_REVIEW_IMG:
@@ -169,11 +169,11 @@ const reviewReducer = (state = initialState, action) => {
           ...state[action.reviewId]
         }
       };
-      console.log("This is action in the case:", action)
+      console.log("This is action in the ADD_REVIEW_IMG case:", action)
       console.log("This is review images:", newState[action.reviewId].ReviewImages)
       newState[action.reviewId].ReviewImages = [action.url]
       console.log("This is review images after added:", newState[action.reviewId].ReviewImages)
-      console.log("This is action.url in the case:", action.url)
+      console.log("This is action.url in the ADD_REVIEW_IMG case:", action.url)
     return newState;
 
     case UPDATE_REVIEW:

@@ -64,7 +64,7 @@ const CreateReview = () => {
       <label>Rating(1 - 5):</label>
       <div>
         <input
-            type='number'
+            type='decimel'
             min='1'
             max='5'
             placeholder='5'
