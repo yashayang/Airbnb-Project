@@ -12,7 +12,7 @@ const UpdateSpotForm = ({setModal, spotId}) => {
 
   // const user = useSelector(state => state.session.user);
   const spot = useSelector(state => state.spots.singleSpot);
-  console.log("UpdateSpotForm-spot:", spot)
+  // console.log("UpdateSpotForm-spot:", spot)
 
   const [errors, setErrors] = useState([]);
   const [address, setAddress] = useState('');
@@ -54,12 +54,12 @@ const handleSubmit = (e) => {
   .then(res => setModal(false))
   .then(res => history.push(`/spots/${spotId}`))
   .catch(async (res) => {
-    console.log("createOneSpot dispatch from create spot component:", res)
+    // console.log("createOneSpot dispatch from create spot component:", res)
     if(res === undefined) return null;
     const message = await res.json();
-    console.log("From CreateSpot - res.message:", message)
+    // console.log("From CreateSpot - res.message:", message)
     if (message && message.errors) setErrors(message.errors);
-    console.log("From CreateSpot - setErrors:", errors)
+    // console.log("From CreateSpot - setErrors:", errors)
    });
   //  history.push(`/spots/${spotId}`)
 };

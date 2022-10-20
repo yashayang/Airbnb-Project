@@ -30,12 +30,16 @@ const CreateReviewForm = ({setModal}) => {
     .then(res => history.push(`/spots/${spotId}`))
     .then(res => setModal(false))
     .catch(async (res) => {
-      console.log("CreateReview-dispatch-res:", res)
+      // console.log("CreateReview-dispatch-res:", res)
       if (res === undefined) return null;
       const message = await res.json();
-      if (message && message.errors) setErrors(message.errors);
-      // if (message.status === 200) history.push(`/spots/${spotId}`);
-      console.log("!!!!!!!!!", message)
+      if (message && message.errors) {
+        setErrors(message.errors)
+      } else if (message.message) {
+        setErrors([message.message])
+      };
+
+      // console.log("!!!!!!!!!", message)
     });
     await dispatch(getAllReviews(spotId));
 

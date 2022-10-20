@@ -388,6 +388,7 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res, ne
   const currUserId = user.toJSON().id;
   // console.log(currUserId)
   const currSpot = await Spot.findByPk(currSpotId);
+  // console.log("!!!!!!!BACKEND-currSpot:", currSpot)
 
   if (!currSpot) {
     return res.status(404)

@@ -92,7 +92,7 @@ export const createOneReview = (review, spotId, url) => async (dispatch) => {
   }
 
   const newReview = await response.json();
-  console.log("createOneReview Thunk - newReview:", newReview)
+  // console.log("createOneReview Thunk - newReview:", newReview)
   dispatch(createReview(newReview));
 
   const imgRes = await csrfFetch(`/api/reviews/${newReview.id}/images`, {
@@ -102,7 +102,7 @@ export const createOneReview = (review, spotId, url) => async (dispatch) => {
     },
     body: JSON.stringify({url})
   })
-  console.log("createOneReview Thunk - imgRes:", imgRes)
+  // console.log("createOneReview Thunk - imgRes:", imgRes)
   if (!imgRes.ok) {
     let imgError;
     if (imgRes.status === 404) {
@@ -123,9 +123,9 @@ export const createOneReview = (review, spotId, url) => async (dispatch) => {
 
   const newImg = await imgRes.json()
   dispatch(addReviewImg(newReview.id, url))
-  console.log("createOneReview Thunk - newImg:", newImg)
+  // console.log("createOneReview Thunk - newImg:", newImg)
   newReview['ReviewImages'] = newImg;
-  console.log("createOneReview Thunk - newReview:", newReview)
+  // console.log("createOneReview Thunk - newReview:", newReview)
   return newReview;
 }
 
@@ -169,11 +169,11 @@ const reviewReducer = (state = initialState, action) => {
           ...state[action.reviewId]
         }
       };
-      console.log("This is action in the case:", action)
-      console.log("This is review images:", newState[action.reviewId].ReviewImages)
+      // console.log("This is action in the case:", action)
+      // console.log("This is review images:", newState[action.reviewId].ReviewImages)
       newState[action.reviewId].ReviewImages = [action.url]
-      console.log("This is review images after added:", newState[action.reviewId].ReviewImages)
-      console.log("This is action.url in the case:", action.url)
+      // console.log("This is review images after added:", newState[action.reviewId].ReviewImages)
+      // console.log("This is action.url in the case:", action.url)
     return newState;
 
     case UPDATE_REVIEW:
