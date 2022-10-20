@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
-import {createOneReview} from '../../store/reviews';
-import {getAllReviews} from '../../store/reviews';
+import {createOneReview, getAllReviews} from '../../store/reviews';
+import {getOneSpot} from '../../store/spots';
 import "./CreateReviewForm.css";
 
 const CreateReviewForm = ({setModal}) => {
@@ -42,7 +42,7 @@ const CreateReviewForm = ({setModal}) => {
       console.log("!!!!!!!!!", message)
     });
     await dispatch(getAllReviews(spotId));
-
+    await dispatch(getOneSpot(spotId));
   }
 
   const handleCancelClick = (e) => {
