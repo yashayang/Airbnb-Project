@@ -50,9 +50,10 @@ const SpotDetails = () => {
         <span>{spot.avgStarRating === "NaN" ? `No Rating` : spot.avgStarRating}{` · `}</span>
         <span>
         {spot.avgStarRating === "NaN" ? `No Reviews`
-         : <NavLink to={`/${spot.id}/reviews`} style={{ textDecoration: 'none', color: 'black'}}>
-             <label>reviews</label>
-           </NavLink>
+        //  : <NavLink to={`/${spot.id}/reviews`} style={{ textDecoration: 'none', color: 'black'}}>
+        //      <label>reviews</label>
+        //    </NavLink>
+            : <label>reviews</label>
          }
         <label>{` · `}</label>
         </span>
