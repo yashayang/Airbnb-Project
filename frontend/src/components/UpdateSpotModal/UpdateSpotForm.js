@@ -131,7 +131,7 @@ const handleCancelClick = (e) => {
           <div className="inputContainer" id="middle-label">
           <label className="create-spot-label">lat
             <input
-              type="number"
+              type="decimel"
               min="-90"
               max="90"
               value={lat}
@@ -144,7 +144,7 @@ const handleCancelClick = (e) => {
           <div className="inputContainer" id="middle-label">
           <label className="create-spot-label">lng
             <input
-              type="number"
+              type="decimel"
               min='-180'
               max='180'
               value={lng}
@@ -176,7 +176,7 @@ const handleCancelClick = (e) => {
           </label>
           </div>
 
-          <div className="inputContainer" id="middle-label">
+          <div className="inputContainer" id="bottom-label">
           <label className="create-spot-label">Price per night
             <input
               type="number"

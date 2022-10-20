@@ -109,7 +109,7 @@ const CreateSpotForm = ({setModal}) => {
           <div className="inputContainer" id="middle-label">
           <label className="create-spot-label">lat
             <input
-              type="number"
+              type="decimel"
               min="-90"
               max="90"
               placeholder='37.788523'
@@ -123,7 +123,7 @@ const CreateSpotForm = ({setModal}) => {
           <div className="inputContainer" id="middle-label">
           <label className="create-spot-label">lng
             <input
-              type="number"
+              type="decimel"
               min='-180'
               max='180'
               placeholder='154.377514'
