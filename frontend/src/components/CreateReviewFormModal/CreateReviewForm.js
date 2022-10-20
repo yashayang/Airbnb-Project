@@ -24,13 +24,19 @@ const CreateReviewForm = ({setModal}) => {
       stars: ratingNum,
       url
     };
-    console.log("This is CreateReviewForm - data received - newReview:", newReview)
+    console.log("This is create review form-newReview:", newReview)
 
     dispatch(createOneReview(newReview, spotId, url))
-    .then(res => history.push(`/spots/${spotId}`))
-    .then(res => setModal(false))
+    .then(res => {
+      console.log("This is create review form history push:", res)
+      history.push(`/spots/${spotId}`)
+    })
+    .then(res => {
+      console.log("This is create review form close modal:", res)
+      setModal(false)
+    })
     .catch(async (res) => {
-      console.log("This is CreateReviewForm - dispatch-res:", res)
+      console.log("This is create review form catch block:", res)
       if (res === undefined) return null;
       const message = await res.json();
       if (message && message.errors) {
@@ -39,7 +45,7 @@ const CreateReviewForm = ({setModal}) => {
         setErrors([message.message])
       };
 
-      console.log("This is CreateReviewForm - dispatch-res-message:", message)
+      console.log("!!!!!!!!!", message)
     });
     await dispatch(getAllReviews(spotId));
 
@@ -74,9 +80,10 @@ const CreateReviewForm = ({setModal}) => {
         </div>
 
         <div className="inputContainer" id="createReview-middle-label">
+        {/* <div className="inputContainer" id="bottom-label"> */}
         <label className="create-spot-label">Rating (1 - 5):
           <input
-            type='decimel'
+            type='number'
             min='1'
             max='5'
             placeholder='5'

@@ -94,7 +94,7 @@ export const createOneReview = (review, spotId, url) => async (dispatch) => {
   const newReview = await response.json();
   console.log("This is createOneReview THUNK - newReview response from db:", newReview)
   dispatch(createReview(newReview));
-
+  console.log("This is after dispatch the review before newimg")
   const imgRes = await csrfFetch(`/api/reviews/${newReview.id}/images`, {
     method: 'post',
     headers: {
@@ -102,8 +102,9 @@ export const createOneReview = (review, spotId, url) => async (dispatch) => {
     },
     body: JSON.stringify({url})
   })
-
+  console.log("This is before img error if block:", imgRes)
   if (!imgRes.ok) {
+    console.log("This is img error if block:", imgRes)
     let imgError;
     if (imgRes.status === 404) {
       imgError = await imgRes.json();
@@ -124,6 +125,7 @@ export const createOneReview = (review, spotId, url) => async (dispatch) => {
   const newImg = await imgRes.json()
   dispatch(addReviewImg(newReview.id, url))
   console.log("This is createOneReview Thunk - newImg response from db:", newImg)
+
   newReview['ReviewImages'] = newImg;
   console.log("This is createOneReview Thunk - newReview return from the thunk:", newReview)
   return newReview;

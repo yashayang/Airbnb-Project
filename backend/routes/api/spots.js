@@ -37,14 +37,13 @@ const validateSpotEdit = [
   check('lng').isDecimal().isLength({min: 2}, {max: 11}).withMessage('Longitude is not valid'),
   check('name').notEmpty().withMessage('Name must be less than 50 characters'),
   check('description').notEmpty().withMessage('Description is required'),
-  check('price').isDecimal().withMessage('Price per day is required'),
-  check('minPrice')
+  check('price').isDecimal().withMessage('Price per day is required')
     .custom(val => {
       if (val) {
         if (val > 0) return true
       }
     })
-  .withMessage('Minimum price must be greater than 0'),
+    .withMessage('Minimum price must be greater than 0'),
   handleValidationErrors
 ];
 
@@ -399,7 +398,7 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res, ne
   const currSpotId = parseInt(req.params.spotId);
   const { user } = req;
   const currUserId = user.toJSON().id;
-  // console.log(currUserId)
+  console.log("=================This is currUserId in create Review Route:", currUserId)
   const currSpot = await Spot.findByPk(currSpotId);
   console.log("=================BACKEND-currSpot:", currSpot)
 
@@ -431,7 +430,12 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res, ne
   }
 
   const newReview = await Review.create({ userId: currUserId, spotId: currSpotId, review, stars });
-  const findNewReview = await Review.findOne({ where: { spotId: currSpotId } })
+  const findNewReview = await Review.findOne({
+    where: { spotId: currSpotId, userId: currUserId },
+    include: User
+    })
+
+  console.log("=================BACKEND-Req.body:", findNewReview)
 
   return res.json(findNewReview)
 
