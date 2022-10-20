@@ -22,7 +22,7 @@ const CreateReviewForm = ({setModal}) => {
     const newReview = {
       review,
       stars: ratingNum,
-      url
+      // url
     };
     console.log("CreateReview-newReview:", newReview)
 
@@ -73,7 +73,8 @@ const CreateReviewForm = ({setModal}) => {
           </label>
         </div>
 
-        <div className="inputContainer" id="createReview-middle-label">
+        {/* <div className="inputContainer" id="createReview-middle-label"> */}
+        <div className="inputContainer" id="bottom-label">
         <label className="create-spot-label">Rating (1 - 5):
           <input
             type='number'
@@ -88,7 +89,7 @@ const CreateReviewForm = ({setModal}) => {
           </label>
         </div>
 
-        <div className="inputContainer" id="bottom-label">
+        {/* <div className="inputContainer" id="bottom-label">
           <label className="create-spot-label">Img url
             <input
               type="text"
@@ -100,7 +101,7 @@ const CreateReviewForm = ({setModal}) => {
               />
           </label>
         </div>
-
+ */}
         <div>
           <button className="styledButton">Create Review</button>
           <button type="button" onClick={handleCancelClick} className="styledButton">Cancel</button>

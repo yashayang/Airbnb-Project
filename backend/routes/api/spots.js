@@ -37,13 +37,12 @@ const validateSpotEdit = [
   check('lng').isDecimal().isLength({min: 2}, {max: 11}).withMessage('Longitude is not valid'),
   check('name').notEmpty().withMessage('Name must be less than 50 characters'),
   check('description').notEmpty().withMessage('Description is required'),
-  check('price').isDecimal().withMessage('Price per day is required'),
-  check('minPrice')
-    .custom(val => {
-      if (val) {
-        if (val > 0) return true
-      }
-    })
+  check('price').isDecimal().withMessage('Price per day is required')
+  .custom(val => {
+    if (val) {
+      if (val > 0) return true
+    }
+  })
   .withMessage('Minimum price must be greater than 0'),
   handleValidationErrors
 ];
@@ -55,11 +54,11 @@ const validateReview = [
   check("stars")
     .exists({ checkFalsy: true })
     .withMessage("Stars must be an integer from 1 to 5"),
-  check('url')
-    .notEmpty()
-    .withMessage('Url cannot be empty')
-    .isURL()
-    .withMessage('Url is not valid'),
+  // check('url')
+  //   .notEmpty()
+  //   .withMessage('Url cannot be empty')
+  //   .isURL()
+  //   .withMessage('Url is not valid'),
   handleValidationErrors,
 ];
 
