@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, NavLink } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import {getAllReviews} from '../../store/reviews';
+import {getAllSpots} from '../../store/spots';
 import CreateReviewFormModal from '../CreateReviewFormModal';
 import './AllReviewsforSpot.css';
 
@@ -11,13 +12,17 @@ const AllReviewsforSpot = () => {
   const { spotId } = useParams();
   const reviews = useSelector(state => state.reviews)
   const spot = useSelector(state => state.spots.singleSpot);
+  // const spots = useSelector(state => state.spots.allSpots);
   const currUser = useSelector(state => state.session.user)
-  // console.log("reviews state from All Reviews for Spot:", reviews)
+  // console.log("AllReviewsforSpot-reviews:", reviews)
 
   useEffect(() => {
     dispatch(getAllReviews(spotId))
   }, [dispatch, spotId])
 
+  // const spot = spots[+spotId]
+  // if(!spot) return null;
+  // console.log("AllReviewsforSpot-avgStarRating:", spot.avgRating)
 
   const currSpotReviews = Object.values(reviews).filter(review => {
     // console.log("review.spotId:", review.spotId)
