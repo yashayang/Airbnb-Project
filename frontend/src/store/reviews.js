@@ -157,7 +157,7 @@ const reviewReducer = (state = initialState, action) => {
     case CREATE_REVIEW:
       newState = { ...state };
       newState[action.review.id] = action.review;
-      console.log("reviewReducer-CREATE_REVIEW newState:", newState)
+      // console.log("reviewReducer-CREATE_REVIEW newState:", newState)
     return newState;
 
     case ADD_REVIEW_IMG:

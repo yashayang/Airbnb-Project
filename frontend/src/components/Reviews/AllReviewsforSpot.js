@@ -24,7 +24,7 @@ const AllReviewsforSpot = () => {
     return review.spotId === +spotId;
   })
 
-  console.log("currSpotReviews from All Reviews for Spot:", currSpotReviews)
+  // console.log("currSpotReviews from All Reviews for Spot:", currSpotReviews)
 
   if (!currSpotReviews) return null;
 
