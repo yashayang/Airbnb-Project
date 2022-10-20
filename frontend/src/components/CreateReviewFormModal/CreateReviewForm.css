@@ -1,23 +1,7 @@
-
-.create-spot {
-  text-decoration: none;
-  color: rgb(84, 83, 83);
-  font-size: 15px;
-  border: none;
-  border-radius: 30px;
-  margin: 5px 10px 5px 10px;
-  padding: 15px;
-}
-
-.create-spot:hover {
-  cursor: pointer;
-  background-color: rgb(251, 251, 251);
-  border-radius: 30px;
-}
-
-.createSpot-outer-container{
-  width: 566px;
+.create-review-outer-container{
+  width: 500px;
   height: auto;
+  min-height: 418px;
 
   border-color: #B0B0B0;
   border-width: 1px;
@@ -25,22 +9,29 @@
   border-style: solid;
 
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+
+  border: none;
+  outline: none;
 }
 
-#fieldContainer {
+#createReview-fieldContainer {
   box-sizing: border-box;
-  padding: 24px;
+  /* padding: 24px; */
+  width: 500px;
+  /* background-color: hotpink; */
 }
 
 ul {
   margin-left: 17px;
 }
 
-#createSpotTitle {
+#createReviewTitle {
   display:flex;
   align-items: center;
   justify-content: center;
   height: 64px;
+
+  margin-top: -20px;
 
   font-size: 16px;
   font-weight: 600;
@@ -58,10 +49,46 @@ ul {
   margin-bottom: 24px;
 }
 
-.createSpot-inputField{
+#createReview-top-label {
+  height: 150px;
+  width: 500px;
+
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  /* background-color: hotpink; */
+}
+
+.createReview-review-inputField {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 470px;
+  margin: 5px 5px 5px 4px;
+
+  font-size: 15px;
+  font-weight: 350;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+  color: #222222;
+  /* background-color: aqua; */
+  /* border: none; */
+  outline: none;
+}
+
+#createReview-middle-label {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top: none;
+}
+
+.createReview-inputField {
   height: 20px;
-  width: 478px;
+  /* width: 478px; */
   margin: 5px;
+  margin-left: 10px;
+  margin-right: 15px;
 
   font-size: 15px;
   font-weight: 350;
@@ -70,29 +97,4 @@ ul {
 
   border: none;
   outline: none;
-}
-
-.create-spot-label {
-  margin: 5px;
-  margin-left: 10px;
-}
-
-#top-label {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-#middle-label {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-top: none;
-  /* border-bottom: none; */
-}
-
-#bottom-label {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-top: none;
 }

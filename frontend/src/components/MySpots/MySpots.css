@@ -14,13 +14,28 @@
 }
 
 .user-button {
-  background-color: rgb(207, 99, 117);
+  /* background-color: rgb(207, 99, 117);
   color: white;
   border-radius: 4px;
   border: none;
   padding: 5px;
   padding-right: 10px;
-  padding-left: 10px;
+  padding-left: 10px; */
+
+  margin-top: 16px;
+  padding: 6px 12px;
+
+  outline: none;
+  border: none;
+  border-radius: 8px;
+
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 400;
+
+  cursor: pointer;
+
+  background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%) !important;
 }
 
 
