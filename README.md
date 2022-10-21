@@ -74,6 +74,12 @@ A logged in user is able to view all of their spots as well as update and delete
 
 ![Screen Shot 2022-10-20 at 8 41 21 PM](https://user-images.githubusercontent.com/1794317/197106461-a5f0fa1d-67cf-4835-a700-847a218e71b7.png)
 
+### Edit a Spot
+
+User is able to edit the spots they owned by clicking on the "Edit" button in "My spots".
+
+![Screen Shot 2022-10-20 at 8 44 51 PM](https://user-images.githubusercontent.com/1794317/197107166-2aa4487d-8e45-4dde-8999-f5b07ad98ce6.png)
+
 ### View Your Reviews
 
 A logged in user is able to view and delete their reviews.
