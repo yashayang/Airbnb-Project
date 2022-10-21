@@ -64,7 +64,7 @@ This page provides more details about the spot to the user. A user can add a rev
 
 ### Create a Review
 
-User can create a new review for spot the user is NOT owned or already reviewed.
+User can create a new review for the spot the user is NOT owned or already reviewed, by clicking on the "Add Review" button in the spot detail page.
 
 ![Screen Shot 2022-10-20 at 8 48 44 PM](https://user-images.githubusercontent.com/1794317/197107617-fdeb9a57-6b44-4bdb-b7bc-e91a3bed7a95.png)
 
