@@ -6,7 +6,7 @@ Airbnb clone is a web application inspired by the actual [Airbnb](https://www.ai
 
 ### Please see below links to project Wiki:
 * [Feature List]()
-* [Database Schema]([https://github.com/yashayang/Airbnb-Project.wiki.git](https://github.com/yashayang/Airdnd-Project/wiki/Database-Schema))
+* [Database Schema](https://github.com/yashayang/Airdnd-Project/wiki/Database-Schema)
 * [Frontend Routes]()
 * [API Routes]()
 * [Redux Store State Shape]()
