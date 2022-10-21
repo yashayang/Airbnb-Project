@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, NavLink } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import {getAllReviews} from '../../store/reviews';
 import CreateReviewFormModal from '../CreateReviewFormModal';
@@ -24,7 +24,7 @@ const AllReviewsforSpot = () => {
     return review.spotId === +spotId;
   })
 
-  console.log("currSpotReviews from All Reviews for Spot:", currSpotReviews)
+  // console.log("currSpotReviews from All Reviews for Spot:", currSpotReviews)
 
   if (!currSpotReviews) return null;
 
@@ -39,8 +39,6 @@ const AllReviewsforSpot = () => {
         <label>{currSpotReviews.length}{' '}reviews{' '}</label>
       </div>
       <div className="create-review">{
-        // currSpotReviews.length === 0
-        // &&
         currUser
         && spot.ownerId !== userId
         // && <NavLink to={`/${spot.id}/create-reviews`} style={{ textDecoration: 'none', color: 'rgb(207, 99, 117)'}}>
@@ -59,7 +57,6 @@ const AllReviewsforSpot = () => {
           </div>
             <div>{review.review}</div>
             <div>{review.ReviewImages && review.ReviewImages.map(imageUrl => <img className="each-review-img" src={imageUrl} alt={imageUrl} key={imageUrl}></img>)}</div>
-            {/* {console.log("===========", review.ReviewImages)} */}
           </div>
         )
         })}

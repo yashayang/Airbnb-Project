@@ -39,7 +39,7 @@ const CreateReviewForm = ({setModal}) => {
         setErrors([message.message])
       };
 
-      console.log("!!!!!!!!!", message)
+      // console.log("!!!!!!!!!", message)
     });
     await dispatch(getAllReviews(spotId));
     await dispatch(getOneSpot(spotId));
@@ -101,7 +101,7 @@ const CreateReviewForm = ({setModal}) => {
               />
           </label>
         </div>
- */}
+        */}
         <div>
           <button className="styledButton">Create Review</button>
           <button type="button" onClick={handleCancelClick} className="styledButton">Cancel</button>
