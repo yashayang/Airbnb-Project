@@ -36,7 +36,24 @@ Users are able to view spot information and click on a spot to see more details.
 
 ### Home Page Demo User:
 
-You will be able to test the features without sign up by click on the "Demo User" button.
+User will be able to test the features without sign up by click on the "Demo User" button.
 
 ![image](https://user-images.githubusercontent.com/1794317/197103596-06dc8f33-2c78-4194-a633-d271c7d53ce6.png)
+
+
+### Sign Up:
+
+Users can sign up a new account with validated information.
+
+![image](https://user-images.githubusercontent.com/1794317/197104259-19812617-4bb8-4f43-8524-016d5fdfde29.png)
+
+
+### Dropdown Menu
+
+The dropdown menu allows a user that is not signed in to sign up or log in to the site. Or a logged in users to view their spots and reviews.
+
+![image](https://user-images.githubusercontent.com/1794317/197104629-5f1de9b6-166f-47a1-aa91-239ccee4e314.png)
+![image](https://user-images.githubusercontent.com/1794317/197104796-f93a2d92-38ca-40f5-b551-ec5fcbcbeb75.png)
+
+
 
