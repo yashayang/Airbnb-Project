@@ -62,3 +62,10 @@ This page provides more details about the spot to the user. A user can add a rev
 
 ![Screen Shot 2022-10-20 at 8 33 42 PM](https://user-images.githubusercontent.com/1794317/197105701-69521bb3-49d6-477a-a57d-9235106da246.png)
 
+### Create a Spot
+
+Registered user can create a new spot by clicking the "Become a Host" text on the navigation bar.
+
+![Screen Shot 2022-10-20 at 8 37 30 PM](https://user-images.githubusercontent.com/1794317/197106190-d81e2168-fc66-4b24-94de-aea83623f90d.png)
+
+
