@@ -99,4 +99,4 @@ A logged in user is able to view and delete their reviews. You can access the "M
 
 linkedin.com/in/yashayang
 
-https://github.com/yashayang/Airbnb-Project.git![image](https://user-images.githubusercontent.com/1794317/197108902-d81d6ba8-34b8-4afe-a575-8d3e8ad0a5ed.png)
+https://github.com/yashayang
