@@ -37,3 +37,6 @@ Users are able to view spot information and click on a spot to see more details.
 ### Home Page Demo User:
 
 You will be able to test the features without sign up by click on the "Demo User" button.
+
+![image](https://user-images.githubusercontent.com/1794317/197103596-06dc8f33-2c78-4194-a633-d271c7d53ce6.png)
+
