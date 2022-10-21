@@ -68,4 +68,16 @@ Registered user can create a new spot by clicking the "Become a Host" text on th
 
 ![Screen Shot 2022-10-20 at 8 37 30 PM](https://user-images.githubusercontent.com/1794317/197106190-d81e2168-fc66-4b24-94de-aea83623f90d.png)
 
+### View Your Spots
+
+A logged in user is able to view all of their spots as well as update and delete spots.
+
+![Screen Shot 2022-10-20 at 8 41 21 PM](https://user-images.githubusercontent.com/1794317/197106461-a5f0fa1d-67cf-4835-a700-847a218e71b7.png)
+
+### View Your Reviews
+
+A logged in user is able to view and delete their reviews.
+
+![image](https://user-images.githubusercontent.com/1794317/197106627-9c0e41f8-b81e-47e9-a36b-50415a764ddf.png)
+
 
