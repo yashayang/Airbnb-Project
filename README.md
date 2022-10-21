@@ -62,6 +62,12 @@ This page provides more details about the spot to the user. A user can add a rev
 
 ![Screen Shot 2022-10-20 at 8 33 42 PM](https://user-images.githubusercontent.com/1794317/197105701-69521bb3-49d6-477a-a57d-9235106da246.png)
 
+### Create a Review
+
+User can create a new review for spot the user is NOT owned or already reviewed.
+
+![Screen Shot 2022-10-20 at 8 48 44 PM](https://user-images.githubusercontent.com/1794317/197107617-fdeb9a57-6b44-4bdb-b7bc-e91a3bed7a95.png)
+
 ### Create a Spot
 
 Registered user can create a new spot by clicking the "Become a Host" text on the navigation bar.
