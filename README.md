@@ -62,11 +62,13 @@ This page provides more details about the spot to the user. A user can add a rev
 
 ![Screen Shot 2022-10-20 at 8 33 42 PM](https://user-images.githubusercontent.com/1794317/197105701-69521bb3-49d6-477a-a57d-9235106da246.png)
 
+
 ### Create a Review
 
 User can create a new review for the spot the user is NOT owned or already reviewed, by clicking on the "Add Review" button in the spot detail page.
 
 ![Screen Shot 2022-10-20 at 8 48 44 PM](https://user-images.githubusercontent.com/1794317/197107617-fdeb9a57-6b44-4bdb-b7bc-e91a3bed7a95.png)
+
 
 ### Create a Spot
 
@@ -74,22 +76,27 @@ Registered user can create a new spot by clicking the "Become a Host" text on th
 
 ![Screen Shot 2022-10-20 at 8 37 30 PM](https://user-images.githubusercontent.com/1794317/197106190-d81e2168-fc66-4b24-94de-aea83623f90d.png)
 
+
 ### View Your Spots
 
-A logged in user is able to view all of their spots as well as update and delete spots.
+A logged in user is able to view all of their spots as well as update and delete spots. You can access the "My Spots" page by clicking the drop down menu, then clicking "My Spots" in the drop down menu.
 
 ![Screen Shot 2022-10-20 at 8 41 21 PM](https://user-images.githubusercontent.com/1794317/197106461-a5f0fa1d-67cf-4835-a700-847a218e71b7.png)
 
 ### Edit a Spot
 
-User is able to edit the spots they owned by clicking on the "Edit" button in "My spots".
+User is able to edit the spots they owned by clicking on the "Edit" button in "My Spots".
 
 ![Screen Shot 2022-10-20 at 8 44 51 PM](https://user-images.githubusercontent.com/1794317/197107166-2aa4487d-8e45-4dde-8999-f5b07ad98ce6.png)
 
 ### View Your Reviews
 
-A logged in user is able to view and delete their reviews.
+A logged in user is able to view and delete their reviews. You can access the "My Reviews" page by clicking the drop down menu, then clicking "My Reviews" in the drop down menu.
 
 ![image](https://user-images.githubusercontent.com/1794317/197106627-9c0e41f8-b81e-47e9-a36b-50415a764ddf.png)
 
+### Contact Information
 
+linkedin.com/in/yashayang
+
+https://github.com/yashayang/Airbnb-Project.git![image](https://user-images.githubusercontent.com/1794317/197108902-d81d6ba8-34b8-4afe-a575-8d3e8ad0a5ed.png)
