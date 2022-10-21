@@ -29,9 +29,9 @@ Airbnb clone is a web application inspired by the actual [Airbnb](https://www.ai
 
 ### HomePage
 
-The homepage presents all the spots and user can click any spot to get the single-spot details information.
+Users are able to view spot information and click on a spot to see more details.
 
-![Screen Shot 2022-10-20 at 8 13 03 PM](https://user-images.githubusercontent.com/1794317/197102963-aeccdd64-b4c6-4e00-8731-d293caf5eebb.png)
+![image](https://user-images.githubusercontent.com/1794317/197103330-228d7d4e-2d67-4653-81e7-9039854d2804.png)
 
 
 ### Home Page Demo User:
