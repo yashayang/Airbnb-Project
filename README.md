@@ -5,11 +5,10 @@ Airbnb clone is a web application inspired by the actual [Airbnb](https://www.ai
 [Click here to view Airbnb Live Site](https://my-first-project-airbnb.herokuapp.com/)
 
 ### Please see below links to project Wiki:
-* [Feature List]()
+* [Feature List](https://github.com/yashayang/Airdnd-Project/wiki/Feature-List)
 * [Database Schema](https://github.com/yashayang/Airdnd-Project/wiki/Database-Schema)
-* [Frontend Routes]()
-* [API Routes]()
-* [Redux Store State Shape]()
+* [API Documentation](https://github.com/yashayang/Airdnd-Project/wiki/API-Documentation)
+* [Redux Store State Shape](https://github.com/yashayang/Airdnd-Project/wiki/Redux-Store-Shape)
 
 ### This project is build with:
 * JavaScript
