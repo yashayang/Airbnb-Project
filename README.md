@@ -60,4 +60,5 @@ The dropdown menu allows a user that is not signed in to log in or sign up to th
 
 This page provides more details about the spot to the user. A user can add a review to a spot from this page.
 
-![image](https://user-images.githubusercontent.com/1794317/197105545-b10e2141-5e85-4971-9db4-9899b5de2efb.png)
+![Screen Shot 2022-10-20 at 8 33 42 PM](https://user-images.githubusercontent.com/1794317/197105701-69521bb3-49d6-477a-a57d-9235106da246.png)
+
