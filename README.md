@@ -1,6 +1,8 @@
-# About AirBnB clone:
+# About Airdnd clone:
 
-Airbnb clone is a web application inspired by the actual Airbnb, that provides an online marketplace for lodging primirily homestays for vacation retals, and tourism activities. Click here to view Airbnb Live Site
+Airbnb clone is a web application inspired by the actual Airbnb(https://www.airbnb.com/), that provides an online marketplace for lodging primirily homestays for vacation retals, and tourism activities. 
+
+Click here to view Airbnb Live Site (https://my-first-project-airbnb.herokuapp.com/)
 
 ### Please see below links to project Wiki:
 * [Feature List]()
