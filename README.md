@@ -97,6 +97,6 @@ A logged in user is able to view and delete their reviews. You can access the "M
 
 ### Contact Information
 
-linkedin.com/in/yashayang
+[linkedin.com/in/yashayang](linkedin.com/in/yashayang)
 
 https://github.com/yashayang
