@@ -45,7 +45,8 @@ const MySpots = () => {
                     <span id="spot-location">{spot.city}{`, `}{spot.state}</span>
                     <div id="spot-review">
                       <i className="fa-sharp fa-solid fa-star" style={{ color: 'black'}}></i>
-                      <span>{spot.avgRating}</span>
+                      {console.log("======", spot.avgRating)}
+                      <span>{spot.avgRating === "NaN" ? "New" : spot.avgRating}</span>
                     </div>
                   </div>
 
