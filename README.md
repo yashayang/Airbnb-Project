@@ -22,10 +22,18 @@ Airbnb clone is a web application inspired by the actual [Airbnb](https://www.ai
 ![CSS3](https://camo.githubusercontent.com/e6b67b27998fca3bccf4c0ee479fc8f9de09d91f389cccfbe6cb1e29c10cfbd7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f637373332d2532333135373242362e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d63737333266c6f676f436f6c6f723d7768697465)
 ![Heroku](https://camo.githubusercontent.com/d18f98a93a8ca015503870e592f96dbdf86f41048e9de1fbbbd4b2dcc7c456b1/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6865726f6b752d2532333433303039382e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d6865726f6b75266c6f676f436f6c6f723d7768697465)
 
-
 #### Database:
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 
 ## Feather Directions:
+
+### HomePage
+
+The homepage presents all the spots and user can click any spot to get the single-spot details information.
+
+![Screen Shot 2022-10-20 at 8 13 03 PM](https://user-images.githubusercontent.com/1794317/197102963-aeccdd64-b4c6-4e00-8731-d293caf5eebb.png)
+
+
 ### Home Page Demo User:
+
 You will be able to test the features without sign up by click on the "Demo User" button.
