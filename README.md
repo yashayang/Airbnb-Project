@@ -52,7 +52,7 @@ Users can sign up a new account with validated information.
 
 The dropdown menu allows a user that is not signed in to sign up or log in to the site. Or a logged in users to view their spots and reviews.
 
-![image](https://user-images.githubusercontent.com/1794317/197104943-f8f2ac51-e278-4e99-a54b-c9578072cb9d.png)
+![image](https://user-images.githubusercontent.com/1794317/197105075-09f02f03-c3a5-43c0-8804-6818004091fd.png)
 ![image](https://user-images.githubusercontent.com/1794317/197104796-f93a2d92-38ca-40f5-b551-ec5fcbcbeb75.png)
 
 
